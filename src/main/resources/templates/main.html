@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>메인화면</title>
+    <link rel="stylesheet" type="text/css" href="/static/css/reset.css">
+    <link rel="stylesheet" type="text/css" href="/static/css/main.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Gowun+Batang&family=IBM+Plex+Sans+KR&family=Jua&family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <div class="wrap">
+        <div class="container">
+            <!-- 헤더 영역 -->
+            <header class="header">
+                <!-- 로고, 처음으로 영역 -->
+                <div class="header-left">
+                    <div class="logo">
+                        로고
+                    </div>
+                    <div class="">
+                        처음으로
+
+                    </div>
+                </div>
+                <!-- 관리자 로그인 영역 -->
+                <div class="header-right">
+                    <div class="login">
+                        로그인
+                    </div>
+                </div>
+            </header>
+
+            <!-- 메인 영역 -->
+            <div class="main">
+                <!-- 카테고리 선택 영역 -->
+                <div class="category-area">
+                    <ul class="category">
+                        <li class="total-menu"><input class="category-input" type="radio">전체 메뉴</li>
+                        <li class="season"><input class="category-input" type="radio">시즌</li>
+                        <li class="coffee"><input class="category-input" type="radio">커피</li>
+                        <li class="beverage"><input class="category-input" type="radio">음료</li>
+                        <li class="tea"><input class="category-input" type="radio">티</li>
+                        <li class="desert"><input class="category-input" type="radio">디저트</li>
+                    </ul>
+                </div>
+                <!-- 메뉴 선택 영역 -->
+                <div class="select-area">
+
+                </div>
+            </div>
+
+
+            <!-- 장바구니 화면 -->
+            <div class="product">
+                <div class="menu-list"></div>
+                <div class="menu-price">
+                    <span>총 결제 금액</span>
+                    <div class="button-area">
+                        <button class="delete-button ">
+                            전체 삭제
+                        </button>
+                        <button class="payment-button">
+                            결제 하기
+                        </button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <script src="/static/js/main.js"></script>
+</body>
+
+</html>
