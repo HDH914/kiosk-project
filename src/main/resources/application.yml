@@ -3,6 +3,8 @@ server:
 
 #데이터베이스 설정
 spring:
+  mvc:
+    static-path-pattern: /static/**
   datasource:
     driver-class-name: org.mariadb.jdbc.Driver
     url: jdbc:mariadb://web-study.csbruw3zvnas.ap-northeast-2.rds.amazonaws.com:3306/kiosk
