@@ -19,4 +19,31 @@ public class PageController {
     public String main(){
         return "main";
         }
+
+
+
+    //로그인 페이지
+    @GetMapping("/login")
+    public String login(){
+        return "admin/login";
+    }
+
+    // 회원가입 페이지
+    @GetMapping("/signup")
+    public String signup(){
+        return "admin/signup";
+    }
+
+    // 관리자 페이지
+    @GetMapping("/admin")
+    public String admin(){
+        return "admin/admin";
+    }
+
+
+
+
+
+
+
 }
