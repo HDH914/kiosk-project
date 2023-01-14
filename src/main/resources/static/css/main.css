@@ -10,7 +10,7 @@
 .container {
     width: 1080px;
     height: auto;
-    background-color: burlywood;
+    background-color: #fefefe;
 }
 
 /* 헤더 영역 */
@@ -20,7 +20,6 @@
     width: 100%;
     height: 5%;
 
-    background-color: aquamarine;
 }
 
 /* 로고, 처음으로 영역 */
@@ -28,9 +27,40 @@
     display: flex;
     justify-content: space-around;
     align-items: center;
-    width: 30%;
+    width: 28%;
+}
 
-    background-color: antiquewhite;
+.logo,
+.home {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+}
+
+.icon {
+    font-size: 26px;
+    cursor: pointer;
+    color: black;
+}
+
+.home a {
+    padding-left: 5px;
+    font-size: 20px;
+    text-decoration: none;
+    color: black;
+}
+
+/* .home {
+    width: 100%;
+    height: 100%;
+} */
+
+
+.logo-image {
+    width: 90%;
+    height: 90%;
 }
 
 /* 관리자 로그인 영역 */
@@ -39,9 +69,18 @@
     justify-content: center;
     align-items: center;
 
-    width: 30%;
+    width: 20%;
 
-    background-color: azure;
+
+}
+
+.login {
+    padding-left: 60px;
+}
+
+.login-icon {
+    font-size: 28px;
+    color: rgb(70, 69, 69);
 }
 
 /* 메인 영역 */
@@ -52,16 +91,18 @@
     width: 100%;
     height: 75%;
 
-    background-color: darkturquoise;
+    /* background-color: darkturquoise; */
 
 }
 
 /* 카테고리 선택 영역 */
 .category-area {
+    border-top: 2px solid black;
+    border-bottom: 1px solid black;
     width: 100%;
     height: 10%;
 
-    background-color: khaki;
+    /* background-color: khaki; */
 }
 
 .category {
@@ -80,8 +121,13 @@
     border: 2px solid gray;
     border-radius: 5px;
 
-    font-family: 'Jua', sans-serif;
-    font-size: 24px;
+    /* font-family: 'Jua', sans-serif; */
+    /* font-family: 'Do Hyeon', sans-serif; */
+    /* font-family: 'Sunflower', sans-serif; */
+    /* font-family: 'Gothic A1', sans-serif; */
+    /* font-family: 'Nanum Gothic Coding', monospace; */
+    font-family: 'IBM Plex Sans KR', sans-serif;
+    font-size: 28px;
 }
 
 .category-input {
@@ -99,7 +145,7 @@
 .select-area {
     width: 100%;
     height: 90%;
-    background-color: cornflowerblue;
+    /* background-color: cornflowerblue; */
 }
 
 /* 장바구니 화면 */
@@ -115,6 +161,8 @@
 }
 
 .menu-list {
+    border: 1px solid black;
+    border-radius: 5px;
     width: 60%;
     height: 80%;
     background-color: chocolate;
@@ -124,6 +172,8 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    border: 1px solid black;
+    border-radius: 5px;
     width: 30%;
     height: 80%;
     background-color: darkkhaki;
@@ -140,6 +190,8 @@
 }
 
 .delete-button {
+    border: 1px solid black;
+    border-radius: 5px;
     width: 40%;
     height: 70%;
 
@@ -148,6 +200,8 @@
 }
 
 .payment-button {
+    border: 1px solid black;
+    border-radius: 5px;
     width: 40%;
     height: 70%;
 
