@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/static/css/reset.css">
+    <link rel="stylesheet" href="/static/css/admin/admin.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cute+Font&family=Do+Hyeon&family=Dongle:wght@400;700&family=Gothic+A1:wght@400;500&family=Gowun+Batang&family=IBM+Plex+Sans+KR&family=Jua&family=Nanum+Gothic+Coding&family=Noto+Sans+KR:wght@100;300;400;500;700;900&family=Sunflower:wght@500&display=swap"
+        rel="stylesheet">
+    <script src="https://kit.fontawesome.com/6bc6b6ea66.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <div class="wrap">
+        <div class="container">
+            <!-- 어드민 헤더 -->
+            <div class="admin-header">
+                <div class="home">
+                    <a href="/main">
+                        <i class="fa-solid fa-house icon"></i>
+                    </a>
+                </div>
+                <div class="logo">
+                    <h2>관리자 페이지</h2>
+                </div>
+                <div class="none"></div>
+            </div>
+            <!-- 어드민 메인 -->
+            <div class="admin-main">
+                <div class="add-menu">
+                    <a class="add-button" href="/admin/menu">추가하기</a>
+                </div>
+                <div class="admin-main-area">
+                    <div class="category">
+                        <ul class="category-list">
+                            <li>id</li>
+                            <li>이미지</li>
+                            <li>카테고리</li>
+                            <li>상품명</li>
+                            <li>가격</li>
+                            <li>비고</li>
+                        </ul>
+                    </div>
+                    <div class="menu">
+                        <ul class="menu-list">
+                            <li>1</li>
+                            <li>이미지</li>
+                            <li>커피</li>
+                            <li>아메리카노</li>
+                            <li>4,000원</li>
+                            <li class="a">
+                                <a class="modification-button" href="/admin/menu">수정</a>
+                                <a class="delete-button" href="">삭제</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
