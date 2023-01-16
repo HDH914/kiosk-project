@@ -71,7 +71,7 @@
     /* background-color: red; */
 }
 
-.signup-info span {
+.signup-title {
     font-size: 26px;
 }
 
@@ -100,4 +100,5 @@
     height: 45%;
 
     font-size: 28px;
+    cursor: pointer;
 }
