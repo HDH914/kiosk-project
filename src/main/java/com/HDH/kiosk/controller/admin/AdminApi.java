@@ -1,5 +1,8 @@
 package com.HDH.kiosk.controller.admin;
 
+import com.HDH.kiosk.dto.CMRespDto;
+import com.HDH.kiosk.dto.admin.SignupReqDto;
+import com.HDH.kiosk.service.admin.AdminService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
@@ -13,9 +16,12 @@ import org.springframework.web.bind.annotation.RestController;
 @RequiredArgsConstructor
 public class AdminApi {
 
-    @PostMapping("/signup")
-    public ResponseEntity<?> signup(){
+    private final AdminService adminService;
 
-        return ResponseEntity.ok().body("success");
+    // 회원 가입
+    @PostMapping("/signup")
+    public ResponseEntity<?> signup(SignupReqDto signupReqDto)throws Exception {
+        adminService.signup(signupReqDto);
+        return ResponseEntity.ok().body(new CMRespDto<>(1, "회원 가입", signupReqDto));
     }
 }
