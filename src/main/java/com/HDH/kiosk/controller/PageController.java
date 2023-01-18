@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class PageController {
 
+    /////////////////////////////////////  화면  //////////////////////////////////////////////
     // 대기 화면
     @GetMapping({"/", "/index"})
     public String idleScreen(){
@@ -20,7 +21,7 @@ public class PageController {
         return "main";
         }
 
-
+    /////////////////////////////////////  계정  //////////////////////////////////////////////
 
     //로그인 페이지
     @GetMapping("/login")
@@ -34,6 +35,9 @@ public class PageController {
         return "admin/signup";
     }
 
+
+
+    /////////////////////////////////////  관리자  //////////////////////////////////////////////
     // 관리자 페이지
     @GetMapping("/admin")
     public String admin(){
@@ -42,6 +46,15 @@ public class PageController {
     @GetMapping("/admin/menu")
     public String menu(){
         return "admin/menu";
+    }
+
+
+
+
+    /////////////////////////////////////
+    @GetMapping("/testajax")
+    public String testajax(){
+        return "/ajaxTest";
     }
 
 
