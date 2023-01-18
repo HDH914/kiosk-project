@@ -1,7 +1,8 @@
 package com.HDH.kiosk.dto.admin;
 
-import com.HDH.kiosk.domain.User;
+import com.HDH.kiosk.domain.User2;
 import lombok.Data;
+import org.springframework.security.core.userdetails.User;
 
 @Data
 public class SignupReqDto {
@@ -10,8 +11,8 @@ public class SignupReqDto {
     private String password;
     private int storeNumber;
 
-    public User toUserEntity() {
-        return User.builder()
+    public User2 toUserEntity() {
+        return User2.builder()
                 .admin_id(adminId)
                 .password(password)
                 .store_number(storeNumber)
