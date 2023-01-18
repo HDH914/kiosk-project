@@ -9,7 +9,7 @@ public class SignupReqDto {
 
     private String adminId;
     private String password;
-    private int storeNumber;
+    private String storeNumber;
 
     public User2 toUserEntity() {
         return User2.builder()
