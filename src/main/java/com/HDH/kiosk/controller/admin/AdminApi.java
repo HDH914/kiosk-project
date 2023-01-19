@@ -30,9 +30,9 @@ public class AdminApi {
 
 
     //////////////////////////
-    @PostMapping("/testajax")
-    public ResponseEntity<?> testajax(TestDto testDto) throws Exception {
-        adminService.testAjax(testDto);
-        return ResponseEntity.ok().body(new CMRespDto<>(1, "testAjax",testDto));
-    }
+//    @PostMapping("/testajax")
+//    public ResponseEntity<?> testajax(TestDto testDto) throws Exception {
+//        adminService.testAjax(testDto);
+//        return ResponseEntity.ok().body(new CMRespDto<>(1, "testAjax",testDto));
+//    }
 }
