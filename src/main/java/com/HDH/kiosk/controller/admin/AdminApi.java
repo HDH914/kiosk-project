@@ -22,7 +22,7 @@ public class AdminApi {
 
     // 회원 가입
     @PostMapping("/signup")
-    public ResponseEntity<?> signup(SignupReqDto signupReqDto)throws Exception {
+    public ResponseEntity<?> signup(SignupReqDto signupReqDto) throws Exception {
         adminService.signup(signupReqDto);
         return ResponseEntity.ok().body(new CMRespDto<>(1, "회원가입 완료", signupReqDto));
     }
