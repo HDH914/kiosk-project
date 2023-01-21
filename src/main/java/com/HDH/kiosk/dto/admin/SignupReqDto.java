@@ -6,7 +6,6 @@ import org.springframework.security.core.userdetails.User;
 
 @Data
 public class SignupReqDto {
-
     private String adminId;
     private String password;
     private String storeNumber;
