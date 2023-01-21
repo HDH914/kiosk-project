@@ -3,7 +3,7 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.HDH.kiosk.repository.admin.AdminRepository">
-    <resultMap id="user" type="com.HDH.kiosk.domain.User">
+    <resultMap id="user" type="com.HDH.kiosk.domain.User2">
         <result property="id" column="id"></result>
         <result property="admin_id" column="admin_id"></result>
         <result property="password" column="password"></result>
@@ -12,7 +12,9 @@
         <result property="update_date" column="update_date"></result>
     </resultMap>
     <insert id="save"
-            parameterType="com.HDH.kiosk.domain.User">
+            parameterType="com.HDH.kiosk.domain.User2"
+            useGeneratedKeys="true"
+            keyProperty="id">
         insert into
             admin_mst
         values(
@@ -24,6 +26,10 @@
             now()
         );
     </insert>
+
+
+
+
 
 
 </mapper>
