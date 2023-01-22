@@ -27,12 +27,4 @@ public class AdminApi {
         return ResponseEntity.ok().body(new CMRespDto<>(1, "회원가입 완료", signupReqDto));
     }
 
-
-
-    //////////////////////////
-//    @PostMapping("/testajax")
-//    public ResponseEntity<?> testajax(TestDto testDto) throws Exception {
-//        adminService.testAjax(testDto);
-//        return ResponseEntity.ok().body(new CMRespDto<>(1, "testAjax",testDto));
-//    }
 }
