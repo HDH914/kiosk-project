@@ -16,33 +16,29 @@ for (let i = 0; i < signupInput.length; i++) {
 }
 
 signupButton.onclick = () => {
+    alert("클릭함");
     // 회원가입시 인풋 정보
     let signupInfo = {
-        userId: signupInput[0].value,
+        adminId: signupInput[0].value,
         password: signupInput[1].value,
         storeNumber: signupInput[2].value
     }
-
     console.log(signupInfo);
-
-    signupForm.submit();
-
-
-    // $.ajax({
-    //     async: false,
-    //     type: "post",
-    //     url: "/api/admin/signup",
-    //     // contentType: "application/json",
-    //     data: JSON.stringify(signupInfo),
-    //     // dataType: "json",
-    //     success: (response) => {
-    //         alert("회원가입 완료.");
-    //         location.replace("/");
-    //         console.log(response.data);
-    //     },
-    //     error: (error) => {
-    //         console.log(error);
-    //         console.log("전송 실패");
-    //     }
-    // });
+    $.ajax({
+        async: false,
+        type: "post",
+        url: "/api/admin/signup",
+        contentType: "application/json",
+        data: JSON.stringify(signupInfo),
+        dataType: "json",
+        success: (response) => {
+            alert("회원가입 완료.");
+            location.replace("/");
+            console.log(response.data);
+        },
+        error: (error) => {
+            console.log(error);
+            console.log("전송 실패");
+        }
+    });
 }
