@@ -21,24 +21,27 @@ signupButton.onclick = () => {
     let signupInfo = {
         adminId: signupInput[0].value,
         password: signupInput[1].value,
-        storeNumber: signupInput[2].value
+        storeNumber: signupInput[3].value
     }
     console.log(signupInfo);
-    $.ajax({
-        async: false,
-        type: "post",
-        url: "/api/admin/signup",
-        contentType: "application/json",
-        data: JSON.stringify(signupInfo),
-        dataType: "json",
-        success: (response) => {
-            alert("회원가입 완료.");
-            location.replace("/");
-            console.log(response.data);
-        },
-        error: (error) => {
-            console.log(error);
-            console.log("전송 실패");
-        }
-    });
+    if (signupInput[1] != signupInput[2]) {
+        alert("비밀번호가 일치하지 않습니다.");
+    } else if (signupInput[1] == signupInput[2]) {
+        $.ajax({
+            async: false,
+            type: "post",
+            url: "/api/admin/signup",
+            contentType: "application/json",
+            data: JSON.stringify(signupInfo),
+            dataType: "json",
+            success: (response) => {
+                alert("회원가입 완료.");
+                location.replace("/");
+            },
+            error: (error) => {
+                console.log(error);
+                console.log("전송 실패");
+            }
+        });
+    }
 }
