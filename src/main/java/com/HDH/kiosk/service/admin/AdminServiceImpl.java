@@ -16,8 +16,5 @@ public class AdminServiceImpl implements AdminService {
     @Override
     public void signup(SignupReqDto signupReqDto) throws Exception {
         adminRepository.save(signupReqDto.toUserEntity());
-        log.info("관리자 ID: " + signupReqDto.getAdminId());
-        log.info("관리자 Password: " + signupReqDto.getPassword());
-        log.info("관리자 StoreNum: " + signupReqDto.getStoreNumber());
     }
 }
