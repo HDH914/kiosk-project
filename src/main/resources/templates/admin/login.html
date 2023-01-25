@@ -34,20 +34,20 @@
                     <span>아이디와 비밀번호를 입력해주세요</span>
                 </div>
                 <!-- 2. 로그인 박스 -->
-                <form class="login-form" action="">
+                <form class="login-form" method="post" action="/account/login">
                     <div class="login-box">
 
                         <div class="id">
                             <span class="login-title">아이디</span>
-                            <input class="login-input" type="text" placeholder="아이디를 입력해주세요.">
+                            <input class="login-input" name="username" type="text" placeholder="아이디를 입력해주세요.">
                         </div>
                         <div class="password">
                             <span class="login-title">비밀번호</span>
-                            <input class="login-input" type="password" placeholder="비밀번호를 입력해주세요.">
+                            <input class="login-input" name="password" type="password" placeholder="비밀번호를 입력해주세요.">
                         </div>
                         <!-- 로그인 버튼 영역 -->
                         <div class="login-btn-area">
-                            <button class="login-button">로그인</button>
+                            <button class="login-button" type="submit">로그인</button>
                         </div>
 
                     </div>
