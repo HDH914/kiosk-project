@@ -18,8 +18,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     // Spring Security에 정의되어 있는 Interface로 이 핸들러를 구현해주고 SecurityConfig에서 설정을 해주면 자동으로 핸들러로 등록이 된다.
 //    private final AuthenticationFailureHandler authenticationFailureHandler;
-
-
     @Bean
     public BCryptPasswordEncoder passwordEncoder(){
         return new BCryptPasswordEncoder();
@@ -40,18 +38,18 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.authorizeRequests()
 
                 // 접근 권한 관련
-                .antMatchers("/admin/**","/api/admin/**")//지정한 주소를 가지고 권한을 줄건지 정함.
-
-
+                .antMatchers("/**")//지정한 주소를 가지고 권한을 줄건지 정함.
                 .permitAll()
-                .antMatchers("/login","/signup")
-                .permitAll()
+
 
                 // 로그인 관련
                 .and()
                 .formLogin()
                 .loginPage("/login")                 // GET 요청
-                .loginProcessingUrl("/account/login")        // 로그인 로직(PrincipalDetailsService) POST 요청
+//                .usernameParameter()         필드명을 변경하는것.
+                .loginProcessingUrl("/admin/login")        // 로그인 로직(PrincipalDetailsService) POST 요청
+                .successForwardUrl("/admin")    // 로그인 성공시 url
+                .failureForwardUrl("/login")
 //                .failureHandler(new AuthFailureHandler())   //실패핸들러
 
                 // 로그아웃 관련
@@ -59,14 +57,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .logout()
                 .logoutUrl("/logout")
                 .logoutSuccessUrl("/")
-                .invalidateHttpSession(true);  // 인증정보를 지우고 세션을 무효화
+                .invalidateHttpSession(true)  // 인증정보를 지우고 세션을 무효화
 
 
 //                // 세션 관련
-//                .and()
-//                .sessionManagement()
-//                .maximumSessions(-1)  //세션 최대 허용수. -1은 무제한
-//                .maxSessionsPreventsLogin(true);  // true: 중복로그인 막음. false: 이전 로그인의 세션을 해제
+                .and()
+                .sessionManagement()
+                .maximumSessions(-1)  //세션 최대 허용수. -1은 무제한
+                .maxSessionsPreventsLogin(true);  // true: 중복로그인 막음. false: 이전 로그인의 세션을 해제
     }
 
 }
