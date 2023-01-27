@@ -16,17 +16,16 @@ for (let i = 0; i < signupInput.length; i++) {
 }
 
 signupButton.onclick = () => {
-    alert("클릭함");
     // 회원가입시 인풋 정보
     let signupInfo = {
-        adminId: signupInput[0].value,
+        username: signupInput[0].value,
         password: signupInput[1].value,
         storeNumber: signupInput[3].value
     }
     console.log(signupInfo);
-    if (signupInput[1] != signupInput[2]) {
+    if (signupInput[1].value != signupInput[2].value) {
         alert("비밀번호가 일치하지 않습니다.");
-    } else if (signupInput[1] == signupInput[2]) {
+    } else if (signupInput[1].value == signupInput[2].value) {
         $.ajax({
             async: false,
             type: "post",
