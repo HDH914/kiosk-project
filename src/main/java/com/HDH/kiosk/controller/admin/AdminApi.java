@@ -34,7 +34,7 @@ public class AdminApi {
     // 로그인
     @PostMapping("/login")
     public ResponseEntity<?> login(LoginReqDto loginReqDto){
-        return ResponseEntity.ok().body(new CMRespDto<>(1, "로그인 완료", loginReqDto));
+        return ResponseEntity.ok().body(new CMRespDto<>(1, "로그인 완료", true));
     }
     }
 
