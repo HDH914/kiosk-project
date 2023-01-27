@@ -4,12 +4,18 @@ server:
 spring:
   mvc:
     static-path-pattern: /static/**   #static 경로 설정
+    hiddenmethod:
+      filter:
+        enabled: true
   #데이터베이스 설정
   datasource:
     driver-class-name: org.mariadb.jdbc.Driver
-    url: jdbc:mariadb://web-study.csbruw3zvnas.ap-northeast-2.rds.amazonaws.com:3306/kiosk
+    url: jdbc:mariadb://web-study.csbruw3zvnas.ap-northeast-2.rds.amazonaws.com:3306/kiosk?allowMultiQueries=true
     username: HDH
     password: 1q2w3e4r!
+
+
+
 
 #마이바티스 설정
 mybatis:
