@@ -13,7 +13,7 @@ import java.time.LocalDateTime;
 @Builder
 public class User {
     private int id;
-    private String admin_id;
+    private String username;
     private String password;
     private String store_number;
     private LocalDateTime create_date;
