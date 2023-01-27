@@ -5,7 +5,7 @@
 <mapper namespace="com.HDH.kiosk.repository.admin.AdminRepository">
     <resultMap id="user" type="com.HDH.kiosk.domain.User">
         <result property="id" column="id"></result>
-        <result property="admin_id" column="admin_id"></result>
+        <result property="username" column="username"></result>
         <result property="password" column="password"></result>
         <result property="store_number" column="store_number"></result>
         <result property="create_date" column="create_date"></result>
@@ -19,17 +19,21 @@
             admin_mst
         values(
             0,
-            #{admin_id},
+            #{username},
             #{password},
             #{store_number},
             now(),
             now()
         );
     </insert>
-
-
-
-
+    <select id="findUserByUsername" resultType="com.HDH.kiosk.domain.User">
+        SELECT
+            *
+        FROM
+            admin_mst
+        where
+            username = #{username}
+    </select>
 
 
 </mapper>
