@@ -5,12 +5,12 @@ import lombok.Data;
 
 @Data
 public class LoginReqDto {
-    private String adminId;
+    private String username;
     private String password;
 
     public User toUserEntity(){
         return User.builder()
-                .admin_id(adminId)
+                .username(username)
                 .password(password)
                 .build();
     }
