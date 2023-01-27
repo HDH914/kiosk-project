@@ -7,4 +7,5 @@ import org.apache.ibatis.annotations.Mapper;
 public interface AdminRepository {
     public int save(User user);
 
+    public User findUserByUsername(String username);
 }
