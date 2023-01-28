@@ -44,9 +44,9 @@ public class PageController {
     public String admin(){
         return "admin/admin";
     }
-    @GetMapping("/admin/menu")
+    @GetMapping("/admin/menuDetail")
     public String menu(){
-        return "admin/menu";
+        return "admin/menuDetail";
     }
 
 
