@@ -1,0 +1,187 @@
+.wrap {
+    display: flex;
+    justify-content: center;
+    /* align-items: center; */
+    width: 100%;
+    height: 1920px;
+
+    background-color: black;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    width: 1080px;
+    height: auto;
+    background-color: white;
+}
+
+.title {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 10%;
+}
+
+.title h2 {
+    font-size: 50px;
+}
+
+/* 메뉴 정보 영역 */
+.menu-info-area {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid black;
+    width: 95%;
+    height: 35%;
+}
+
+
+
+/* 메뉴 이미지 */
+.image-area {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    border-right: 1px solid black;
+    width: 40%;
+    height: 100%;
+}
+
+.image-title {
+    display: flex;
+    /* jus */
+    align-items: center;
+    width: 90%;
+    height: 7%;
+    font-size: 50px;
+}
+
+.image {
+    width: 90%;
+    height: 70%;
+    border: 1px solid grey;
+    border-radius: 5px;
+
+}
+
+.image-input {
+    width: 90%;
+    height: 10%;
+    font-size: 27px;
+}
+
+/* 메뉴 정보 */
+.menu-detail {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 60%;
+    height: 100%;
+    padding-left: 20px;
+}
+
+.menu-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    /* align-items: center; */
+    /* border-bottom: 1px solid black; */
+    width: 100%;
+    height: 30%;
+}
+
+.menu-info span {
+    font-size: 50px;
+}
+
+.menu-input {
+    border: 1px solid black;
+    border-radius: 5px;
+
+    width: 90%;
+    height: 40%;
+    padding: 15px;
+    font-size: 40px;
+}
+
+.menu-price {
+    border-bottom: none;
+}
+
+/* 비고 사항 */
+.menu-memo-area {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    border: 1px solid black;
+    border-top: none;
+    width: 95%;
+    height: 35%;
+}
+
+.memo-title {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    width: 96%;
+    height: 7%;
+    padding-top: 25px;
+    padding-left: 20px;
+}
+
+.memo-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 90%;
+}
+
+.menu-memo-area span {
+    font-size: 40px;
+}
+
+.menu-memo {
+    width: 95%;
+    height: 90%;
+    padding: 15px;
+    font-size: 28px;
+}
+
+/* 버튼 영역 */
+.button-area {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 90%;
+    height: 10%;
+}
+
+.button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 30%;
+    height: 40%;
+    border: 1px solid black;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 40px;
+    color: white;
+
+}
+
+.save-button {
+    background-color: dodgerblue;
+}
+
+.cancel-button {
+    background-color: red;
+}
