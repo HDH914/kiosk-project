@@ -8,6 +8,8 @@
     <title>제품 수정</title>
     <link rel="stylesheet" href="/static/css/reset.css">
     <link rel="stylesheet" href="/static/css/admin/menuDetail.css">
+    <script src="https://code.jquery.com/jquery-latest.min.js"></script>
+
 </head>
 
 <body>
@@ -21,13 +23,15 @@
 
                 <!-- 메뉴 이미지 -->
                 <div class="image-area">
-                    <div class="image-title">
-                        <span>상품 이미지</span>
-                    </div>
-                    <div class="image">
-
-                    </div>
-                    <input class="image-input" type="file">
+                    <form class="image-form">
+                        <div class="image-title">
+                            <span>상품 이미지</span>
+                        </div>
+                        <div class="image">
+                            <img src="/static/images/noImage.jpg" alt="no-image">
+                        </div>
+                        <input class="image-input" type="file" name="file">
+                    </form>
                 </div>
                 <!-- 메뉴 정보 -->
                 <div class="menu-detail">
@@ -37,7 +41,15 @@
                     </div>
                     <div class="menu-category menu-info">
                         <span>카테고리</span>
-                        <input class="menu-input" type="text">
+                        <select name="category" class="category">
+                            <option value="">카테고리를 선택해주세요.</option>
+                            <option value="1">시즌</option>
+                            <option value="2">커피</option>
+                            <option value="3">음료</option>
+                            <option value="4">티</option>
+                            <option value="5">디저트</option>
+                        </select>
+                        <!-- <input class="menu-input" type="text"> -->
                     </div>
                     <div class="menu-price menu-info">
                         <span>가격</span>
@@ -55,7 +67,7 @@
                 </div>
             </div>
             <div class="button-area">
-                <a class="save-button button" href="">저장</a>
+                <button class="save-button button" type="button">저장</button>
                 <a class="cancel-button button" href="/admin">취소</a>
             </div>
         </div>
