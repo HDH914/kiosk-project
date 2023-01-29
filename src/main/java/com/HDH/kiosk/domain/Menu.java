@@ -18,6 +18,7 @@ public class Menu {
     private String menu_name;
     private int price;
     private String menu_img;
+    private String memo;
     private LocalDateTime create_date;
     private LocalDateTime update_date;
 
