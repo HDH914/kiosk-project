@@ -12,6 +12,7 @@ public class AddMenuReqDto {
     private String menuName;
     private int price;
     private String menuImg;
+    private String memo;
     private LocalDateTime createDate;
     private LocalDateTime updateDate;
 
@@ -22,6 +23,7 @@ public class AddMenuReqDto {
                 .menu_name(menuName)
                 .price(price)
                 .menu_img(menuImg)
+                .memo(memo)
                 .create_date(createDate)
                 .update_date(updateDate)
                 .build();
