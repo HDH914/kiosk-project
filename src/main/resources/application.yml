@@ -21,3 +21,6 @@ spring:
 mybatis:
   mapper-locations:    #resources폴더를 기본 경로로 잡음. mapper 경로 세팅
     - /mappers/*.xml
+
+file:
+  path: C:/HDH/project/kiosk-project/upload/
