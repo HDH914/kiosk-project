@@ -16,7 +16,18 @@
             parameterType="com.HDH.kiosk.domain.Menu"
             useGeneratedKeys="true"
             keyProperty="id">
-
+        insert into
+            menu_mst
+        values(
+            0,
+            #{category_id},
+            #{menu_name},
+            #{price},
+            #{menu_img},
+            #{memo},
+            now(),
+            now()
+        );
 
     </insert>
 
