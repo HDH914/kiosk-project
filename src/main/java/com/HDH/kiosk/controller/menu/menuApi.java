@@ -2,6 +2,7 @@ package com.HDH.kiosk.controller.menu;
 
 import com.HDH.kiosk.dto.CMRespDto;
 import com.HDH.kiosk.dto.menu.AddMenuReqDto;
+import com.HDH.kiosk.dto.menu.MenuImageDto;
 import com.HDH.kiosk.service.menu.MenuService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -20,21 +21,18 @@ public class menuApi {
     private final MenuService menuService;
 
     @PostMapping("/add")
-    public ResponseEntity<?> addMenu(AddMenuReqDto addMenuReqDto) throws Exception {
+    public ResponseEntity<?> addMenu(AddMenuReqDto addMenuReqDto, MenuImageDto menuImageDto, MultipartFile file) throws Exception {
         // MultipartFile 변수명은 name값과 같게해야함.
-//        menuService.addMenu(addMenuReqDto);
-        log.info("제품명: " + addMenuReqDto.getMenuName());
-        log.info("카테고리: " + addMenuReqDto.getCategoryId());
-        log.info("가격: " + addMenuReqDto.getPrice());
-        log.info("비고: " + addMenuReqDto.getMemo());
+        menuService.test(addMenuReqDto, menuImageDto, file);
+
         return ResponseEntity.ok().body(new CMRespDto<>(1,"메뉴 등록", addMenuReqDto));
     }
 
     @PostMapping("/add/image")
-    public ResponseEntity<?> addImage(AddMenuReqDto addMenuReqDto, MultipartFile file)throws Exception {
-//        menuService.addImage(addMenuReqDto,file);
+    public ResponseEntity<?> addImage(AddMenuReqDto addMenuReqDto, MenuImageDto menuImageDto, MultipartFile file)throws Exception {
+        menuService.test(addMenuReqDto, menuImageDto,file);
         log.info("파일 이름: " + file.getOriginalFilename());
-        return ResponseEntity.ok().body(new CMRespDto<>(1,"이미지 등록", file));
+        return ResponseEntity.ok().body(new CMRespDto<>(1,"이미지 등록", true));
     }
 
 }
