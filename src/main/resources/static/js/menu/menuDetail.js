@@ -1,66 +1,100 @@
 const saveButton = document.querySelector(".save-button");
-const menuInput = document.querySelectorAll(".menu-input");
+const cancelButton = document.querySelector(".cancel-button");
 const category = document.querySelector(".category");
 const memo = document.querySelector(".menu-memo");
+
+let imageForm = document.querySelector(".image-form");
 let imageInput = document.querySelector(".image-input");
+// let file = new Array();
+
+imageInput.onchange = () => {
+    const imageForm = document.querySelector(".image-form");
+    let menuImageFile = imageInput.value;
+    // console.log("폼데이터 ;")
+    // console.log(imageForm)
+    // console.log("폼데이터 벨류")
+    // console.log(imageForm.value)
+    // console.log("이미지 인풋")
+    // console.log(imageInput)
+    // console.log("이미지 인풋 베류")
+    // console.log(imageInput.value)
 
 
+    console.log(menuImageFile);
+    console.log(imageInput.file[0])
+    imagePreview(imageInput);
 
-saveButton.onclick = () => {
-    addMenu();
-    addMenuImage();
 }
 
-// 메뉴 정보
-function addMenu() {
-    let menuData = {
-        menuName: menuInput[0].value,
-        category: category.value,
-        price: menuInput[1].value,
-        memo: memo.value
-    }
+function imagePreview(imageInput) {
+    const image = document.querySelector(".image");
 
-    console.log(menuData);
+    image.innerHTML = "";
+
+    const reader = new FileReader();
+
+    reader.onload = (e) => {
+        image.innerHTML = `
+         <img class="product-img" src="${e.target.result}">
+        `
+    };
+    // reader.readAsDataURL(imageInput.file[0]);
+}
+
+
+// 메뉴 추가
+saveButton.onclick = () => {
+    const menuInput = document.querySelectorAll(".menu-input");
+
+    let formData = new FormData();
+
+    formData.append("menuImg", imageInput.value);
+    formData.append("menuName", menuInput[0].value);
+    formData.append("categoryId", menuInput[1].value);
+    formData.append("price", menuInput[2].value);
+    formData.append("memo", menuInput[3].value);
+
+    formData.forEach((value, key) => {
+        console.log(key);
+        console.log(value);
+        console.log();
+    });
+    if (menuInput[1].value == 0) {
+        alert("카테고리를 선택해주세요.");
+    } else {
+        requestaAddMenu(formData);
+    }
+}
+
+// 메뉴 데이터 전송
+function requestaAddMenu(formData) {
 
     $.ajax({
         async: false,
         type: "post",
         url: "/api/menu/add",
-        data: menuData,
-        success: (response) => {
-            alert("전송 성공");
-            console.log(response.data);
-        },
-        error: (error) => {
-            alert("전송 실패");
-            console.log(error);
-        }
-    });
-}
-
-// 메뉴 이미지
-function addMenuImage() {
-    let imageFile = document.querySelector(".image-form");
-    let formData = new FormData(imageFile);
-
-    console.log(formData);
-
-    $.ajax({
-        async: false,
-        type: "post",
-        url: "/api/menu/add/image",
-        data: formData,
+        enctype: "multipart/form-data",
         contentType: false,
         processData: false,
+        data: formData,
         dataType: "json",
-        enctype: "multipart/form-data",
         success: (response) => {
-            alert("사진 전송 성공");
+            alert("등록 성공");
+            location.reload();
         },
         error: (error) => {
-            alert("사진 등록 실패");
-            console.log(error);
+            alert("등록 실패");
         }
     });
 
+}
+
+// 취소 버튼
+cancelButton.onclick = () => {
+    let msg = null;
+    msg = confirm("정말로 취소하시겠습니까?");
+
+    if (msg) {
+        location.href = "/admin";
+    }
 }

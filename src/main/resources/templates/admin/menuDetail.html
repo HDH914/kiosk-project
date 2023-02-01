@@ -23,7 +23,7 @@
 
                 <!-- 메뉴 이미지 -->
                 <div class="image-area">
-                    <form class="image-form">
+                    <form class="image-form" enctype="multipart/form-data">
                         <div class="image-title">
                             <span>상품 이미지</span>
                         </div>
@@ -41,7 +41,7 @@
                     </div>
                     <div class="menu-category menu-info">
                         <span>카테고리</span>
-                        <select name="category" class="category">
+                        <select name="category" class="menu-input">
                             <option value="">카테고리를 선택해주세요.</option>
                             <option value="1">시즌</option>
                             <option value="2">커피</option>
@@ -63,12 +63,12 @@
                     <span>비고 사항</span>
                 </div>
                 <div class="memo-content">
-                    <textarea class="menu-memo" name="" id="" cols="30" rows="10"></textarea>
+                    <textarea class="menu-memo menu-input" name="" id="" cols="30" rows="10"></textarea>
                 </div>
             </div>
             <div class="button-area">
                 <button class="save-button button" type="button">저장</button>
-                <a class="cancel-button button" href="/admin">취소</a>
+                <button class="cancel-button button" type="button">취소</button>
             </div>
         </div>
     </div>
