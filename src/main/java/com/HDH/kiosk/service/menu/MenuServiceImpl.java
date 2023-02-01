@@ -1,6 +1,7 @@
 package com.HDH.kiosk.service.menu;
 
 import com.HDH.kiosk.dto.menu.AddMenuReqDto;
+import com.HDH.kiosk.dto.menu.MenuListRespDto;
 import com.HDH.kiosk.repository.menu.MenuRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -11,6 +12,8 @@ import java.io.File;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 @Slf4j
@@ -44,6 +47,12 @@ public class MenuServiceImpl implements MenuService {
         menuRepository.addMenu(addMenuReqDto.toAddMenu());
 
         return true;
+    }
+
+    @Override
+    public List<MenuListRespDto> loadMenuList() throws Exception {
+        List<MenuListRespDto> list = new ArrayList<MenuListRespDto>();
+        return null;
     }
 
 }

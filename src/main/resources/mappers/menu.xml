@@ -13,6 +13,15 @@
         <result property="create_date" column="create_date"></result>
         <result property="update_date" column="update_date"></result>
     </resultMap>
+
+    <resultMap id="menuList" type="com.HDH.kiosk.domain.MenuList">
+        <result property="id" column="id"></result>
+        <result property="category_id" column="category_id"></result>
+        <result property="menu_name" column="menu_name"></result>
+        <result property="price" column="price"></result>
+        <result property="menu_img" column="menu_img"></result>
+        <result property="memo" column="memo"></result>
+    </resultMap>
     <insert id="addMenu"
             parameterType="com.HDH.kiosk.domain.Menu"
             useGeneratedKeys="true"
@@ -31,7 +40,21 @@
         );
 
     </insert>
-
+    <select id="loadMenuList"
+            parameterType="hashmap"
+            resultType="com.HDH.kiosk.domain.MenuList">
+        SELECT
+            mm.id,
+            mm.category_id,
+            cd.category_name,
+            mm.menu_name,
+            mm.price,
+            mm.menu_img,
+            mm.memo
+        from
+            menu_mst mm
+            LEFT OUTER JOIN category_dtl cd ON(cd.id = mm.category_id)
+    </select>
 
 
 </mapper>
