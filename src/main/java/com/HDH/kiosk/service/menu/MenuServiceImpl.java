@@ -1,6 +1,5 @@
 package com.HDH.kiosk.service.menu;
 
-import com.HDH.kiosk.domain.MenuList;
 import com.HDH.kiosk.dto.menu.AddMenuReqDto;
 import com.HDH.kiosk.dto.menu.MenuListRespDto;
 import com.HDH.kiosk.repository.menu.MenuRepository;
@@ -51,12 +50,9 @@ public class MenuServiceImpl implements MenuService {
     }
 
     @Override
-    public List<MenuListRespDto> loadMenuList(String searchValue) throws Exception {
+    public List<MenuListRespDto> loadMenuList() throws Exception {
         List<MenuListRespDto> list = new ArrayList<MenuListRespDto>();
-        menuRepository.loadMenuList(searchValue).forEach(MenuList -> {
-            list.add(MenuList.toLoadMenu());
-        });
-        return list;
+        return null;
     }
 
 }

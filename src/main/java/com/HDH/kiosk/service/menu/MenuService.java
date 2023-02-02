@@ -8,7 +8,7 @@ import java.util.List;
 public interface MenuService {
     public boolean addMenu(AddMenuReqDto addMenuReqDto) throws Exception;
 
-    public List<MenuListRespDto> loadMenuList(String searchValue) throws Exception;
+    public List<MenuListRespDto> loadMenuList() throws Exception;
 
 
 

@@ -7,11 +7,11 @@ import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
-import org.springframework.lang.Nullable;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
-
-import javax.validation.constraints.Null;
 
 @Slf4j
 @RequestMapping("/api/menu")
@@ -29,8 +29,8 @@ public class menuApi {
     }
 
     @GetMapping("/menulist")
-    public ResponseEntity<?> getMenulist(@RequestParam @Nullable String searchValue) throws Exception {
+    public ResponseEntity<?> getMenulist() throws Exception {
 
-        return ResponseEntity.ok().body(new CMRespDto<>(1,"메뉴 불러오기", menuService.loadMenuList(searchValue)));
+        return ResponseEntity.ok().body(new CMRespDto<>(1,"메뉴 불러오기", true));
     }
 }

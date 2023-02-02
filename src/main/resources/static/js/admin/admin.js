@@ -1,32 +1,19 @@
 const menuList = document.querySelector(".menu-list");
-const searchInput = document.querySelector(".search-input");
-const searchButton = document.querySelector(".search-button");
-let searchValue = "";
 
-searchInput.onkeyup = () => {
-    if (window.event.keyCode === 13) {
-        searchButton.click();
-    }
-}
+// menuList.onclick = () => {
+//     menuList.innerHTML = `
 
-searchButton.onclick = () => {
-    alert("클릭됨");
-    searchValue = searchInput.value;
-    loadMenuListRequest(searchValue);
-}
+//     `
+// }
 
-
-
+loadMenuListRequest();
 function loadMenuListRequest() {
     let responseData = null;
     $.ajax({
         async: false,
         type: "get",
         url: "/api/menu/menulist",
-        data: {
-            "searchValue": searchValue
-        },
-        dataType: "json",
+        dataTypr: "json",
         success: (response) => {
             responseData = response.data;
             alert("불러오기 성공");
