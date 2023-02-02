@@ -12,6 +12,8 @@
         href="https://fonts.googleapis.com/css2?family=Cute+Font&family=Do+Hyeon&family=Dongle:wght@400;700&family=Gothic+A1:wght@400;500&family=Gowun+Batang&family=IBM+Plex+Sans+KR&family=Jua&family=Nanum+Gothic+Coding&family=Noto+Sans+KR:wght@100;300;400;500;700;900&family=Sunflower:wght@500&display=swap"
         rel="stylesheet">
     <script src="https://kit.fontawesome.com/6bc6b6ea66.js" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-latest.min.js"></script>
+
 </head>
 
 <body>
@@ -39,40 +41,58 @@
 
                     </div>
                     <div class="search">
-
+                        <input type="text" class="search-input">
+                        <button class="search-button" type="button">검색</button>
                     </div>
                     <div class="add-menu">
                         <a class="add-button" href="/admin/menuDetail">추가하기</a>
                     </div>
                 </div>
-                <div class="admin-main-area">
-                    <div class="category">
-                        <ul class="category-list">
-                            <li>id</li>
-                            <li>이미지</li>
-                            <li>카테고리</li>
-                            <li>상품명</li>
-                            <li>가격</li>
-                            <li>비고</li>
-                        </ul>
-                    </div>
-                    <div class="menu">
-                        <ul class="menu-list">
-                            <li>1</li>
-                            <li>이미지</li>
-                            <li>커피</li>
-                            <li>아메리카노</li>
-                            <li>4,000원</li>
-                            <li class="buttons">
+                <table class="admin-main-area">
+                    <thead class="category">
+                        <tr class="category-list">
+                            <th class="id">번호</th>
+                            <th class="menu-image">이미지</th>
+                            <th class="menu-category">카테고리</th>
+                            <th class="menu-name">상품명</th>
+                            <th class="menu-price">가격</th>
+                            <th class="memo">메모</th>
+                            <th class="menu-button">수정 삭제</th>
+                        </tr>
+
+                    </thead>
+
+                    <tbody class="menu">
+                        <tr class="menu-list">
+                            <td class="id">1</td>
+                            <td class="menu-image">이미지</td>
+                            <td class="menu-category">커피</td>
+                            <td class="menu-name">아메리카노</td>
+                            <td class="menu-price">4,000<span>원</span></td>
+                            <td class="memo">메모</td>
+                            <td class="menu-button buttons">
                                 <a class="modification-button" href="/admin/menu">수정</a>
                                 <a class="delete-button" href="">삭제</a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
+                            </td>
+                        </tr>
+                        <tr class="menu-list">
+                            <td class="id">1</td>
+                            <td class="menu-image">이미지</td>
+                            <td class="menu-category">커피</td>
+                            <td class="menu-name">아메리카노</td>
+                            <td class="menu-price">4,000<span>원</span></td>
+                            <td class="memo">메모</td>
+                            <td class="menu-button buttons">
+                                <a class="modification-button" href="/admin/menu">수정</a>
+                                <a class="delete-button" href="">삭제</a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>
+    <script src="/static/js/admin/admin.js"></script>
 </body>
 
 </html>
