@@ -87,20 +87,42 @@
 }
 
 .page-number {
-    width: 33%;
+    width: 25%;
     height: 100%;
 }
 
 .search {
-    width: 42%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 60%;
     height: 100%;
 }
+
+.search-input {
+    border: 1px solid gray;
+    border-radius: 5px;
+    width: 80%;
+    height: 35%;
+    padding: 5px;
+    font-size: 20px;
+}
+
+.search-button {
+    border: 1px solid gray;
+    border-radius: 5px;
+    width: 15%;
+    height: 40%;
+    cursor: pointer;
+}
+
+
 
 .add-menu {
     display: flex;
     justify-content: flex-end;
     align-items: center;
-    width: 24%;
+    width: 15%;
     height: 100%;
     padding-right: 20px;
 }
@@ -111,7 +133,7 @@
     align-items: center;
     border: 1px solid black;
     border-radius: 5px;
-    width: 70%;
+    width: 80%;
     height: 40%;
     text-decoration: none;
     color: white;
@@ -143,16 +165,53 @@
     height: 100%;
 }
 
-.category-list li {
+th {
     display: flex;
     justify-content: center;
     align-items: center;
     border: 1px solid black;
-    border-left: none;
-    width: 20%;
-    height: 100%;
-    font-size: 26px;
+    border-right: none;
+    height: 87%;
+    padding: 5px 5px;
 }
+
+td {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 80%;
+    padding: 5px 5px;
+
+}
+
+.id {
+    width: 6%;
+}
+
+.menu-image {
+    width: 12%;
+}
+
+.menu-category {
+    width: 17%;
+}
+
+.menu-name {
+    width: 22%;
+}
+
+.menu-price {
+    width: 14%;
+}
+
+.memo {
+    width: 14%;
+}
+
+.menu-button {
+    width: 15%;
+}
+
 
 .menu {
     width: 100%;
@@ -165,17 +224,14 @@
     justify-content: space-between;
     align-items: center;
     width: 100%;
-    height: 5%;
+    height: 7%;
 }
 
-.menu-list li {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.menu-list td {
     border-bottom: 1px solid black;
-    width: 16.6%;
-    height: 100%;
 }
+
+
 
 .buttons {
     display: flex;
@@ -189,7 +245,7 @@
     align-items: center;
     border: 1px solid black;
     border-radius: 5px;
-    width: 40%;
+    width: 45%;
     height: 40%;
 
     text-decoration: none;
@@ -203,7 +259,7 @@
     align-items: center;
     border: 1px solid black;
     border-radius: 5px;
-    width: 40%;
+    width: 45%;
     height: 40%;
     text-decoration: none;
     color: white;
