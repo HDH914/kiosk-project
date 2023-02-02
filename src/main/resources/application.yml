@@ -23,4 +23,4 @@ mybatis:
     - /mappers/*.xml
 
 file:
-  path: C:/HDH/project/kiosk-project/upload/
+  path: C:/HDH/project/kiosk-project/upload
