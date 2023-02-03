@@ -19,9 +19,6 @@ imageInput.onchange = () => {
     // console.log("이미지 인풋 베류")
     // console.log(imageInput.value)
 
-
-    console.log(menuImageFile);
-    console.log(imageInput.file[0])
     imagePreview(imageInput);
 
 }
