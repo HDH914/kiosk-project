@@ -17,6 +17,7 @@
     <resultMap id="menuList" type="com.HDH.kiosk.domain.MenuList">
         <result property="id" column="id"></result>
         <result property="category_id" column="category_id"></result>
+        <result property="category_name" column="category_name"></result>
         <result property="menu_name" column="menu_name"></result>
         <result property="price" column="price"></result>
         <result property="menu_img" column="menu_img"></result>
@@ -54,6 +55,19 @@
         from
             menu_mst mm
             LEFT OUTER JOIN category_dtl cd ON(cd.id = mm.category_id)
+    </select>
+    <select id="loadMenuInfo" resultType="com.HDH.kiosk.domain.MenuList">
+        SELECT
+            mm.id,
+            mm.category_id,
+            mm.menu_name,
+            mm.price,
+            mm.menu_img,
+            mm.memo
+        from
+            menu_mst mm
+        where
+        id = #{id}
     </select>
 
 
