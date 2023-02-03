@@ -23,21 +23,17 @@ import java.util.UUID;
 public class MenuServiceImpl implements MenuService {
     private final MenuRepository menuRepository;
 
-    @Value("${file.path")
+    @Value("${file.path}")
     private String filePath;
-
-
     @Override
     public boolean addMenu(AddMenuReqDto addMenuReqDto) throws Exception {
         String originName = addMenuReqDto.getMenuImg();
         String extension = originName.substring(originName.lastIndexOf("."));
         String tempName = UUID.randomUUID().toString() + extension;
 
-
         Path uploadPath = Paths.get(filePath + "/menu/" + tempName);
 
         addMenuReqDto.setMenuImg(tempName);
-        log.info("이미지 이름: " + addMenuReqDto.getMenuImg());
         File f = new File(filePath + "/menu");
 
         try{
@@ -57,6 +53,13 @@ public class MenuServiceImpl implements MenuService {
             list.add(MenuList.toLoadMenu());
         });
         return list;
+    }
+
+    // 수정 페이지 메뉴 정보
+    @Override
+    public MenuListRespDto loadMenuInfo(int id) throws Exception {
+        MenuListRespDto menuInfo = menuRepository.loadMenuInfo(id).toLoadMenu();
+        return menuInfo;
     }
 
 }

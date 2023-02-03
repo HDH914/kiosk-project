@@ -10,6 +10,8 @@ public interface MenuService {
 
     public List<MenuListRespDto> loadMenuList(String searchValue) throws Exception;
 
+    public MenuListRespDto loadMenuInfo(int id) throws Exception;
+
 
 
 }
