@@ -8,6 +8,7 @@ import lombok.Data;
 public class MenuListRespDto {
     private int id;
     private int categoryId;
+    private String categoryName;
     private String menuName;
     private int price;
     private String menuImg;
