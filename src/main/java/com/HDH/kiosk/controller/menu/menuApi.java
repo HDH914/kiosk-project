@@ -33,4 +33,10 @@ public class menuApi {
 
         return ResponseEntity.ok().body(new CMRespDto<>(1,"메뉴 불러오기", menuService.loadMenuList(searchValue)));
     }
+
+    @GetMapping("/admin/modification/{id}")
+    public ResponseEntity<?> getMenuInfo(@PathVariable int id) throws Exception {
+        log.info("메뉴 Id: " + id);
+        return ResponseEntity.ok().body(new CMRespDto<>(1,"메뉴 정보", menuService.loadMenuInfo(id)));
+    }
 }
