@@ -12,4 +12,6 @@ public interface MenuRepository {
 
     public List<MenuList> loadMenuList(String searchValue) throws Exception;
 
+    public MenuList loadMenuInfo (int id) throws Exception;
+
 }
