@@ -12,6 +12,8 @@ public interface MenuService {
 
     public MenuListRespDto loadMenuInfo(int id) throws Exception;
 
+    public boolean updateMenu(AddMenuReqDto addMenuReqDto) throws Exception;
+
 
 
 }

@@ -55,11 +55,24 @@ public class MenuServiceImpl implements MenuService {
         return list;
     }
 
-    // 수정 페이지 메뉴 정보
+    // 수정 페이지 메뉴 정보 불러오기
     @Override
     public MenuListRespDto loadMenuInfo(int id) throws Exception {
         MenuListRespDto menuInfo = menuRepository.loadMenuInfo(id).toLoadMenu();
         return menuInfo;
+    }
+
+    // 제품 수정
+    @Override
+    public boolean updateMenu(AddMenuReqDto addMenuReqDto) throws Exception {
+        menuRepository.updateMenu(addMenuReqDto.toAddMenu());
+        log.info("아이디: "  + addMenuReqDto.toAddMenu().getId());
+        log.info("상품명: " + addMenuReqDto.toAddMenu().getMenu_name());
+        log.info("가격: " + addMenuReqDto.toAddMenu().getPrice());
+        log.info("제품 이미지: " +  addMenuReqDto.toAddMenu().getMenu_img());
+        log.info("메모: " +  addMenuReqDto.toAddMenu().getMemo());
+
+        return true;
     }
 
 }
