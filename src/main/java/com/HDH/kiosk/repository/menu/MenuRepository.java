@@ -14,4 +14,5 @@ public interface MenuRepository {
 
     public MenuList loadMenuInfo (int id) throws Exception;
 
+    public int updateMenu(Menu menu) throws Exception;
 }
