@@ -2,6 +2,7 @@ package com.HDH.kiosk.controller.menu;
 
 import com.HDH.kiosk.dto.CMRespDto;
 import com.HDH.kiosk.dto.menu.AddMenuReqDto;
+import com.HDH.kiosk.dto.menu.UpdateMenuDto;
 import com.HDH.kiosk.service.menu.MenuService;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
@@ -38,5 +39,11 @@ public class menuApi {
     public ResponseEntity<?> getMenuInfo(@PathVariable int id) throws Exception {
         log.info("메뉴 Id: " + id);
         return ResponseEntity.ok().body(new CMRespDto<>(1,"메뉴 정보", menuService.loadMenuInfo(id)));
+    }
+
+    @PutMapping("/admin/modification/update/{id}")
+    public ResponseEntity<?> updateMenu(@PathVariable int id, AddMenuReqDto addMenuReqDto) throws Exception {
+        menuService.updateMenu(addMenuReqDto);
+        return ResponseEntity.ok().body(new CMRespDto<>(1,"업데이트 완료", true));
     }
 }
