@@ -37,12 +37,27 @@
             <!-- 어드민 메인 -->
             <div class="admin-main">
                 <div class="main-header">
+                    <!-- 페이지 번호 -->
                     <div class="page-number">
                     </div>
+                    <!-- 검색 -->
                     <div class="search">
-                        <input type="text" class="search-input">
-                        <button class="search-button" type="button">검색</button>
+                        <div class="search-category">
+                            <select name="category" class="category-input">
+                                <option value="">전체 메뉴</option>
+                                <option value="2">시즌</option>
+                                <option value="3">커피</option>
+                                <option value="4">음료</option>
+                                <option value="5">티</option>
+                                <option value="6">디저트</option>
+                            </select>
+                        </div>
+                        <div class="search-area">
+                            <input type="text" class="search-input">
+                            <button class="search-button" type="button">검색</button>
+                        </div>
                     </div>
+                    <!-- 메뉴 추가 -->
                     <div class="add-menu">
                         <a class="add-button" href="/admin/menuDetail">추가하기</a>
                     </div>
