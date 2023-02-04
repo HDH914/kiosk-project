@@ -41,6 +41,21 @@
         );
 
     </insert>
+    <update id="updateMenu"
+            parameterType="com.HDH.kiosk.domain.Menu">
+        UPDATE
+            menu_mst
+        SET
+            category_id = #{category_id},
+            menu_name = #{menu_name},
+            price = #{price},
+            menu_img = #{menu_img},
+            memo = #{memo},
+            update_date = now()
+        WHERE
+            id = #{id}
+
+    </update>
     <select id="loadMenuList"
             parameterType="hashmap"
             resultType="com.HDH.kiosk.domain.MenuList">
