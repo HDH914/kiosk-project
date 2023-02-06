@@ -3,15 +3,21 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.HDH.kiosk.repository.menu.MenuRepository">
+    <resultMap id="menu_img" type="com.HDH.kiosk.domain.MenuImage">
+        <result property="id" column="id"></result>
+        <result property="menu_id" column="menu_id"></result>
+        <result property="origin_name" column="origin_name"></result>
+        <result property="temp_name" column="temp_name"></result>
+    </resultMap>
     <resultMap id="menu" type="com.HDH.kiosk.domain.Menu">
         <result property="id" column="id"></result>
         <result property="category_id" column="category_id"></result>
         <result property="menu_name" column="menu_name"></result>
         <result property="price" column="price"></result>
-        <result property="menu_img" column="menu_img"></result>
         <result property="memo" column="memo"></result>
         <result property="create_date" column="create_date"></result>
         <result property="update_date" column="update_date"></result>
+        <collection property="menu_img" resultMap="menu_img"></collection>
     </resultMap>
 
     <resultMap id="menuList" type="com.HDH.kiosk.domain.MenuList">
@@ -20,9 +26,10 @@
         <result property="category_name" column="category_name"></result>
         <result property="menu_name" column="menu_name"></result>
         <result property="price" column="price"></result>
-        <result property="menu_img" column="menu_img"></result>
         <result property="memo" column="memo"></result>
+        <collection property="menu_img" resultMap="menu_img"></collection>
     </resultMap>
+<!--    메뉴 추가-->
     <insert id="addMenu"
             parameterType="com.HDH.kiosk.domain.Menu"
             useGeneratedKeys="true"
@@ -34,13 +41,25 @@
             #{category_id},
             #{menu_name},
             #{price},
-            #{menu_img},
             #{memo},
             now(),
             now()
         );
-
     </insert>
+<!--    메뉴 이미지 추가-->
+    <insert id="addMenuImg">
+        insert into
+            menu_img_mst
+        values(
+            0,
+            #{menu_id},
+            #{origin_name},
+            #{temp_name},
+            now(),
+            now()
+        )
+    </insert>
+<!--    메뉴 수정-->
     <update id="updateMenu"
             parameterType="com.HDH.kiosk.domain.Menu">
         UPDATE
@@ -49,13 +68,15 @@
             category_id = #{category_id},
             menu_name = #{menu_name},
             price = #{price},
-            menu_img = #{menu_img},
+<!--            menu_img = #{menu_img},-->
             memo = #{memo},
             update_date = now()
         WHERE
             id = #{id}
 
     </update>
+
+<!--    전체 메뉴 리스트-->
     <select id="loadMenuList"
             parameterType="hashmap"
             resultType="com.HDH.kiosk.domain.MenuList">
@@ -65,24 +86,29 @@
             cd.category_name,
             mm.menu_name,
             mm.price,
-            mm.menu_img,
-            mm.memo
+            mm.memo,
+            mim.temp_name
         from
             menu_mst mm
             LEFT OUTER JOIN category_dtl cd ON(cd.id = mm.category_id)
+            LEFT OUTER JOIN menu_img_mst mim ON(mim.menu_id = mm.id)
     </select>
-    <select id="loadMenuInfo" resultType="com.HDH.kiosk.domain.MenuList">
+
+<!--    수정 페이지 메뉴 정보-->
+<!--    resultType="com.HDH.kiosk.domain.MenuList"-->
+    <select id="loadMenuInfo"  resultMap="menuList">
         SELECT
             mm.id,
             mm.category_id,
             mm.menu_name,
             mm.price,
-            mm.menu_img,
-            mm.memo
+            mm.memo,
+            mim.temp_name
         from
             menu_mst mm
+            LEFT OUTER JOIN menu_img_mst mim ON(mim.menu_id = mm.id)
         where
-        id = #{id}
+            mm.id = #{id}
     </select>
 
 
