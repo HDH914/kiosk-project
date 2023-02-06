@@ -1,5 +1,7 @@
 package com.HDH.kiosk.service.menu;
 
+import com.HDH.kiosk.domain.Menu;
+import com.HDH.kiosk.domain.MenuImage;
 import com.HDH.kiosk.domain.MenuList;
 import com.HDH.kiosk.dto.menu.AddMenuReqDto;
 import com.HDH.kiosk.dto.menu.MenuListRespDto;
@@ -8,6 +10,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
 import java.nio.file.Files;
@@ -25,27 +28,50 @@ public class MenuServiceImpl implements MenuService {
 
     @Value("${file.path}")
     private String filePath;
+
+    // 메뉴 추가
     @Override
     public boolean addMenu(AddMenuReqDto addMenuReqDto) throws Exception {
-        String originName = addMenuReqDto.getMenuImg();
+       MultipartFile file = addMenuReqDto.getMenuImg();
+       MenuImage menuImage = null;
+
+       Menu menu = addMenuReqDto.toAddMenu();
+       menuRepository.addMenu(menu);
+
+       if(file != null) {
+           int menuId = menu.getId();
+           menuImage = getMenuImg(file, menuId);
+           menuRepository.addMenuImg(menuImage);
+       }
+        return true;
+    }
+
+    private MenuImage getMenuImg(MultipartFile file, int menuId) throws Exception {
+
+        String originName = file.getOriginalFilename();
         String extension = originName.substring(originName.lastIndexOf("."));
         String tempName = UUID.randomUUID().toString() + extension;
 
         Path uploadPath = Paths.get(filePath + "/menu/" + tempName);
 
-        addMenuReqDto.setMenuImg(tempName);
         File f = new File(filePath + "/menu");
 
-        try{
-            Files.write(uploadPath, addMenuReqDto.getMenuImg().getBytes());
+        try {
+            Files.write(uploadPath, file.getBytes());
         } catch (Exception e) {
             e.printStackTrace();
         }
-        menuRepository.addMenu(addMenuReqDto.toAddMenu());
 
-        return true;
+        MenuImage menuImage = MenuImage.builder()
+                .menu_id(menuId)
+                .origin_name(originName)
+                .temp_name(tempName)
+                .build();
+
+        return menuImage;
     }
 
+    // 메뉴 리스트 불러오기
     @Override
     public List<MenuListRespDto> loadMenuList(String searchValue) throws Exception {
         List<MenuListRespDto> list = new ArrayList<MenuListRespDto>();
@@ -59,6 +85,8 @@ public class MenuServiceImpl implements MenuService {
     @Override
     public MenuListRespDto loadMenuInfo(int id) throws Exception {
         MenuListRespDto menuInfo = menuRepository.loadMenuInfo(id).toLoadMenu();
+        log.info("메뉴 이미지: " + menuRepository.loadMenuInfo(id).getMenu_img());
+        log.info("이미지 이름: " + menuRepository.loadMenuInfo(id).getMenu_img().getTemp_name());
         return menuInfo;
     }
 
