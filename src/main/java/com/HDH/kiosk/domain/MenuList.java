@@ -5,18 +5,21 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.web.multipart.MultipartFile;
 
 @Builder
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+
 public class MenuList {
     private int id;
     private int category_id;
     private String category_name;
     private String menu_name;
     private int price;
-    private String menu_img;
+    private MenuImage menu_img;
     private String memo;
 
     public MenuListRespDto toLoadMenu(){
@@ -30,4 +33,5 @@ public class MenuList {
                 .memo(memo)
                 .build();
     }
+
 }
