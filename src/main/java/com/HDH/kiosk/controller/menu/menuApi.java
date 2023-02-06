@@ -21,26 +21,30 @@ import javax.validation.constraints.Null;
 public class menuApi {
     private final MenuService menuService;
 
+    // 메뉴 추가
     @PostMapping("/add")
     public ResponseEntity<?> addMenu(AddMenuReqDto addMenuReqDto) throws Exception {
-        log.info("카테고리: " + addMenuReqDto.getCategoryId());
         menuService.addMenu(addMenuReqDto);
+        log.info("메뉴 이미지 컨트롤라: " + addMenuReqDto.getMenuImg());
 
         return ResponseEntity.ok().body(new CMRespDto<>(1,"메뉴 등록", true));
     }
 
+    // 메뉴 리스트 불러오기
     @GetMapping("/menulist")
     public ResponseEntity<?> getMenulist(@RequestParam @Nullable String searchValue) throws Exception {
 
         return ResponseEntity.ok().body(new CMRespDto<>(1,"메뉴 불러오기", menuService.loadMenuList(searchValue)));
     }
 
+    // 메뉴 수정페이지
     @GetMapping("/admin/modification/{id}")
     public ResponseEntity<?> getMenuInfo(@PathVariable int id) throws Exception {
         log.info("메뉴 Id: " + id);
         return ResponseEntity.ok().body(new CMRespDto<>(1,"메뉴 정보", menuService.loadMenuInfo(id)));
     }
 
+    // 메뉴 수정하기
     @PutMapping("/admin/modification/update/{id}")
     public ResponseEntity<?> updateMenu(@PathVariable int id, AddMenuReqDto addMenuReqDto) throws Exception {
         menuService.updateMenu(addMenuReqDto);
