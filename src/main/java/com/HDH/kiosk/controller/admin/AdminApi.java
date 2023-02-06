@@ -20,7 +20,6 @@ import javax.validation.Valid;
 @RestController
 @RequiredArgsConstructor
 public class AdminApi {
-//    private AdminService adminService;
     private final AdminService adminService;
 
     // 회원 가입
