@@ -5,22 +5,19 @@ const memo = document.querySelector(".menu-memo");
 
 let imageForm = document.querySelector(".image-form");
 let imageInput = document.querySelector(".image-input");
-// let file = new Array();
+let file = new Array();
 
 imageInput.onchange = () => {
-    const imageForm = document.querySelector(".image-form");
+    const imageForm = new FormData(document.querySelector(".image-form"));
     let menuImageFile = imageInput.value;
-    // console.log("폼데이터 ;")
-    // console.log(imageForm)
-    // console.log("폼데이터 벨류")
-    // console.log(imageForm.value)
-    // console.log("이미지 인풋")
-    // console.log(imageInput)
-    // console.log("이미지 인풋 베류")
-    // console.log(imageInput.value)
 
-    imagePreview(imageInput);
-
+    imageForm.forEach((value) => {
+        if (value.size != 0) {
+            file.push(value);
+            console.log(file);
+        }
+    });
+    // imagePreview(imageInput);
 }
 
 function imagePreview(imageInput) {
@@ -45,11 +42,14 @@ saveButton.onclick = () => {
 
     let formData = new FormData();
 
-    formData.append("menuImg", imageInput.value);
     formData.append("menuName", menuInput[0].value);
     formData.append("categoryId", menuInput[1].value);
     formData.append("price", menuInput[2].value);
     formData.append("memo", menuInput[3].value);
+
+    file.forEach((file) => {
+        formData.append("menuImg", file);
+    });
 
     formData.forEach((value, key) => {
         console.log(key);
