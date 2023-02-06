@@ -3,6 +3,7 @@ package com.HDH.kiosk.dto.menu;
 import com.HDH.kiosk.domain.Menu;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.time.LocalDateTime;
 
@@ -13,7 +14,8 @@ public class AddMenuReqDto {
     private int categoryId;
     private String menuName;
     private int price;
-    private String menuImg;
+
+    private MultipartFile menuImg;
     private String memo;
     private LocalDateTime createDate;
     private LocalDateTime updateDate;
@@ -24,7 +26,6 @@ public class AddMenuReqDto {
                 .category_id(categoryId)
                 .menu_name(menuName)
                 .price(price)
-                .menu_img(menuImg)
                 .memo(memo)
                 .create_date(createDate)
                 .update_date(updateDate)
