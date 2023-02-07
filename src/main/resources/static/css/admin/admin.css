@@ -237,6 +237,16 @@ td {
     width: 15%;
 }
 
+.menu-image img {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid #fefefe;
+    border-radius: 5px;
+    width: 80%;
+    height: 100%;
+}
+
 
 .menu {
     width: 100%;
@@ -253,6 +263,7 @@ td {
 }
 
 .menu-list td {
+    height: 90%;
     border-bottom: 1px solid black;
 }
 

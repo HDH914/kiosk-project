@@ -39,20 +39,22 @@ function loadMenuListRequest(searchValue) {
 
 function loadMenuList(responseData) {
     const menuList = document.querySelector(".menu");
-
+    console.log(responseData)
     menuList.innerHTML = "";
 
     responseData.forEach((data) => {
         menuList.innerHTML += `
             <tr class="menu-list">
                 <td class="id">${data.id}</td>
-                <td class="menu-image">${data.menuImg}</td>
+                <td class="menu-image">
+                    <img  src="/image/menu/${data.menuImg.temp_name}" alt="menu-image">
+                </td>
                 <td class="menu-category">${data.categoryName}</td>
                 <td class="menu-name">${data.menuName}</td>
                 <td class="menu-price">${data.price}<span>원</span></td>
                 <td class="memo">${data.memo}</td>
                 <td class="menu-button buttons">
-                    <a class="modification-button" href="/admin/menuDetail/${data.id}">수정</a>
+                    <a class="modification-button" href="/admin/modification/${data.id}">수정</a>
                     <a class="delete-button" href="">삭제</a>
                 </td>
             </tr>
