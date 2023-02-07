@@ -78,6 +78,7 @@ public class MenuServiceImpl implements MenuService {
         menuRepository.loadMenuList(searchValue).forEach(MenuList -> {
             list.add(MenuList.toLoadMenu());
         });
+        log.info("메뉴 리스트: " + list);
         return list;
     }
 
@@ -85,8 +86,6 @@ public class MenuServiceImpl implements MenuService {
     @Override
     public MenuListRespDto loadMenuInfo(int id) throws Exception {
         MenuListRespDto menuInfo = menuRepository.loadMenuInfo(id).toLoadMenu();
-        log.info("메뉴 이미지: " + menuRepository.loadMenuInfo(id).getMenu_img());
-        log.info("이미지 이름: " + menuRepository.loadMenuInfo(id).getMenu_img().getTemp_name());
         return menuInfo;
     }
 
