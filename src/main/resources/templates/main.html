@@ -15,6 +15,8 @@
         href="https://fonts.googleapis.com/css2?family=Cute+Font&family=Do+Hyeon&family=Dongle:wght@400;700&family=Gothic+A1:wght@400;500&family=Gowun+Batang&family=IBM+Plex+Sans+KR&family=Jua&family=Nanum+Gothic+Coding&family=Noto+Sans+KR:wght@100;300;400;500;700;900&family=Sunflower:wght@500&display=swap"
         rel="stylesheet">
     <script src="https://kit.fontawesome.com/6bc6b6ea66.js" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-latest.min.js"></script>
+
 </head>
 
 <body>
@@ -45,7 +47,7 @@
                 <!-- 카테고리 선택 영역 -->
                 <div class="category-area">
                     <ul class="category">
-                        <li class="total-menu"><input class="category-input" type="radio">전체 메뉴</li>
+                        <!-- <li class="total-menu"><input class="category-input" type="radio">전체 메뉴</li> -->
                         <li class="season"><input class="category-input" type="radio">시즌</li>
                         <li class="coffee"><input class="category-input" type="radio">커피</li>
                         <li class="beverage"><input class="category-input" type="radio">음료</li>
@@ -55,8 +57,7 @@
                 </div>
                 <!-- 메뉴 선택 영역 -->
                 <div class="select-area">
-                    <ul>
-
+                    <ul class="menus">
                     </ul>
                 </div>
             </div>
@@ -65,7 +66,7 @@
             <!-- 장바구니 화면 -->
             <div class="product">
                 <div class="menu-list"></div>
-                <div class="menu-price">
+                <div class="total-price">
                     <span>총 결제 금액</span>
                     <div class="button-area">
                         <button class="delete-button ">

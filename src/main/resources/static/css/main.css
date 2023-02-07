@@ -116,8 +116,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 14%;
-    height: 70%;
+    width: 18%;
+    height: 80%;
     border: 2px solid gray;
     border-radius: 5px;
 
@@ -127,11 +127,11 @@
     /* font-family: 'Gothic A1', sans-serif; */
     /* font-family: 'Nanum Gothic Coding', monospace; */
     font-family: 'IBM Plex Sans KR', sans-serif;
-    font-size: 28px;
+    font-size: 30px;
 }
 
 .category-input {
-    /* display: none; */
+    display: none;
 }
 
 .category li:hover,
@@ -145,7 +145,44 @@
 .select-area {
     width: 100%;
     height: 90%;
-    /* background-color: cornflowerblue; */
+    background-color: cornflowerblue;
+}
+
+.menus {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    width: 100%;
+    background-color: aqua;
+}
+
+.menu {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 15px 10px;
+    border: 2px solid black;
+    padding: 0px 12.5px;
+    width: 20%;
+
+    cursor: pointer;
+}
+
+.menu-id,
+.menu-category {
+    display: none;
+}
+
+.menu div {
+    padding-bottom: 5px;
+}
+
+.menu img {
+    padding-top: 10px;
+    width: 100%;
+
+    overflow: hidden;
 }
 
 /* 장바구니 화면 */
@@ -168,7 +205,7 @@
     background-color: chocolate;
 }
 
-.menu-price {
+.total-price {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
