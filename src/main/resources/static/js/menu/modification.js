@@ -35,7 +35,7 @@ function menuInfo(responseData) {
                             <span>상품 이미지</span>
                         </div>
                         <div class="image">
-                            <img src="/static/images/noImage.jpg" alt="no-image">
+                            <img src="/image/menu/${responseData.menuImg.temp_name}" alt="no-image">
                         </div>
                         <input class="image-input" type="file" name="file">
                     </form>
