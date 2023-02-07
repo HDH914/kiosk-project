@@ -45,18 +45,24 @@ public class PageController {
     public String admin(){
         return "admin/admin";
     }
-    @GetMapping("/admin/menuDetail")
-    public String menu(){
-        return "admin/menuDetail";
-    }
+    
+
 
 
 
 
     /////////////////////////////////////
+
+    // 메뉴 추가 페이지
+    @GetMapping("/admin/menuDetail")
+    public String menu(){
+        return "menu/menuDetail";
+    }
+
+    // 메뉴 수정 페이지
     @GetMapping("/admin/modification/{id}")
     public String modificationMen(@PathVariable int id){
-        return "admin/modification";
+        return "menu/modification";
     }
 
 
