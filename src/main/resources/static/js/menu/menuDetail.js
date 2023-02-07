@@ -5,22 +5,26 @@ const memo = document.querySelector(".menu-memo");
 
 let imageForm = document.querySelector(".image-form");
 let imageInput = document.querySelector(".image-input");
-let file = new Array();
+let imageFile = new Array();
 
 imageInput.onchange = () => {
     const imageForm = new FormData(document.querySelector(".image-form"));
-    let menuImageFile = imageInput.value;
+    let changeFlag = false;
 
     imageForm.forEach((value) => {
         if (value.size != 0) {
-            file.push(value);
-            console.log(file);
+            imageFile.push(value);
+            console.log(imageFile);
+            changeFlag = true;
         }
     });
-    // imagePreview(imageInput);
+    if (changeFlag) {
+        // imagePreview();
+        console.log("미리보기 실행");
+    }
 }
 
-function imagePreview(imageInput) {
+function imagePreview() {
     const image = document.querySelector(".image");
 
     image.innerHTML = "";
@@ -32,7 +36,8 @@ function imagePreview(imageInput) {
          <img class="product-img" src="${e.target.result}">
         `
     };
-    // reader.readAsDataURL(imageInput.file[0]);
+
+
 }
 
 
@@ -47,8 +52,8 @@ saveButton.onclick = () => {
     formData.append("price", menuInput[2].value);
     formData.append("memo", menuInput[3].value);
 
-    file.forEach((file) => {
-        formData.append("menuImg", file);
+    imageFile.forEach((imageFile) => {
+        formData.append("menuImg", imageFile);
     });
 
     formData.forEach((value, key) => {
