@@ -40,6 +40,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 // 접근 권한 관련
                 .antMatchers("/**")//지정한 주소를 가지고 권한을 줄건지 정함.
                 .permitAll()
+                .antMatchers("/static/**", "/image/**")
+                .permitAll()
 
 
                 // 로그인 관련
