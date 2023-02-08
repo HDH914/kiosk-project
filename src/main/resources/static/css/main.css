@@ -27,7 +27,7 @@
     display: flex;
     justify-content: space-around;
     align-items: center;
-    width: 28%;
+    width: 33%;
 }
 
 .logo,
@@ -40,14 +40,14 @@
 }
 
 .icon {
-    font-size: 26px;
+    font-size: 34px;
     cursor: pointer;
     color: black;
 }
 
 .home a {
-    padding-left: 5px;
-    font-size: 20px;
+    padding-left: 10px;
+    font-size: 28px;
     text-decoration: none;
     color: black;
 }
@@ -79,7 +79,7 @@
 }
 
 .login-icon {
-    font-size: 28px;
+    font-size: 32px;
     color: rgb(70, 69, 69);
 }
 
@@ -128,10 +128,16 @@
     /* font-family: 'Nanum Gothic Coding', monospace; */
     font-family: 'IBM Plex Sans KR', sans-serif;
     font-size: 30px;
+    font-weight: 600;
 }
 
 .category-input {
     display: none;
+}
+
+.category li:focus {
+    border: 2px solid black;
+    border-radius: 5px;
 }
 
 .category li:hover,
@@ -145,7 +151,7 @@
 .select-area {
     width: 100%;
     height: 90%;
-    background-color: cornflowerblue;
+    /* background-color: cornflowerblue; */
 }
 
 .menus {
@@ -153,7 +159,8 @@
     flex-wrap: wrap;
     justify-content: flex-start;
     width: 100%;
-    background-color: aqua;
+    max-height: 100%;
+    /* background-color: aqua; */
 }
 
 .menu {
@@ -161,12 +168,28 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin: 15px 10px;
+    margin: 25px 15px 0 25px;
     border: 2px solid black;
-    padding: 0px 12.5px;
     width: 20%;
-
+    padding: 0px 5px;
     cursor: pointer;
+}
+
+
+.menu-price {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 90%;
+    font-weight: 600;
+}
+
+.menu-name {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    font-weight: 600;
 }
 
 .menu-id,
@@ -179,7 +202,7 @@
 }
 
 .menu img {
-    padding-top: 10px;
+    padding-top: 5px;
     width: 100%;
 
     overflow: hidden;
@@ -194,26 +217,97 @@
     width: 100%;
     height: 20%;
 
-    background-color: cadetblue;
+    /* background-color: cadetblue; */
 }
 
+
+/* 선택한 메뉴 리스트 */
 .menu-list {
-    border: 1px solid black;
+    display: flex;
+    flex-direction: column;
+    border: 2px solid black;
     border-radius: 5px;
     width: 60%;
     height: 80%;
-    background-color: chocolate;
 }
 
+.menu-info {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    border-bottom: 1px solid gray;
+    width: 100%;
+    height: 10%;
+    padding: 5px 0;
+}
+
+.selected-menu-name {
+    display: flex;
+    align-items: center;
+    width: 70%;
+    height: 100%;
+}
+
+.menu-count {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    width: 20%;
+    height: 100%;
+    background-color: beige;
+}
+
+.menu-delete-button {
+    width: 5%;
+    height: 100%;
+}
+
+.delete-icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 26px;
+    color: red;
+}
+
+/* 총 결제 금액 */
 .total-price {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    border: 1px solid black;
+    border: 2px solid black;
     border-radius: 5px;
     width: 30%;
     height: 80%;
     background-color: darkkhaki;
+}
+
+.total-price-title {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 15%;
+    padding-left: 10px;
+    font-size: 24px;
+    font-weight: 600;
+    background-color: yellow;
+}
+
+.total-price-amount {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    width: 100%;
+    height: 40%;
+    padding-right: 10%;
+    font-size: 36px;
+    font-weight: 600;
+    background-color: green;
+}
+
+.total-price-amount span {
+    font-size: 24px;
+    font-weight: 500;
 }
 
 .button-area {
@@ -221,7 +315,7 @@
     justify-content: space-around;
     align-items: center;
     width: 100%;
-    height: 30%;
+    height: 40%;
 
     background-color: aqua;
 }
