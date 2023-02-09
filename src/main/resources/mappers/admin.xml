@@ -28,9 +28,14 @@
     </insert>
     <select id="findUserByUsername" resultType="com.HDH.kiosk.domain.User">
         SELECT
-            *
+            am.id,
+            am.username,
+            am.password,
+            am.store_number,
+            am.create_date,
+            am.update_date
         FROM
-            admin_mst
+            admin_mst am
         where
             username = #{username}
     </select>
