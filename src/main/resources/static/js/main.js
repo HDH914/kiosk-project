@@ -5,10 +5,10 @@ const beverage = document.querySelector(".beverage");
 const tea = document.querySelector(".tea");
 const desert = document.querySelector(".desert");
 const menus = document.querySelector(".menus");
-const menu = document.querySelectorAll(".menu");
 
 
 loadMenuList();
+cl();
 function loadMenuList() {
     console.log("loadMenuList")
     let responseData = null;
@@ -34,15 +34,9 @@ function loadMenuList() {
     })
 }
 
-
-
-// 홈버튼
-home.onclick = () => {
-    location.href = "/";
-}
-
 function clickSeason(responseData) {
     season.onclick = () => {
+        console.log("시즌 클릭")
         menus.innerHTML = "";
         responseData.forEach((data) => {
             if (data.categoryId == 1) {
@@ -146,14 +140,34 @@ function clickDesert(responseData) {
     }
 }
 
-// menu.onclick = () => {
-//     // 클릭을 하면 클릭한 메뉴를 리스트에 담고 그 리스트 정보들을
-//     // 뿌린다.
-//     const menuList = document.querySelector(".menu-list");
+// 홈버튼
+home.onclick = () => {
+    location.href = "/";
+}
 
-//     menuList.innerHTML = `
-    
-//     `
-// }
+function cl() {
+    let menu = document.querySelectorAll(".menu");
+    let menuList = new Array();
+
+    console.log("cl-1")
+    console.log(menu)
+
+    menu.onclick = () => {
+        console.log("cl-2")
+
+
+        alert("메뉴 선택됨.")
+        // menuList.push(menu.values);
+        // console.log(menuList);
+
+        // 클릭을 하면 클릭한 메뉴를 리스트에 담고 그 리스트 정보들을
+        // 뿌린다.
+        // const menuList = document.querySelector(".menu-list");
+
+        // menuList.innerHTML = `
+
+        // `
+    }
+}
 
 
