@@ -1,5 +1,6 @@
 package com.HDH.kiosk.config;
 
+import com.HDH.kiosk.handler.AuthFailureHandler;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -48,10 +49,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .formLogin()
                 .loginPage("/login")                 // GET 요청
-//                .usernameParameter()         필드명을 변경하는것.
                 .loginProcessingUrl("/admin/login")        // 로그인 로직(PrincipalDetailsService) POST 요청
-                .successForwardUrl("/admin")    // 로그인 성공시 url
-                .failureForwardUrl("/login")
+                .defaultSuccessUrl("/admin")    // 로그인 성공시 url
+//                .failureForwardUrl("/login")
 //                .failureHandler(new AuthFailureHandler())   //실패핸들러
 
                 // 로그아웃 관련
