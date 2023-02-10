@@ -20,9 +20,8 @@ public class PrincipalDetails implements UserDetails {
     public Collection<? extends GrantedAuthority> getAuthorities() {
 
         Collection<GrantedAuthority> authorities = new ArrayList<GrantedAuthority>();
-//        authorities.add(()->user.get)
-
-        return null;
+        authorities.add(()->user.getUsername());
+        return authorities;
     }
 
     @Override
