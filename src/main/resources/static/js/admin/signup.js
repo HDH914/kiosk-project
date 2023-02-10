@@ -39,8 +39,20 @@ signupButton.onclick = () => {
             },
             error: (error) => {
                 console.log(error);
-                console.log("전송 실패");
+                console.log("회원가입 실패")
+                ValidationError(error.responseJSON.data);
             }
         });
     }
+}
+
+function ValidationError(error) {
+    const errorMsg = document.querySelectorAll(".error-msg");
+    let errorMap = new Map(Object.entries(error));
+    console.log(errorMap)
+    errorMsg[0].textContent = errorMap.get("username");
+    errorMsg[1].textContent = errorMap.get("password");
+    errorMsg[2].textContent = errorMap.get("storeNumber");
+
+
 }

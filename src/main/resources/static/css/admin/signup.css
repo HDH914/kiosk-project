@@ -83,6 +83,12 @@
     font-size: 30px;
 }
 
+.error-msg {
+
+    font-size: 16px;
+    color: red;
+}
+
 /* 버튼 영역 */
 .button-area {
     display: flex;
