@@ -18,4 +18,11 @@ public class RestControllerExceptionHandler {
 //                .badRequest()
 //                .body(new CMRespDto<>(-1, e.getMessage(), e.getErrorMap()));
 //    }
+
+    @ExceptionHandler(CustomInternalServerErrorException.class)
+    public ResponseEntity<?> internalErrorException(CustomInternalServerErrorException e) {
+        return ResponseEntity
+                .internalServerError()
+                .body(new CMRespDto<>(-1, e.getMessage(), null));
+    }
 }
