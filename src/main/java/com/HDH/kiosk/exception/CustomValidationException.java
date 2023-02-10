@@ -1,12 +1,15 @@
 package com.HDH.kiosk.exception;
 
+import lombok.Getter;
+
 import java.util.Map;
 
-public class CustomValidationException {
+@Getter
+public class CustomValidationException extends RuntimeException {
     private Map<String, String> errorMap;
 
     public CustomValidationException(String message, Map<String, String> errorMap) {
-//        super(message);
+        super(message);
         this.errorMap = errorMap;
     }
 }
