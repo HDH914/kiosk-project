@@ -1,6 +1,7 @@
 const menuList = document.querySelector(".menu-list");
 const searchInput = document.querySelector(".search-input");
 const searchButton = document.querySelector(".search-button");
+const logout = document.querySelector(".logout-icon");
 let searchValue = "";
 
 loadMenuListRequest(searchValue);
@@ -60,4 +61,13 @@ function loadMenuList(responseData) {
             </tr>
             `;
     });
+}
+
+logout.onclick = () => {
+    let msg = null;
+    msg = confirm("로그아웃 하시겠습니까?");
+    if (msg) {
+        alert("로그아웃 되었습니다.");
+        location.href = "/main";
+    }
 }

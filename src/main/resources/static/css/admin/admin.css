@@ -37,7 +37,8 @@
     height: 100%;
 }
 
-.icon {
+.icon,
+.logout-icon {
     font-size: 60px;
     cursor: pointer;
     color: black;
