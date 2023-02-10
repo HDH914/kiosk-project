@@ -1,5 +1,6 @@
 package com.HDH.kiosk.controller.admin;
 
+import com.HDH.kiosk.aop.annotation.ValidAspect;
 import com.HDH.kiosk.dto.CMRespDto;
 import com.HDH.kiosk.dto.admin.LoginReqDto;
 import com.HDH.kiosk.dto.admin.SignupReqDto;
@@ -23,12 +24,12 @@ public class AdminApi {
     private final AdminService adminService;
 
     // 회원 가입
+    @ValidAspect
     @PostMapping("/signup")
-    public ResponseEntity<?> signup(@Valid @RequestBody SignupReqDto signupReqDto) throws Exception {
+    public ResponseEntity<?> signup(@Valid @RequestBody SignupReqDto signupReqDto, BindingResult bindingResult) throws Exception {
         adminService.signup(signupReqDto);
         return ResponseEntity.ok().body(new CMRespDto<>(1, "회원가입 완료", signupReqDto));
     }
-
 
     // 로그인
     @PostMapping("/login")
