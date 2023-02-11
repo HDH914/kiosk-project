@@ -5,6 +5,7 @@ import com.HDH.kiosk.domain.MenuImage;
 import com.HDH.kiosk.domain.MenuList;
 import com.HDH.kiosk.dto.menu.AddMenuReqDto;
 import com.HDH.kiosk.dto.menu.MenuListRespDto;
+import com.HDH.kiosk.dto.menu.SearchDto;
 import com.HDH.kiosk.repository.menu.MenuRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -72,10 +73,21 @@ public class MenuServiceImpl implements MenuService {
     }
 
     // 메뉴 리스트 불러오기
+//    @Override
+//    public List<MenuListRespDto> loadMenuList(String searchValue) throws Exception {
+//        List<MenuListRespDto> list = new ArrayList<MenuListRespDto>();
+//        menuRepository.loadMenuList(searchValue).forEach(MenuList -> {
+//            list.add(MenuList.toLoadMenu());
+//        });
+//        log.info("메뉴 리스트: " + list);
+//        return list;
+//    }
+
+
     @Override
-    public List<MenuListRespDto> loadMenuList(String searchValue) throws Exception {
+    public List<MenuListRespDto> loadMenuList(SearchDto params) throws Exception {
         List<MenuListRespDto> list = new ArrayList<MenuListRespDto>();
-        menuRepository.loadMenuList(searchValue).forEach(MenuList -> {
+        menuRepository.loadMenuList(params.getKeyword()).forEach(MenuList -> {
             list.add(MenuList.toLoadMenu());
         });
         log.info("메뉴 리스트: " + list);
