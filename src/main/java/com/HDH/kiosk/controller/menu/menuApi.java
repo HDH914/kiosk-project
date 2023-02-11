@@ -2,6 +2,7 @@ package com.HDH.kiosk.controller.menu;
 
 import com.HDH.kiosk.dto.CMRespDto;
 import com.HDH.kiosk.dto.menu.AddMenuReqDto;
+import com.HDH.kiosk.dto.menu.SearchDto;
 import com.HDH.kiosk.dto.menu.UpdateMenuDto;
 import com.HDH.kiosk.service.menu.MenuService;
 import lombok.Getter;
@@ -31,10 +32,16 @@ public class menuApi {
     }
 
     // 메뉴 리스트 불러오기
-    @GetMapping("/menulist")
-    public ResponseEntity<?> getMenulist(@RequestParam @Nullable String searchValue) throws Exception {
+//    @GetMapping("/menulist")
+//    public ResponseEntity<?> getMenulist(@RequestParam @Nullable String searchValue) throws Exception {
+//
+//        return ResponseEntity.ok().body(new CMRespDto<>(1,"메뉴 불러오기", menuService.loadMenuList(searchValue)));
+//    }
 
-        return ResponseEntity.ok().body(new CMRespDto<>(1,"메뉴 불러오기", menuService.loadMenuList(searchValue)));
+    @GetMapping("/menulist")
+    public ResponseEntity<?> getMenulist(@RequestParam @Nullable SearchDto params) throws Exception {
+
+        return ResponseEntity.ok().body(new CMRespDto<>(1,"메뉴 불러오기", menuService.loadMenuList(params)));
     }
 
 
