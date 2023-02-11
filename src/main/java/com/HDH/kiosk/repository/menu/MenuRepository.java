@@ -3,6 +3,7 @@ package com.HDH.kiosk.repository.menu;
 import com.HDH.kiosk.domain.Menu;
 import com.HDH.kiosk.domain.MenuImage;
 import com.HDH.kiosk.domain.MenuList;
+import com.HDH.kiosk.dto.menu.SearchDto;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
@@ -17,4 +18,6 @@ public interface MenuRepository {
     public MenuList loadMenuInfo (int id) throws Exception;
 
     public int updateMenu(Menu menu) throws Exception;
+
+
 }
