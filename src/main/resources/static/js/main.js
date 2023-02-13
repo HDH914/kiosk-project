@@ -1,3 +1,4 @@
+
 const home = document.querySelector(".home");
 const season = document.querySelector(".season");
 const coffee = document.querySelector(".coffee");
@@ -5,12 +6,13 @@ const beverage = document.querySelector(".beverage");
 const tea = document.querySelector(".tea");
 const desert = document.querySelector(".desert");
 const menus = document.querySelector(".menus");
+const deleteButton = document.querySelector(".delete-icon");
 
 
 loadMenuList();
 cl();
+
 function loadMenuList() {
-    console.log("loadMenuList")
     let responseData = null;
     $.ajax({
         async: false,
@@ -36,7 +38,6 @@ function loadMenuList() {
 
 function clickSeason(responseData) {
     season.onclick = () => {
-        console.log("시즌 클릭")
         menus.innerHTML = "";
         responseData.forEach((data) => {
             if (data.categoryId == 1) {
@@ -125,7 +126,7 @@ function clickDesert(responseData) {
         responseData.forEach((data) => {
             if (data.categoryId == 5) {
                 menus.innerHTML += `
-                <li class="menu">
+                <li class="menu" name="menu">
                     <input class="menu-id" type="text" value="${data.id}">
                     <input class="menu-category" type="text" value="${data.categoryId}">
                     <div>
@@ -145,17 +146,36 @@ home.onclick = () => {
     location.href = "/";
 }
 
+deleteButton.onclick = () => {
+    let msg = null;
+    msg = confirm("메뉴를 취소하시겠습니까?");
+    if (msg) {
+        // 메뉴 삭제
+    }
+}
+
 function cl() {
     let menu = document.querySelectorAll(".menu");
     let menuList = new Array();
 
-    console.log("cl-1")
+    console.log("메뉴")
     console.log(menu)
+
+
+    menu.forEach((menu) => {
+        menuList.push(menu);
+    })
+    console.log("메뉴 리스트")
+    console.log(menuList)
+    // console.log("메뉴 벨류")
+    // console.log(menu.value)
+    // console.log("메뉴 리스트 벨류")
+    // console.log(menuList.value)
+    // console.log("메뉴리스트 1번 벨류")
+    // console.log(menuList[0].value)
 
     menu.onclick = () => {
         console.log("cl-2")
-
-
         alert("메뉴 선택됨.")
         // menuList.push(menu.values);
         // console.log(menuList);
@@ -169,5 +189,6 @@ function cl() {
         // `
     }
 }
+
 
 
