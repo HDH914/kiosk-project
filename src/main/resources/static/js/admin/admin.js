@@ -63,20 +63,15 @@ function loadMenuList(responseData) {
     });
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-function loadPageNumberButtons(menuTotalCount) {
-    const pageButtons = document.querySelector(".page-buttons")
+// function loadPageNumberButtons(menuTotalCount) {
+//     const pageButtons = document.querySelector(".page-buttons")
 
-    pageButtons.innerHTML = "";
+//     pageButtons.innerHTML = "";
 
-    let maxPage = (menuTotalCount % 10 == 0) ? menuTotalCount / 10 : Math.floor(menuTotalCount / 10) + 1;
-    let minPage = 1;
+//     let maxPage = (menuTotalCount % 10 == 0) ? menuTotalCount / 10 : Math.floor(menuTotalCount / 10) + 1;
+//     let minPage = 1;
 
-
-
-
-
-
-}
+// }
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
