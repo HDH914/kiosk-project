@@ -11,9 +11,9 @@ public interface MenuService {
     public boolean addMenu(AddMenuReqDto addMenuReqDto) throws Exception;
 
 
-//    public List<MenuListRespDto> loadMenuList(String searchValue) throws Exception;
+    public List<MenuListRespDto> loadMenuList(String searchValue) throws Exception;
 
-    public List<MenuListRespDto> loadMenuList(SearchDto params) throws Exception;
+//    public List<MenuListRespDto> loadMenuList(SearchDto params) throws Exception;
     public MenuListRespDto loadMenuInfo(int id) throws Exception;
 
     public boolean updateMenu(AddMenuReqDto addMenuReqDto) throws Exception;

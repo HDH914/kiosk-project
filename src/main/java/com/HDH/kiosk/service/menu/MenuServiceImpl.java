@@ -73,26 +73,26 @@ public class MenuServiceImpl implements MenuService {
     }
 
     // 메뉴 리스트 불러오기
-//    @Override
-//    public List<MenuListRespDto> loadMenuList(String searchValue) throws Exception {
-//        List<MenuListRespDto> list = new ArrayList<MenuListRespDto>();
-//        menuRepository.loadMenuList(searchValue).forEach(MenuList -> {
-//            list.add(MenuList.toLoadMenu());
-//        });
-//        log.info("메뉴 리스트: " + list);
-//        return list;
-//    }
-
-
     @Override
-    public List<MenuListRespDto> loadMenuList(SearchDto params) throws Exception {
+    public List<MenuListRespDto> loadMenuList(String searchValue) throws Exception {
         List<MenuListRespDto> list = new ArrayList<MenuListRespDto>();
-        menuRepository.loadMenuList(params.getKeyword()).forEach(MenuList -> {
+        menuRepository.loadMenuList(searchValue).forEach(MenuList -> {
             list.add(MenuList.toLoadMenu());
         });
         log.info("메뉴 리스트: " + list);
         return list;
     }
+
+
+//    @Override
+//    public List<MenuListRespDto> loadMenuList(SearchDto params) throws Exception {
+//        List<MenuListRespDto> list = new ArrayList<MenuListRespDto>();
+//        menuRepository.loadMenuList(params.getKeyword()).forEach(MenuList -> {
+//            list.add(MenuList.toLoadMenu());
+//        });
+//        log.info("메뉴 리스트: " + list);
+//        return list;
+//    }
 
     // 수정 페이지 메뉴 정보 불러오기
     @Override
