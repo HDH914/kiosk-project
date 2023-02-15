@@ -22,7 +22,7 @@ public class MenuList {
     private MenuImage menu_img;
     private String memo;
 
-    private int menu_total_count;
+//    private int menu_total_count;
 
     public MenuListRespDto toLoadMenu(){
         return MenuListRespDto.builder()
