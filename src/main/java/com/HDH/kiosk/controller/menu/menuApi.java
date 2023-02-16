@@ -33,9 +33,9 @@ public class menuApi {
 
     // 메뉴 리스트 불러오기
     @GetMapping("/menulist")
-    public ResponseEntity<?> getMenulist(@RequestParam @Nullable String searchValue) throws Exception {
-
-        return ResponseEntity.ok().body(new CMRespDto<>(1,"메뉴 불러오기", menuService.loadMenuList(searchValue)));
+    public ResponseEntity<?> getMenulist(@RequestParam @Nullable String searchValue, @RequestParam int page) throws Exception {
+        log.info("페이지 컨트롤러: " + page);
+        return ResponseEntity.ok().body(new CMRespDto<>(1,"메뉴 불러오기", menuService.loadMenuList(searchValue, page)));
     }
 
 //    @GetMapping("/menulist")
