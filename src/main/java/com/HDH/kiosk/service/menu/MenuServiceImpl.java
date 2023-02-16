@@ -17,9 +17,7 @@ import java.io.File;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.UUID;
+import java.util.*;
 
 @Slf4j
 @Service
@@ -73,26 +71,31 @@ public class MenuServiceImpl implements MenuService {
     }
 
     // 메뉴 리스트 불러오기
-    @Override
-    public List<MenuListRespDto> loadMenuList(String searchValue) throws Exception {
-        List<MenuListRespDto> list = new ArrayList<MenuListRespDto>();
-        menuRepository.loadMenuList(searchValue).forEach(MenuList -> {
-            list.add(MenuList.toLoadMenu());
-        });
-        log.info("메뉴 리스트: " + list);
-        return list;
-    }
-
-
 //    @Override
-//    public List<MenuListRespDto> loadMenuList(SearchDto params) throws Exception {
+//    public List<MenuListRespDto> loadMenuList(String searchValue) throws Exception {
 //        List<MenuListRespDto> list = new ArrayList<MenuListRespDto>();
-//        menuRepository.loadMenuList(params.getKeyword()).forEach(MenuList -> {
+//        menuRepository.loadMenuList(searchValue).forEach(MenuList -> {
 //            list.add(MenuList.toLoadMenu());
 //        });
 //        log.info("메뉴 리스트: " + list);
 //        return list;
 //    }
+
+
+    @Override
+    public List<MenuListRespDto> loadMenuList(String searchValue, int page) throws Exception {
+        log.info(("페이지 서비스 - 1: " + page));
+        Map<String, Object> paramsMap = new HashMap<String, Object>();
+        paramsMap.put("index", (page - 1) * 10);
+        paramsMap.put("searchValue", searchValue);
+        log.info("페이지 서비스 - 2: " + paramsMap);
+        List<MenuListRespDto> list = new ArrayList<MenuListRespDto>();
+        menuRepository.loadMenuList(paramsMap).forEach(MenuList -> {
+            list.add(MenuList.toLoadMenu());
+        });
+        log.info("메뉴 리스트: " + list);
+        return list;
+    }
 
     // 수정 페이지 메뉴 정보 불러오기
     @Override
