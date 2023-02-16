@@ -27,7 +27,7 @@
         <result property="menu_name" column="menu_name"></result>
         <result property="price" column="price"></result>
         <result property="memo" column="memo"></result>
-<!--        <result property="menu_total_count" column="menu_total_count"></result>-->
+        <result property="menu_total_count" column="menu_total_count"></result>
         <collection property="menu_img" resultMap="menu_img"></collection>
     </resultMap>
 <!--    메뉴 추가-->
@@ -77,26 +77,50 @@
     </update>
 
 <!--    전체 메뉴 리스트-->
+<!--    <select id="loadMenuList"-->
+<!--            parameterType="hashmap"-->
+<!--            resultMap="menuList"-->
+<!--            resultType="com.HDH.kiosk.domain.MenuList">-->
+<!--        SELECT-->
+<!--            mm.id,-->
+<!--            mm.category_id,-->
+<!--            cd.category_name,-->
+<!--            mm.menu_name,-->
+<!--            mm.price,-->
+<!--            mm.memo,-->
+<!--            mim.temp_name-->
+<!--            mc.menu_total_count-->
+<!--        from-->
+<!--            menu_mst mm-->
+<!--            LEFT OUTER JOIN category_dtl cd ON(cd.id = mm.category_id)-->
+<!--            LEFT OUTER JOIN menu_img_mst mim ON(mim.menu_id = mm.id)-->
+<!--&lt;!&ndash;            LEFT OUTER JOIN (select count(*) as menu_total_count form menu_mst) mc on (1=1)&ndash;&gt;-->
+<!--&lt;!&ndash;        limit&ndash;&gt;-->
+<!--&lt;!&ndash;            #{pagination.limitStart}, #{recordSize}&ndash;&gt;-->
+<!--    </select>-->
     <select id="loadMenuList"
             parameterType="hashmap"
             resultMap="menuList"
             resultType="com.HDH.kiosk.domain.MenuList">
         SELECT
-            mm.id,
-            mm.category_id,
-            cd.category_name,
-            mm.menu_name,
-            mm.price,
-            mm.memo,
-            mim.temp_name
-<!--            mc.menu_total_count-->
+        mm.id,
+        mm.category_id,
+        cd.category_name,
+        mm.menu_name,
+        mm.price,
+        mm.memo,
+        mim.temp_name,
+        mc.menu_total_count
         from
-            menu_mst mm
-            LEFT OUTER JOIN category_dtl cd ON(cd.id = mm.category_id)
-            LEFT OUTER JOIN menu_img_mst mim ON(mim.menu_id = mm.id)
-<!--            LEFT OUTER JOIN (select count(*) as menu_total_count form menu_mst) mc on (1=1)-->
-<!--        limit-->
-<!--            #{pagination.limitStart}, #{recordSize}-->
+            (select
+                *
+            from
+            menu_mst
+        limit #{index}, 10) mm
+        LEFT OUTER JOIN category_dtl cd ON(cd.id = mm.category_id)
+        LEFT OUTER JOIN menu_img_mst mim ON(mim.menu_id = mm.id)
+        LEFT OUTER JOIN (select count(*) as menu_total_count from menu_mst) mc on (1=1)
+
     </select>
 
 <!--    수정 페이지 메뉴 정보-->
