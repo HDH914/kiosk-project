@@ -88,10 +88,46 @@
 }
 
 .page-number {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     width: 19%;
     height: 100%;
+}
 
-    background-color: aqua;
+.page-buttons {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 90%;
+    height: 50%;
+
+}
+
+.page-buttons a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    color: black;
+}
+
+.page-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 20%;
+    height: 50%;
+    font-size: 20px;
+}
+
+.selected {
+    font-size: 22px;
+    font-weight: 600;
+}
+
+.arrow-icon {
+    font-size: 20px;
 }
 
 .search {
@@ -274,6 +310,7 @@ td {
     display: flex;
     justify-content: space-around;
     align-items: center;
+
 }
 
 .modification-button {

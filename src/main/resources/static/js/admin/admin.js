@@ -3,6 +3,7 @@ const searchInput = document.querySelector(".search-input");
 const searchButton = document.querySelector(".search-button");
 const logout = document.querySelector(".logout-icon");
 let searchValue = "";
+let page = 1;
 
 loadMenuListRequest(searchValue);
 
@@ -19,17 +20,22 @@ searchButton.onclick = () => {
 
 function loadMenuListRequest(searchValue) {
     let responseData = null;
+
     $.ajax({
         async: false,
         type: "get",
         url: "/api/menu/menulist",
         data: {
-            "searchValue": searchValue
+            "searchValue": searchValue,
+            "page": page
         },
         dataType: "json",
         success: (response) => {
             responseData = response.data;
             loadMenuList(responseData);
+            console.log(responseData);
+            console.log(response.data[0].menuTotalCount)
+            loadPageNumberButtons(response.data[0].menuTotalCount);
         },
         error: (error) => {
             console.log(error);
@@ -63,15 +69,78 @@ function loadMenuList(responseData) {
     });
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-// function loadPageNumberButtons(menuTotalCount) {
-//     const pageButtons = document.querySelector(".page-buttons")
+function loadPageNumberButtons(menuTotalCount) {
+    const pageButtons = document.querySelector(".page-buttons")
 
-//     pageButtons.innerHTML = "";
+    pageButtons.innerHTML = "";
 
-//     let maxPage = (menuTotalCount % 10 == 0) ? menuTotalCount / 10 : Math.floor(menuTotalCount / 10) + 1;
-//     let minPage = 1;
+    let maxPage = (menuTotalCount % 10 == 0) ? menuTotalCount / 10 : Math.floor(menuTotalCount / 10) + 1;
+    let minPage = 1;
+    let startIndex = page % 5 == 0 ? page - 4 : page - (page % 5) + 1;
+    let endIndex = startIndex + 4 <= maxPage ? startIndex + 4 : maxPage;
 
-// }
+    console.log(`
+    page = ${page}
+    totalCount = ${menuTotalCount}
+    maxPage = ${maxPage}
+    startIndex = ${startIndex}
+    endIndex = ${endIndex}
+    `);
+
+    if (page != 1) {
+        pageButtons.innerHTML = `
+            <a href="javascript:void(0)">
+                <li>
+                    &#60;
+                </li>
+            </a>    
+        `;
+    }
+    for (let i = startIndex; i <= endIndex; i++) {
+        if (i == page) {
+            pageButtons.innerHTML += `
+           <a href="javascript:void(0)"><li class="page-button selected">${i}</li></a>
+        `;
+        } else {
+            pageButtons.innerHTML += `
+           <a href="javascript:void(0)"><li class="page-button">${i}</li></a>
+        `;
+        }
+
+        console.log(i);
+    }
+
+    if (page != maxPage) {
+        pageButtons.innerHTML += `
+            <a href="javascript:void(0)">
+                <li>
+                &#62;
+                </li>
+            </a>
+        `;
+    }
+
+    // innerHtml 확인용
+    // const pageButton = document.querySelectorAll(".page-button");
+    const pageButton = pageButtons.querySelectorAll("li");
+    console.log(pageButton);
+
+    for (let i = 0; i < pageButton.length; i++) {
+        pageButton[i].onclcik = () => {
+            let pageNum = pageButton[i].textContent;
+            if (pageNum == "<") {
+                --page;
+            } else if (pageNum == ">") {
+                ++page;
+            } else {
+                page = pageNum;
+            }
+            console.log(page)
+            loadMenuListRequest();
+        }
+    }
+
+}
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
