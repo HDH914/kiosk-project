@@ -10,7 +10,7 @@ const deleteButton = document.querySelector(".delete-icon");
 
 
 loadMenuList();
-cl();
+// cl();
 
 function loadMenuList() {
     let responseData = null;
@@ -141,19 +141,6 @@ function clickDesert(responseData) {
     }
 }
 
-// 홈버튼
-home.onclick = () => {
-    location.href = "/";
-}
-
-deleteButton.onclick = () => {
-    let msg = null;
-    msg = confirm("메뉴를 취소하시겠습니까?");
-    if (msg) {
-        // 메뉴 삭제
-    }
-}
-
 function cl() {
     let menu = document.querySelectorAll(".menu");
     let menuList = new Array();
@@ -161,18 +148,11 @@ function cl() {
     console.log("메뉴")
     console.log(menu)
 
-
     menu.forEach((menu) => {
         menuList.push(menu);
     })
     console.log("메뉴 리스트")
     console.log(menuList)
-    // console.log("메뉴 벨류")
-    // console.log(menu.value)
-    // console.log("메뉴 리스트 벨류")
-    // console.log(menuList.value)
-    // console.log("메뉴리스트 1번 벨류")
-    // console.log(menuList[0].value)
 
     menu.onclick = () => {
         console.log("cl-2")
@@ -192,3 +172,15 @@ function cl() {
 
 
 
+// 홈버튼
+home.onclick = () => {
+    location.href = "/";
+}
+
+deleteButton.onclick = () => {
+    let msg = null;
+    msg = confirm("메뉴를 취소하시겠습니까?");
+    if (msg) {
+        // 메뉴 삭제
+    }
+}
