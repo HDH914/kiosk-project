@@ -15,4 +15,5 @@ public class MenuListRespDto {
     private int price;
     private MenuImage menuImg;
     private String memo;
+    private int menuTotalCount;
 }
