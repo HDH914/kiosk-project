@@ -83,12 +83,13 @@ public class MenuServiceImpl implements MenuService {
 
 
     @Override
-    public List<MenuListRespDto> loadMenuList(String searchValue, int page) throws Exception {
-        log.info(("페이지 서비스 - 1: " + page));
+    public List<MenuListRespDto> loadMenuList(int page, String category, String searchValue) throws Exception {
         Map<String, Object> paramsMap = new HashMap<String, Object>();
         paramsMap.put("index", (page - 1) * 10);
+        paramsMap.put("category", category);
         paramsMap.put("searchValue", searchValue);
-        log.info("페이지 서비스 - 2: " + paramsMap);
+
+        log.info("카테고리: " + category);
         List<MenuListRespDto> list = new ArrayList<MenuListRespDto>();
         menuRepository.loadMenuList(paramsMap).forEach(MenuList -> {
             list.add(MenuList.toLoadMenu());

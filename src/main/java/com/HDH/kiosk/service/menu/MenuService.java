@@ -13,7 +13,7 @@ public interface MenuService {
 
 //    public List<MenuListRespDto> loadMenuList(String searchValue) throws Exception;
 
-    public List<MenuListRespDto> loadMenuList(String searchValue, int page) throws Exception;
+    public List<MenuListRespDto> loadMenuList(int page, String category, String searchValue) throws Exception;
     public MenuListRespDto loadMenuInfo(int id) throws Exception;
 
     public boolean updateMenu(AddMenuReqDto addMenuReqDto) throws Exception;
