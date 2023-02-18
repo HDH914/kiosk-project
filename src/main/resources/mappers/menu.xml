@@ -77,49 +77,48 @@
     </update>
 
 <!--    전체 메뉴 리스트-->
-<!--    <select id="loadMenuList"-->
-<!--            parameterType="hashmap"-->
-<!--            resultMap="menuList"-->
-<!--            resultType="com.HDH.kiosk.domain.MenuList">-->
-<!--        SELECT-->
-<!--            mm.id,-->
-<!--            mm.category_id,-->
-<!--            cd.category_name,-->
-<!--            mm.menu_name,-->
-<!--            mm.price,-->
-<!--            mm.memo,-->
-<!--            mim.temp_name-->
-<!--            mc.menu_total_count-->
-<!--        from-->
-<!--            menu_mst mm-->
-<!--            LEFT OUTER JOIN category_dtl cd ON(cd.id = mm.category_id)-->
-<!--            LEFT OUTER JOIN menu_img_mst mim ON(mim.menu_id = mm.id)-->
-<!--&lt;!&ndash;            LEFT OUTER JOIN (select count(*) as menu_total_count form menu_mst) mc on (1=1)&ndash;&gt;-->
-<!--&lt;!&ndash;        limit&ndash;&gt;-->
-<!--&lt;!&ndash;            #{pagination.limitStart}, #{recordSize}&ndash;&gt;-->
-<!--    </select>-->
     <select id="loadMenuList"
             parameterType="hashmap"
             resultMap="menuList"
             resultType="com.HDH.kiosk.domain.MenuList">
         SELECT
-        mm.id,
-        mm.category_id,
-        cd.category_name,
-        mm.menu_name,
-        mm.price,
-        mm.memo,
-        mim.temp_name,
-        mc.menu_total_count
+            mm.id,
+            mm.category_id,
+            cd.category_name,
+            mm.menu_name,
+            mm.price,
+            mm.memo,
+            mim.temp_name,
+            mc.menu_total_count
         from
             (select
                 *
             from
-            menu_mst
-        limit #{index}, 10) mm
-        LEFT OUTER JOIN category_dtl cd ON(cd.id = mm.category_id)
-        LEFT OUTER JOIN menu_img_mst mim ON(mim.menu_id = mm.id)
-        LEFT OUTER JOIN (select count(*) as menu_total_count from menu_mst) mc on (1=1)
+                menu_mst
+            where
+                1 = 1
+            <if test='category != "6"'>
+                AND category_id = #{category}
+            </if>
+            <if test='searchValue != null || searchValue != ""'>
+                AND menu_name like CONCAT('%', #{searchValue}, '%')
+            </if>
+            limit #{index}, 10) mm
+            LEFT OUTER JOIN category_dtl cd ON(cd.id = mm.category_id)
+            LEFT OUTER JOIN menu_img_mst mim ON(mim.menu_id = mm.id)
+            LEFT OUTER JOIN (select
+                                count(*) as menu_total_count
+                            from
+                                menu_mst
+                            where
+                                1 = 1
+                                <if test='category != "6"'>
+                                    AND category_id = #{category}
+                                </if>
+                                <if test='searchValue != null || searchValue != ""'>
+                                    AND menu_name like CONCAT('%', #{searchValue}, '%')
+                                </if>
+                            ) mc on (1=1)
 
     </select>
 
