@@ -2,10 +2,13 @@ const menuList = document.querySelector(".menu-list");
 const searchInput = document.querySelector(".search-input");
 const searchButton = document.querySelector(".search-button");
 const logout = document.querySelector(".logout-icon");
-let searchValue = "";
+const categorySelectInput = document.querySelector(".search-category .category-input");
 let page = 1;
+let category = "6";
+let searchValue = "";
 
-loadMenuListRequest(searchValue, page);
+
+loadMenuListRequest(searchValue);
 
 searchInput.onkeyup = () => {
     if (window.event.keyCode === 13) {
@@ -18,7 +21,7 @@ searchButton.onclick = () => {
     loadMenuListRequest(searchValue);
 }
 
-function loadMenuListRequest(searchValue, page) {
+function loadMenuListRequest(searchValue) {
     let responseData = null;
 
     $.ajax({
@@ -26,14 +29,24 @@ function loadMenuListRequest(searchValue, page) {
         type: "get",
         url: "/api/menu/menulist",
         data: {
-            "searchValue": searchValue,
-            "page": page
+            "page": page,
+            "category": category,
+            "searchValue": searchValue
+
         },
         dataType: "json",
         success: (response) => {
             responseData = response.data;
-            loadMenuList(responseData);
-            loadPageNumberButtons(responseData[0].menuTotalCount);
+
+            if (responseData.length != 0) {
+                loadMenuList(responseData);
+                loadPageNumberButtons(responseData[0].menuTotalCount);
+            }
+            // else {
+            //     console.log(responseData)
+            //     alert("해당 카테고리의 상품이 없습니다.");
+            //     // location.reload();
+            // }
         },
         error: (error) => {
             console.log(error);
@@ -66,7 +79,15 @@ function loadMenuList(responseData) {
     });
 }
 
-///////////////////////////////////////////////////////////////////////////////////////////////////
+// 카테고리
+categorySelectInput.onchange = () => {
+    page = 1;
+    category = categorySelectInput.value;
+    console.log(category);
+    loadMenuListRequest();
+}
+
+// 페이징 처리
 function loadPageNumberButtons(menuTotalCount) {
     const pageButtons = document.querySelector(".page-buttons");
     let maxPage = (menuTotalCount % 10 == 0) ? menuTotalCount / 10 : Math.floor(menuTotalCount / 10) + 1;
@@ -116,8 +137,10 @@ function loadPageNumberButtons(menuTotalCount) {
     }
 
     let pageButton = pageButtons.querySelectorAll("li");  // NodeList
-    pageButton.forEach(pageNum => {
-        pageNum.onclick = () => {
+
+    for (let i = 0; i < pageButton.length; i++) {
+        pageButton[i].onclick = () => {
+            let pageNum = pageButton[i].textContent;
             if (pageNum == "<") {
                 --page;
             } else if (pageNum == ">") {
@@ -125,10 +148,24 @@ function loadPageNumberButtons(menuTotalCount) {
             } else {
                 page = pageNum;
             }
-            console.log("페이지 버튼 클릭");
-            loadMenuListRequest(page);
+            console.log(page);
+            loadMenuListRequest();
         }
-    })
+    }
+
+    // pageButton.forEach(pageNum => {
+    //     pageNum.onclick = () => {
+    //         // let pageNum = pageButton.textContent;
+    //         if (pageNum == "<") {
+    //             --page;
+    //         } else if (pageNum == ">") {
+    //             ++page;
+    //         } else {
+    //             page = pageNum;
+    //         }
+    //         // loadMenuListRequest();
+    //     }
+    // })
 
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////
