@@ -5,7 +5,7 @@ const logout = document.querySelector(".logout-icon");
 let searchValue = "";
 let page = 1;
 
-loadMenuListRequest(searchValue);
+loadMenuListRequest(searchValue, page);
 
 searchInput.onkeyup = () => {
     if (window.event.keyCode === 13) {
@@ -18,7 +18,7 @@ searchButton.onclick = () => {
     loadMenuListRequest(searchValue);
 }
 
-function loadMenuListRequest(searchValue) {
+function loadMenuListRequest(searchValue, page) {
     let responseData = null;
 
     $.ajax({
@@ -33,9 +33,7 @@ function loadMenuListRequest(searchValue) {
         success: (response) => {
             responseData = response.data;
             loadMenuList(responseData);
-            console.log(responseData);
-            console.log(response.data[0].menuTotalCount)
-            loadPageNumberButtons(response.data[0].menuTotalCount);
+            loadPageNumberButtons(responseData[0].menuTotalCount);
         },
         error: (error) => {
             console.log(error);
@@ -46,7 +44,6 @@ function loadMenuListRequest(searchValue) {
 
 function loadMenuList(responseData) {
     const menuList = document.querySelector(".menu");
-    console.log(responseData)
     menuList.innerHTML = "";
 
     responseData.forEach((data) => {
@@ -68,16 +65,16 @@ function loadMenuList(responseData) {
             `;
     });
 }
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 function loadPageNumberButtons(menuTotalCount) {
-    const pageButtons = document.querySelector(".page-buttons")
-
-    pageButtons.innerHTML = "";
-
+    const pageButtons = document.querySelector(".page-buttons");
     let maxPage = (menuTotalCount % 10 == 0) ? menuTotalCount / 10 : Math.floor(menuTotalCount / 10) + 1;
     let minPage = 1;
     let startIndex = page % 5 == 0 ? page - 4 : page - (page % 5) + 1;
     let endIndex = startIndex + 4 <= maxPage ? startIndex + 4 : maxPage;
+
+    pageButtons.innerHTML = "";
 
     console.log(`
     page = ${page}
@@ -106,28 +103,21 @@ function loadPageNumberButtons(menuTotalCount) {
            <a href="javascript:void(0)"><li class="page-button">${i}</li></a>
         `;
         }
-
-        console.log(i);
     }
 
     if (page != maxPage) {
         pageButtons.innerHTML += `
             <a href="javascript:void(0)">
                 <li>
-                &#62;
+                    &#62;
                 </li>
             </a>
         `;
     }
 
-    // innerHtml 확인용
-    // const pageButton = document.querySelectorAll(".page-button");
-    const pageButton = pageButtons.querySelectorAll("li");
-    console.log(pageButton);
-
-    for (let i = 0; i < pageButton.length; i++) {
-        pageButton[i].onclcik = () => {
-            let pageNum = pageButton[i].textContent;
+    let pageButton = pageButtons.querySelectorAll("li");  // NodeList
+    pageButton.forEach(pageNum => {
+        pageNum.onclick = () => {
             if (pageNum == "<") {
                 --page;
             } else if (pageNum == ">") {
@@ -135,14 +125,12 @@ function loadPageNumberButtons(menuTotalCount) {
             } else {
                 page = pageNum;
             }
-            console.log(page)
-            loadMenuListRequest();
+            console.log("페이지 버튼 클릭");
+            loadMenuListRequest(page);
         }
-    }
+    })
 
 }
-
-
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 logout.onclick = () => {
     let msg = null;
