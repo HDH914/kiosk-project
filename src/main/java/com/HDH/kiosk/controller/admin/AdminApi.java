@@ -36,6 +36,8 @@ public class AdminApi {
     public ResponseEntity<?> login(LoginReqDto loginReqDto){
         return ResponseEntity.ok().body(new CMRespDto<>(1, "로그인 완료", true));
     }
+
+
     }
 
 
