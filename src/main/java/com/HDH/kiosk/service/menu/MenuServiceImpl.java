@@ -45,6 +45,34 @@ public class MenuServiceImpl implements MenuService {
         return true;
     }
 
+    // 메인페이지 메뉴 리스트
+    @Override
+    public List<MenuListRespDto> loadMainMenuList() throws Exception {
+        List<MenuListRespDto> list = new ArrayList<MenuListRespDto>();
+        menuRepository.loadMainMenuList().forEach(MenuList -> {
+            list.add(MenuList.toLoadMenu());
+        });
+        log.info("메뉴 리스트: " + list);
+        return list;
+    }
+
+    // 메뉴 리스트 불러오기
+    @Override
+    public List<MenuListRespDto> loadMenuList(int page, String category, String searchValue) throws Exception {
+        Map<String, Object> paramsMap = new HashMap<String, Object>();
+        paramsMap.put("index", (page - 1) * 10);
+        paramsMap.put("category", category);
+        paramsMap.put("searchValue", searchValue);
+
+        log.info("카테고리: " + category);
+        List<MenuListRespDto> list = new ArrayList<MenuListRespDto>();
+        menuRepository.loadMenuList(paramsMap).forEach(MenuList -> {
+            list.add(MenuList.toLoadMenu());
+        });
+        log.info("메뉴 리스트: " + list);
+        return list;
+    }
+
     private MenuImage getMenuImg(MultipartFile file, int menuId) throws Exception {
 
         String originName = file.getOriginalFilename();
@@ -70,33 +98,7 @@ public class MenuServiceImpl implements MenuService {
         return menuImage;
     }
 
-    // 메뉴 리스트 불러오기
-//    @Override
-//    public List<MenuListRespDto> loadMenuList(String searchValue) throws Exception {
-//        List<MenuListRespDto> list = new ArrayList<MenuListRespDto>();
-//        menuRepository.loadMenuList(searchValue).forEach(MenuList -> {
-//            list.add(MenuList.toLoadMenu());
-//        });
-//        log.info("메뉴 리스트: " + list);
-//        return list;
-//    }
 
-
-    @Override
-    public List<MenuListRespDto> loadMenuList(int page, String category, String searchValue) throws Exception {
-        Map<String, Object> paramsMap = new HashMap<String, Object>();
-        paramsMap.put("index", (page - 1) * 10);
-        paramsMap.put("category", category);
-        paramsMap.put("searchValue", searchValue);
-
-        log.info("카테고리: " + category);
-        List<MenuListRespDto> list = new ArrayList<MenuListRespDto>();
-        menuRepository.loadMenuList(paramsMap).forEach(MenuList -> {
-            list.add(MenuList.toLoadMenu());
-        });
-        log.info("메뉴 리스트: " + list);
-        return list;
-    }
 
     // 수정 페이지 메뉴 정보 불러오기
     @Override
