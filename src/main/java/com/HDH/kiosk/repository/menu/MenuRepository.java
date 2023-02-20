@@ -13,7 +13,7 @@ public interface MenuRepository {
     public int addMenu(Menu menu);
     public int addMenuImg(MenuImage menuImage) throws Exception;
 
-//    public List<MenuList> loadMenuList(String searchValue) throws Exception;
+    public List<MenuList> loadMainMenuList() throws Exception;
     public List<MenuList> loadMenuList(Map<String, Object> map) throws Exception;
 
     public MenuList loadMenuInfo (int id) throws Exception;
@@ -21,4 +21,5 @@ public interface MenuRepository {
     public int updateMenu(Menu menu) throws Exception;
 
 
+    Map<Object, Object> loadMenuList(int offset, int limit, String category, String searchValue);
 }
