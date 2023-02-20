@@ -75,8 +75,26 @@
         WHERE
             id = #{id}
     </update>
+<!--    메인 페이지 메뉴리스트-->
+    <select id="loadMainMenuList"
+            parameterType="hashmap"
+            resultMap="menuList"
+            resultType="com.HDH.kiosk.domain.MenuList">
+        SELECT
+            mm.id,
+            mm.category_id,
+            cd.category_name,
+            mm.menu_name,
+            mm.price,
+            mm.memo,
+            mim.temp_name
+        from
+            menu_mst mm
+            LEFT OUTER JOIN category_dtl cd ON(cd.id = mm.category_id)
+            LEFT OUTER JOIN menu_img_mst mim ON(mim.menu_id = mm.id)
+    </select>
 
-<!--    전체 메뉴 리스트-->
+<!-- 어드민 페이지 메뉴리스트-->
     <select id="loadMenuList"
             parameterType="hashmap"
             resultMap="menuList"
