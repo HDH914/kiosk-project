@@ -6,11 +6,14 @@ const beverage = document.querySelector(".beverage");
 const tea = document.querySelector(".tea");
 const desert = document.querySelector(".desert");
 const menus = document.querySelector(".menus");
-const deleteButton = document.querySelector(".delete-icon");
+const menuListArea = document.querySelector(".menu-list");
+const totalPriceAmount = document.querySelector(".total-price-amount");
+const deleteButton = document.querySelector(".delete-button");
+
 
 
 loadMenuList();
-// cl();
+menuClick();
 
 function loadMenuList() {
     let responseData = null;
@@ -18,7 +21,7 @@ function loadMenuList() {
         async: false,
         type: "get",
         url: "/api/menu/menulist",
-        // dataType: "jspn",
+        // dataType: "json",
         success: (response) => {
             responseData = response.data;
             console.log(responseData);
@@ -133,7 +136,7 @@ function clickDesert(responseData) {
                         <img src="/image/menu/${data.menuImg.temp_name}" alt="">
                     </div>
                     <div class="menu-name">${data.menuName}</div>
-                    <div class="menu-price">${data.price}<span>원</span></div>
+                    <div class="menu-name">${data.price}<span>원</span></div>
                 </li>
                 `
             }
@@ -141,33 +144,57 @@ function clickDesert(responseData) {
     }
 }
 
-function cl() {
-    let menu = document.querySelectorAll(".menu");
-    let menuList = new Array();
+function menuClick() {
+    const deleteIcon = document.querySelectorAll(".delete-icon")
+    let menu = menus.querySelectorAll(".menu");
+    let menuList = {};
 
-    console.log("메뉴")
+    menuListArea.innerHTML = "";
+    console.log("menu: ")
     console.log(menu)
 
-    menu.forEach((menu) => {
-        menuList.push(menu);
+    menu.forEach((selectedMenu) => {
+        selectedMenu.onclick = () => {
+            let name = selectedMenu.querySelector(".menu-name").innerText;
+            let price = selectedMenu.querySelector(".menu-price").innerText;
+
+            if (menuList.hasOwnProperty(name)) {
+                menuList[name].count++;
+            } else {
+                menuList[name] = {
+                    count: 1,
+                    price: parseInt(price),
+                };
+            }
+
+            menuListArea.innerHTML += `
+                <div class="menu-info">
+                <div class="selected-menu-name">
+                    <span>${name}</span>
+                </div>
+                <div class="menu-count">
+                    <span>${menuList[name].count}개</span>
+                </div>
+                <div class="price">
+                    <span>${menuList[name].price * menuList[name].count}원</span>
+                </div>
+                <div class="delete-menu">
+                    <i class="far fa-trash-alt delete-icon"></i>
+                </div>
+                </div>
+            `;
+
+            let totalPrice = Object.values(menuList).reduce(
+                (acc, item) => acc + item.count * item.price,
+                0
+            );
+            totalPriceAmount.innerHTML = `${totalPrice}<span>원</span>`;
+
+            deleteIcon.onclick = () => {
+                menuListArea.innerHTML = "";
+            };
+        }
     })
-    console.log("메뉴 리스트")
-    console.log(menuList)
-
-    menu.onclick = () => {
-        console.log("cl-2")
-        alert("메뉴 선택됨.")
-        // menuList.push(menu.values);
-        // console.log(menuList);
-
-        // 클릭을 하면 클릭한 메뉴를 리스트에 담고 그 리스트 정보들을
-        // 뿌린다.
-        // const menuList = document.querySelector(".menu-list");
-
-        // menuList.innerHTML = `
-
-        // `
-    }
 }
 
 
@@ -177,10 +204,13 @@ home.onclick = () => {
     location.href = "/";
 }
 
+// 전체 메뉴 삭제
 deleteButton.onclick = () => {
     let msg = null;
     msg = confirm("메뉴를 취소하시겠습니까?");
     if (msg) {
-        // 메뉴 삭제
+        menuListArea.innerHTML = "";
+        menuList = {};
+        totalPriceAmount.innerText = "0원";
     }
 }
