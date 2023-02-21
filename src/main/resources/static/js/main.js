@@ -136,7 +136,7 @@ function clickDesert(responseData) {
                         <img src="/image/menu/${data.menuImg.temp_name}" alt="">
                     </div>
                     <div class="menu-name">${data.menuName}</div>
-                    <div class="menu-name">${data.price}<span>원</span></div>
+                    <div class="menu-price">${data.price}<span>원</span></div>
                 </li>
                 `
             }
@@ -145,28 +145,40 @@ function clickDesert(responseData) {
 }
 
 function menuClick() {
-    const deleteIcon = document.querySelectorAll(".delete-icon")
     let menu = menus.querySelectorAll(".menu");
     let menuList = {};
 
     menuListArea.innerHTML = "";
-    console.log("menu: ")
-    console.log(menu)
 
     menu.forEach((selectedMenu) => {
         selectedMenu.onclick = () => {
             let name = selectedMenu.querySelector(".menu-name").innerText;
             let price = selectedMenu.querySelector(".menu-price").innerText;
+            let menuId = selectedMenu.querySelector(".menu-id").value;
 
             if (menuList.hasOwnProperty(name)) {
+                // if (menuList[name].id == menuId) {
+                // menuListArea.removeChild(menuList[name].menu);
                 menuList[name].count++;
-            } else {
+                menuList[name].menu = selectedMenu;
+
+            }
+            else {
                 menuList[name] = {
+                    id: menuId,
                     count: 1,
                     price: parseInt(price),
+                    menu: selectedMenu,
                 };
             }
 
+            console.log(menuList[name])  // undefined
+            console.log(menuList[name].menu)  // undefined
+            console.log(menuList)
+
+            // if (menuList[name].id == menuId) {
+            //     menuList[name].count++;
+            // }
             menuListArea.innerHTML += `
                 <div class="menu-info">
                 <div class="selected-menu-name">
@@ -176,7 +188,7 @@ function menuClick() {
                     <span>${menuList[name].count}개</span>
                 </div>
                 <div class="price">
-                    <span>${menuList[name].price * menuList[name].count}원</span>
+                 <span>${menuList[name].price * menuList[name].count}원</span>
                 </div>
                 <div class="delete-menu">
                     <i class="far fa-trash-alt delete-icon"></i>
@@ -184,33 +196,52 @@ function menuClick() {
                 </div>
             `;
 
+
             let totalPrice = Object.values(menuList).reduce(
                 (acc, item) => acc + item.count * item.price,
                 0
             );
             totalPriceAmount.innerHTML = `${totalPrice}<span>원</span>`;
 
-            deleteIcon.onclick = () => {
-                menuListArea.innerHTML = "";
-            };
+            // 해당 메뉴 삭제
+            const deleteIcon = menuListArea.querySelectorAll(".delete-menu");
+
+            deleteIcon.forEach((icon) => {
+                icon.onclick = () => {
+                    console.log("삭제 아이콘 클릭")
+                    let menuName = icon.previousElementSibling.innerText;
+                    let menuCount = icon.previousElementSibling.previousElementSibling.innerText;
+                    let menuPrice = icon.previousElementSibling.previousElementSibling.previousElementSibling.innerText;
+
+                    if (menuList.hasOwnProperty(menuName)) {
+                        let count = menuList[menuName].count;
+                        let price = menuList[menuName].price;
+                        let total = count * price;
+
+                        delete menuList[menuName];
+                        menuListArea.removeChild(menuList[menuName].menu);
+                        totalPriceAmount.innerText = parseInt(totalPriceAmount.innerText) - total;
+
+                    }
+                }
+            });
+
+            // 전체 메뉴 삭제
+            deleteButton.onclick = () => {
+                let msg = null;
+                msg = confirm("메뉴를 취소하시겠습니까?");
+                if (msg) {
+                    menuListArea.innerHTML = "";
+                    menuList = {};
+                    totalPriceAmount.innerText = "0원";
+                }
+            }
         }
     })
 }
-
-
 
 // 홈버튼
 home.onclick = () => {
     location.href = "/";
 }
 
-// 전체 메뉴 삭제
-deleteButton.onclick = () => {
-    let msg = null;
-    msg = confirm("메뉴를 취소하시겠습니까?");
-    if (msg) {
-        menuListArea.innerHTML = "";
-        menuList = {};
-        totalPriceAmount.innerText = "0원";
-    }
-}
