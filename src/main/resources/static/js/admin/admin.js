@@ -27,7 +27,7 @@ function loadMenuListRequest(searchValue) {
     $.ajax({
         async: false,
         type: "get",
-        url: "/api/menu/menulist",
+        url: "/api/menu/admin/menulist",
         data: {
             "page": page,
             "category": category,
@@ -42,11 +42,11 @@ function loadMenuListRequest(searchValue) {
                 loadMenuList(responseData);
                 loadPageNumberButtons(responseData[0].menuTotalCount);
             }
-            // else {
-            //     console.log(responseData)
-            //     alert("해당 카테고리의 상품이 없습니다.");
-            //     // location.reload();
-            // }
+            else {
+                console.log(responseData)
+                alert("해당 카테고리의 상품이 없습니다.");
+                // location.reload();
+            }
         },
         error: (error) => {
             console.log(error);
