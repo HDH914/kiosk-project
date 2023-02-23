@@ -66,4 +66,10 @@ public class PageController {
     }
 
 
+    ///////////////////////////////////////////////////////////////////////////
+    @GetMapping("/payment/option")
+    public String payment(){
+        return  "payment/paymentOption";
+    }
+
 }
