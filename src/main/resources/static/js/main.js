@@ -8,6 +8,7 @@ const desert = document.querySelector(".desert");
 const menus = document.querySelector(".menus");
 const menuListArea = document.querySelector(".menu-list");
 const totalPriceAmount = document.querySelector(".total-price-amount");
+const paymentButton = document.querySelector(".payment-button");
 const deleteButton = document.querySelector(".delete-button");
 
 
@@ -154,7 +155,7 @@ function menuClick() {
         selectedMenu.onclick = () => {
             let name = selectedMenu.querySelector(".menu-name").innerText;
             let price = selectedMenu.querySelector(".menu-price").innerText;
-            let menuId = selectedMenu.querySelector(".menu-id").value;
+            let id = selectedMenu.querySelector(".menu-id").value;
 
             if (menuList.hasOwnProperty(name)) {
                 // if (menuList[name].id == menuId) {
@@ -165,7 +166,7 @@ function menuClick() {
             }
             else {
                 menuList[name] = {
-                    id: menuId,
+                    id: id,
                     count: 1,
                     price: parseInt(price),
                     menu: selectedMenu,
@@ -245,3 +246,8 @@ home.onclick = () => {
     location.href = "/";
 }
 
+paymentButton.onclick = () => {
+    // 토탈 금액도 같이 보냄
+    // 주문 내역 DB도 필요한가?
+    location.href = "/payment/option";
+}
