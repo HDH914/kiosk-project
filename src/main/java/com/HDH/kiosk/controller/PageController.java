@@ -67,9 +67,10 @@ public class PageController {
 
 
     ///////////////////////////////////////////////////////////////////////////
+    // 결제 페이지
     @GetMapping("/payment/option")
     public String payment(){
-        return  "payment/paymentOption";
+        return "payment/paymentOption";
     }
 
 }
