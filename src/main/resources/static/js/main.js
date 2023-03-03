@@ -176,6 +176,8 @@ function menuClick() {
             console.log(menuList[name])  // undefined
             console.log(menuList[name].menu)  // undefined
             console.log(menuList)
+            console.log(menuList)
+            console.log(menuList.count)
 
             // if (menuList[name].id == menuId) {
             //     menuList[name].count++;
