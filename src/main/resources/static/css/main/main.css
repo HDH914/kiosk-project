@@ -1,0 +1,351 @@
+.wrap {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    height: 1920px;
+
+    background-color: black;
+}
+
+.container {
+    width: 1080px;
+    height: auto;
+    background-color: #fefefe;
+}
+
+/* 헤더 영역 */
+.header {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    height: 5%;
+
+}
+
+/* 로고, 처음으로 영역 */
+.header-left {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 33%;
+}
+
+.logo,
+.home {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+}
+
+.icon {
+    font-size: 34px;
+    cursor: pointer;
+    color: black;
+}
+
+.home a {
+    padding-left: 10px;
+    font-size: 28px;
+    text-decoration: none;
+    color: black;
+}
+
+/* .home {
+    width: 100%;
+    height: 100%;
+} */
+
+
+.logo-image {
+    width: 90%;
+    height: 90%;
+}
+
+/* 관리자 로그인 영역 */
+.header-right {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    width: 20%;
+
+
+}
+
+.login {
+    padding-left: 60px;
+}
+
+.login-icon {
+    font-size: 32px;
+    color: rgb(70, 69, 69);
+}
+
+/* 메인 영역 */
+.main {
+    display: flex;
+    flex-direction: column;
+
+    width: 100%;
+    height: 70%;
+
+    /* background-color: darkturquoise; */
+
+}
+
+/* 카테고리 선택 영역 */
+.category-area {
+    border-top: 2px solid black;
+    border-bottom: 1px solid black;
+    width: 100%;
+    height: 10%;
+
+    /* background-color: khaki; */
+}
+
+.category {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    height: 100%;
+}
+
+.category li {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 18%;
+    height: 80%;
+    border: 2px solid gray;
+    border-radius: 5px;
+
+    /* font-family: 'Jua', sans-serif; */
+    /* font-family: 'Do Hyeon', sans-serif; */
+    /* font-family: 'Sunflower', sans-serif; */
+    /* font-family: 'Gothic A1', sans-serif; */
+    /* font-family: 'Nanum Gothic Coding', monospace; */
+    font-family: 'IBM Plex Sans KR', sans-serif;
+    font-size: 30px;
+    font-weight: 600;
+}
+
+.category-input {
+    display: none;
+}
+
+.category li:focus {
+    border: 2px solid black;
+    border-radius: 5px;
+}
+
+.category li:hover,
+.category-input:checked {
+    border: 2px solid black;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/* 메뉴 선택 영역 */
+.select-area {
+    width: 100%;
+    height: 90%;
+    /* background-color: cornflowerblue; */
+}
+
+.menus {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    width: 100%;
+    max-height: 100%;
+    /* background-color: aqua; */
+}
+
+.menu {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 25px 15px 0 25px;
+    border: 2px solid black;
+    width: 20%;
+    padding: 0px 5px;
+    cursor: pointer;
+}
+
+
+.menu-price {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 90%;
+    font-weight: 600;
+}
+
+.menu-name {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    font-weight: 600;
+}
+
+.menu-id,
+.menu-category {
+    display: none;
+}
+
+.menu div {
+    padding-bottom: 5px;
+}
+
+.menu img {
+    padding-top: 5px;
+    width: 100%;
+
+    overflow: hidden;
+}
+
+/* 장바구니 화면 */
+
+.product {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+    height: 25%;
+
+    /* background-color: cadetblue; */
+}
+
+
+/* 선택한 메뉴 리스트 */
+.menu-list {
+    display: flex;
+    flex-direction: column;
+    border: 2px solid black;
+    border-radius: 5px;
+    width: 60%;
+    height: 80%;
+}
+
+.menu-info {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    border-bottom: 1px solid gray;
+    width: 100%;
+    height: 13%;
+    padding: 5px 0;
+    font-size: 20px;
+}
+
+.selected-menu-name {
+    display: flex;
+    align-items: center;
+    width: 65%;
+    height: 100%;
+    padding-left: 3%;
+    font-weight: 600;
+}
+
+.menu-count {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 10%;
+    height: 100%;
+    font-weight: 600;
+}
+
+.price {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 15%;
+    height: 100%;
+    font-weight: 600;
+}
+
+.delete-menu {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 10%;
+    height: 100%;
+}
+
+.delete-icon {
+    cursor: pointer;
+    color: red;
+}
+
+/* 총 결제 금액 */
+.total-price {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border: 2px solid black;
+    border-radius: 5px;
+    width: 30%;
+    height: 80%;
+}
+
+.total-price-title {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 20%;
+    padding-left: 10px;
+    font-size: 24px;
+    font-weight: 600;
+}
+
+.total-price-amount {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    border-top: 2px solid black;
+    border-bottom: 2px solid black;
+    width: 100%;
+    height: 45%;
+
+    font-size: 40px;
+    font-weight: 600;
+}
+
+.total-price-amount span {
+    padding-left: 2%;
+    padding-right: 10%;
+}
+
+.button-area {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+    height: 35%;
+}
+
+.delete-button {
+    border: 1px solid black;
+    border-radius: 5px;
+    width: 40%;
+    height: 70%;
+    font-size: 24px;
+    font-weight: 600;
+    background-color: red;
+    color: white;
+}
+
+.payment-button {
+    border: 1px solid black;
+    border-radius: 5px;
+    width: 40%;
+    height: 70%;
+    font-size: 24px;
+    font-weight: 600;
+    background-color: gray;
+}
