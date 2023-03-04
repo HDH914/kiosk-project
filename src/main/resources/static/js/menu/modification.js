@@ -27,6 +27,17 @@ function loadMenuInfo(id) {
 }
 // 불러온 메뉴정보 띄우기
 function menuInfo(responseData) {
+    //////////////////////////////
+
+    // let categoryId = document.querySelectorAll(".category-value");
+    // categoryId.forEach((value) => {
+    //     if(categoryId.value == responseData.categoryId){
+    //         categoryId
+    // (selected == true)
+    //     }
+    // })
+
+    /////////////////////////////////
     menuInfoArea.innerHTML = `
     <!-- 메뉴 이미지 -->
                 <div class="image-area">
@@ -49,12 +60,12 @@ function menuInfo(responseData) {
                     <div class="menu-category menu-info">
                         <span>카테고리</span>
                         <select name="category" class="menu-input" >
-                            <option value="">카테고리를 선택해주세요.</option>
-                            <option value="2">시즌</option>
-                            <option value="3">커피</option>
-                            <option value="4">음료</option>
-                            <option value="5">티</option>
-                            <option value="6">디저트</option>
+                            <option class="category-value" value="">카테고리를 선택해주세요.</option>
+                            <option class="category-value" value="2">시즌</option>
+                            <option class="category-value" value="3">커피</option>
+                            <option class="category-value" value="4">음료</option>
+                            <option class="category-value" value="5">티</option>
+                            <option class="category-value" value="6">디저트</option>
                         </select>
                         <!-- <input class="menu-input" type="text"> -->
                     </div>
