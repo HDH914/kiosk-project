@@ -14,13 +14,13 @@ public class PageController {
     // 대기 화면
     @GetMapping({"/", "/index"})
     public String idleScreen(){
-        return "idleScreen";
+        return "main/idleScreen";
     }
 
     // 메인 화면
     @GetMapping("/main")
     public String main(){
-        return "main";
+        return "main/main";
         }
 
     /////////////////////////////////////  계정  //////////////////////////////////////////////
