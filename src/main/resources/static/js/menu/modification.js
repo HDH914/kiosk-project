@@ -27,17 +27,24 @@ function loadMenuInfo(id) {
 }
 // 불러온 메뉴정보 띄우기
 function menuInfo(responseData) {
-    //////////////////////////////
+    console.log("menuInfo 실행")
+    const codeList = [
+        { code: '1', categoryName: '시즌' },
+        { code: '2', categoryName: '커피' },
+        { code: '3', categoryName: '음료' },
+        { code: '4', categoryName: '티' },
+        { code: '5', categoryName: '디저트' }
+    ];
 
-    // let categoryId = document.querySelectorAll(".category-value");
-    // categoryId.forEach((value) => {
-    //     if(categoryId.value == responseData.categoryId){
-    //         categoryId
-    // (selected == true)
-    //     }
-    // })
+    let categoryHtml = '<option value="">카테고리를 선택해주세요.</option>'
+    for (let i = 0; i < codeList.length; i++) {
+        const selected = responseData.categoryId == codeList[i].code ? "selected" : "";
+        categoryHtml += `<option value="${codeList[i].code}" ${selected}>${codeList[i].categoryName}</option>`
+        console.log(responseData.categoryId)
+        console.log(codeList[i].code)
 
-    /////////////////////////////////
+    }
+    console.log(categoryHtml)
     menuInfoArea.innerHTML = `
     <!-- 메뉴 이미지 -->
                 <div class="image-area">
@@ -60,12 +67,7 @@ function menuInfo(responseData) {
                     <div class="menu-category menu-info">
                         <span>카테고리</span>
                         <select name="category" class="menu-input" >
-                            <option class="category-value" value="">카테고리를 선택해주세요.</option>
-                            <option class="category-value" value="2">시즌</option>
-                            <option class="category-value" value="3">커피</option>
-                            <option class="category-value" value="4">음료</option>
-                            <option class="category-value" value="5">티</option>
-                            <option class="category-value" value="6">디저트</option>
+                              ${categoryHtml}
                         </select>
                         <!-- <input class="menu-input" type="text"> -->
                     </div>
@@ -75,6 +77,12 @@ function menuInfo(responseData) {
                     </div>
                 </div>
     `
+    // <option class="category-value" value="">카테고리를 선택해주세요.</option>
+    // <option class="category-value" value="2">시즌</option>
+    // <option class="category-value" value="3">커피</option>
+    // <option class="category-value" value="4">음료</option>
+    // <option class="category-value" value="5">티</option>
+    // <option class="category-value" value="6">디저트</option>
     memoInfoArea.innerHTML = `
      <div class="memo-title">
         <span>비고 사항</span>
