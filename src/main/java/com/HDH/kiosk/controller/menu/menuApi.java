@@ -38,9 +38,20 @@ public class menuApi {
     }
 
     // 어드민페이지 메뉴 리스트 불러오기
+
+    // 기존
+//    @GetMapping("/admin/menulist")
+//    public ResponseEntity<?> getMenulist(@RequestParam @Nullable int page, @RequestParam @Nullable String category, @RequestParam @Nullable String searchValue) throws Exception {
+//        return ResponseEntity.ok().body(new CMRespDto<>(1,"메뉴 불러오기", menuService.loadMenuList(page, category, searchValue)));
+//    }
+
+    // 두번째
     @GetMapping("/admin/menulist")
-    public ResponseEntity<?> getMenulist(@RequestParam @Nullable int page, @RequestParam @Nullable String category, @RequestParam @Nullable String searchValue) throws Exception {
-        return ResponseEntity.ok().body(new CMRespDto<>(1,"메뉴 불러오기", menuService.loadMenuList(page, category, searchValue)));
+    public ResponseEntity<?> getMenulist(@RequestParam @Nullable Integer page, @RequestParam @Nullable String category, @RequestParam @Nullable String searchValue) throws Exception {
+        log.info("page: " + page);
+        int startIndex = (page != null && page > 0) ? (page - 1) * 10 : 0;
+        log.info("startIndex: " + startIndex);
+        return ResponseEntity.ok().body(new CMRespDto<>(1,"메뉴 불러오기", menuService.loadMenuList(startIndex, category, searchValue)));
     }
 
     // 메뉴 수정페이지
