@@ -21,5 +21,5 @@ public interface MenuRepository {
     public int updateMenu(Menu menu) throws Exception;
 
 
-    Map<Object, Object> loadMenuList(int offset, int limit, String category, String searchValue);
+//    Map<Object, Object> loadMenuList(int offset, int limit, String category, String searchValue);
 }
