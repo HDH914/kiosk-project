@@ -49,7 +49,7 @@ public class menuApi {
     @GetMapping("/admin/menulist")
     public ResponseEntity<?> getMenulist(@RequestParam @Nullable Integer page, @RequestParam @Nullable String category, @RequestParam @Nullable String searchValue) throws Exception {
         log.info("page: " + page);
-        int startIndex = (page != null && page > 0) ? (page - 1) * 10 : 0;
+        int startIndex = (page != null && page > 0) ? (page - 1) * 15 : 0;
         log.info("startIndex: " + startIndex);
         return ResponseEntity.ok().body(new CMRespDto<>(1,"메뉴 불러오기", menuService.loadMenuList(startIndex, category, searchValue)));
     }

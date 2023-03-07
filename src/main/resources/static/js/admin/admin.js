@@ -3,7 +3,9 @@ const searchInput = document.querySelector(".search-input");
 const searchButton = document.querySelector(".search-button");
 const logout = document.querySelector(".logout-icon");
 const categorySelectInput = document.querySelector(".search-category .category-input");
-let page = 1;
+const nextBtn = document.querySelector(".right-icon");
+const backBtn = document.querySelector(".left-icon");
+let page = 2;
 let category = "6";
 let searchValue = "";
 
@@ -25,7 +27,6 @@ function loadMenuListRequest(searchValue) {
     let responseData = null;
 
     $.ajax({
-        async: false,
         type: "get",
         url: "/api/menu/admin/menulist",
         data: {
@@ -40,10 +41,13 @@ function loadMenuListRequest(searchValue) {
 
             if (responseData.length != 0) {
                 loadMenuList(responseData);
+                console.log(responseData)
+
                 loadPageNumberButtons(responseData[0].menuTotalCount);
             }
             else {
                 console.log(responseData)
+                console.log(error);
                 alert("해당 카테고리의 상품이 없습니다.");
                 // location.reload();
             }
@@ -51,7 +55,6 @@ function loadMenuListRequest(searchValue) {
         error: (error) => {
             console.log(error);
         }
-
     })
 }
 
@@ -90,7 +93,7 @@ categorySelectInput.onchange = () => {
 // 페이징 처리
 function loadPageNumberButtons(menuTotalCount) {
     const pageButtons = document.querySelector(".page-buttons");
-    let maxPage = (menuTotalCount % 10 == 0) ? menuTotalCount / 10 : Math.floor(menuTotalCount / 10) + 1;
+    let maxPage = (menuTotalCount % 15 == 0) ? menuTotalCount / 15 : Math.floor(menuTotalCount / 15) + 1;
     let minPage = 1;
     let startIndex = page % 5 == 0 ? page - 4 : page - (page % 5) + 1;
     let endIndex = startIndex + 4 <= maxPage ? startIndex + 4 : maxPage;
@@ -107,11 +110,7 @@ function loadPageNumberButtons(menuTotalCount) {
 
     if (page != 1) {
         pageButtons.innerHTML = `
-            <a href="javascript:void(0)">
-                <li>
-                    &#60;
-                </li>
-            </a>    
+           <a href="javascript:void(0)"><li><</li></a>
         `;
     }
     for (let i = startIndex; i <= endIndex; i++) {
@@ -128,19 +127,16 @@ function loadPageNumberButtons(menuTotalCount) {
 
     if (page != maxPage) {
         pageButtons.innerHTML += `
-            <a href="javascript:void(0)">
-                <li>
-                    &#62;
-                </li>
-            </a>
+            <a href="javascript:void(0)"><li>></li></a>
         `;
     }
 
-    let pageButton = pageButtons.querySelectorAll("li");  // NodeList
+    const pageButton = pageButtons.querySelectorAll("li");  // NodeList
 
     for (let i = 0; i < pageButton.length; i++) {
         pageButton[i].onclick = () => {
             let pageNum = pageButton[i].textContent;
+
             if (pageNum == "<") {
                 --page;
             } else if (pageNum == ">") {
@@ -148,26 +144,34 @@ function loadPageNumberButtons(menuTotalCount) {
             } else {
                 page = pageNum;
             }
+
+            console.log("page => ");
             console.log(page);
-            loadMenuListRequest();
+            loadMenuListRequest(searchValue);
         }
     }
-
-    // pageButton.forEach(pageNum => {
-    //     pageNum.onclick = () => {
-    //         // let pageNum = pageButton.textContent;
-    //         if (pageNum == "<") {
-    //             --page;
-    //         } else if (pageNum == ">") {
-    //             ++page;
-    //         } else {
-    //             page = pageNum;
-    //         }
-    //         // loadMenuListRequest();
-    //     }
-    // })
-
 }
+// nextBtn.onclick = () => {
+//     ++page;
+//     // loadMenuListRequest(searchValue);
+//     // nextBtn.classList.add('clicked');
+// }
+
+// pageButton.forEach(pageNum => {
+//     pageNum.onclick = () => {
+//         // let pageNum = pageButton.textContent;
+//         if (pageNum == "<") {
+//             --page;
+//         } else if (pageNum == ">") {
+//             ++page;
+//         } else {
+//             page = pageNum;
+//         }
+//         // loadMenuListRequest();
+//     }
+// })
+
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 logout.onclick = () => {
     let msg = null;

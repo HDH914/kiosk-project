@@ -79,11 +79,10 @@ public class MenuServiceImpl implements MenuService {
     public List<MenuListRespDto> loadMenuList(int startIndex, String category, String searchValue) throws Exception {
         Map<String, Object> paramsMap = new HashMap<String, Object>();
         paramsMap.put("startIndex", startIndex);
-        paramsMap.put("pageSize", 10);
+        paramsMap.put("pageSize", 15);
         paramsMap.put("category", category);
         paramsMap.put("searchValue", searchValue);
 
-        log.info("startIndex: " + startIndex);
         log.info("paramsMap: " + paramsMap);
         List<MenuListRespDto> list = new ArrayList<MenuListRespDto>();
         menuRepository.loadMenuList(paramsMap).forEach(MenuList -> {
