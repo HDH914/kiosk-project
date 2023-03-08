@@ -57,24 +57,6 @@ public class MenuServiceImpl implements MenuService {
     }
 
     // 메뉴 리스트 불러오기
-//    @Override
-//    public List<MenuListRespDto> loadMenuList(int page, String category, String searchValue) throws Exception {
-//        Map<String, Object> paramsMap = new HashMap<String, Object>();
-//        paramsMap.put("index", (page - 1) * 10);
-//        paramsMap.put("limit", ((page - 1) * 10) + 10);
-//        paramsMap.put("category", category);
-//        paramsMap.put("searchValue", searchValue);
-//
-//        log.info("index: " + page);
-//        log.info("paramsMap: " + paramsMap);
-//        List<MenuListRespDto> list = new ArrayList<MenuListRespDto>();
-//        menuRepository.loadMenuList(paramsMap).forEach(MenuList -> {
-//            list.add(MenuList.toLoadMenu());
-//        });
-//        log.info("메뉴 리스트: " + list);
-//        return list;
-//    }
-
     @Override
     public List<MenuListRespDto> loadMenuList(int startIndex, String category, String searchValue) throws Exception {
         Map<String, Object> paramsMap = new HashMap<String, Object>();
@@ -84,6 +66,7 @@ public class MenuServiceImpl implements MenuService {
         paramsMap.put("searchValue", searchValue);
 
         log.info("paramsMap: " + paramsMap);
+
         List<MenuListRespDto> list = new ArrayList<MenuListRespDto>();
         menuRepository.loadMenuList(paramsMap).forEach(MenuList -> {
             list.add(MenuList.toLoadMenu());
