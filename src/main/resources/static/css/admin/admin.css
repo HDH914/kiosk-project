@@ -345,5 +345,35 @@ td {
     height: 40%;
     text-decoration: none;
     color: white;
-    background-color: red;
+}
+
+/* 검색 결과 없음 화면 */
+.no-menu {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    height: 90%;
+}
+
+.xmark {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    width: 80%;
+    height: 35%;
+    font-size: 100px;
+    color: #adb5bd;
+}
+
+
+
+.no-menu-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 80%;
+    height: 15%;
+    font-size: 50px;
+    color: #adb5bd;
 }
