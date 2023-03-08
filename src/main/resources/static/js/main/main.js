@@ -186,10 +186,8 @@ function menuClick() {
                 </div>
                 `;
                 totalPrice();
+                deleteMenu();
             }
-
-            console.log("menuList")
-            console.log(menuList)
 
             function addMenu() {
                 menuListArea.innerHTML = "";
@@ -212,9 +210,12 @@ function menuClick() {
                         `;
                 }
                 totalPrice();
+                deleteMenu();
             }
         }
+        // 총합 가격 계산
         function totalPrice() {
+            console.log("totalPrice() 실행")
             let totalPrice = Object.values(menuList).reduce(
                 (acc, item) => acc + item.count * item.price,
                 0
@@ -224,27 +225,30 @@ function menuClick() {
         }
 
         // 해당 메뉴 삭제
-        const deleteIcon = menuListArea.querySelectorAll(".delete-menu");
+        function deleteMenu() {
+            console.log("deleteMenu() 실행")
+            let deleteIcon = document.querySelectorAll(".delete-icon");
 
-        deleteIcon.forEach((icon) => {
-            icon.onclick = () => {
-                console.log("삭제 아이콘 클릭")
-                let menuName = icon.previousElementSibling.innerText;
-                let menuCount = icon.previousElementSibling.previousElementSibling.innerText;
-                let menuPrice = icon.previousElementSibling.previousElementSibling.previousElementSibling.innerText;
+            deleteIcon.forEach((icon) => {
+                icon.addEventListener('click', () => {
+                    alert("삭제 아이콘 클릭");
+                    let menuName = menuListArea.querySelector(".selected-menu-name").innerText;
+                    let menuCount = menuListArea.querySelector(".menu-count").innerText;
+                    let menuPrice = menuListArea.querySelector(".price").innerText;
 
-                if (menuList.hasOwnProperty(menuName)) {
-                    let count = menuList[menuName].count;
-                    let price = menuList[menuName].price;
-                    let total = count * price;
+                    if (menuList.hasOwnProperty(menuName)) {
+                        let count = menuList[menuName].count;
+                        let price = menuList[menuName].price;
+                        let total = count * price;
 
-                    delete menuList[menuName];
-                    menuListArea.removeChild(menuList[menuName].menu);
-                    totalPriceAmount.innerText = parseInt(totalPriceAmount.innerText) - total;
+                        delete menuList[menuName];
+                        menuListArea.removeChild(menuList[menuName].menu);
+                        totalPriceAmount.innerText = parseInt(totalPriceAmount.innerText) - total;
 
-                }
-            }
-        });
+                    }
+                });
+            });
+        }
 
         // 전체 메뉴 삭제
         deleteButton.onclick = () => {
