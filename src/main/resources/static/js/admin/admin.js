@@ -3,9 +3,7 @@ const searchInput = document.querySelector(".search-input");
 const searchButton = document.querySelector(".search-button");
 const logout = document.querySelector(".logout-icon");
 const categorySelectInput = document.querySelector(".search-category .category-input");
-const nextBtn = document.querySelector(".right-icon");
-const backBtn = document.querySelector(".left-icon");
-let page = 2;
+let page = 1;
 let category = "6";
 let searchValue = "";
 
@@ -22,11 +20,18 @@ searchButton.onclick = () => {
     searchValue = searchInput.value;
     loadMenuListRequest(searchValue);
 }
+// 카테고리
+categorySelectInput.onchange = () => {
+    page = 1;
+    category = categorySelectInput.value;
+    loadMenuListRequest(searchValue);
+}
 
 function loadMenuListRequest(searchValue) {
     let responseData = null;
 
     $.ajax({
+        // async: false, 추가
         type: "get",
         url: "/api/menu/admin/menulist",
         data: {
@@ -41,15 +46,10 @@ function loadMenuListRequest(searchValue) {
 
             if (responseData.length != 0) {
                 loadMenuList(responseData);
-                console.log(responseData)
-
                 loadPageNumberButtons(responseData[0].menuTotalCount);
             }
             else {
-                console.log(responseData)
-                console.log(error);
-                alert("해당 카테고리의 상품이 없습니다.");
-                // location.reload();
+                noSearchMenu();
             }
         },
         error: (error) => {
@@ -82,13 +82,24 @@ function loadMenuList(responseData) {
     });
 }
 
-// 카테고리
-categorySelectInput.onchange = () => {
-    page = 1;
-    category = categorySelectInput.value;
-    console.log(category);
-    loadMenuListRequest();
+function noSearchMenu() {
+    const noMenuList = document.querySelector(".menu");
+
+    noMenuList.innerHTML = "";
+
+    noMenuList.innerHTML = `
+        <div class="no-menu">
+            <div class="xmark">
+                <i class="fa-sharp fa-solid fa-circle-xmark"></i>
+            </div>
+            <div class="no-menu-content">
+                <h1>검색에 해당되는 결과가 없습니다.</h1>
+            </div>
+        </div>
+    `
 }
+
+
 
 // 페이징 처리
 function loadPageNumberButtons(menuTotalCount) {
@@ -151,28 +162,7 @@ function loadPageNumberButtons(menuTotalCount) {
         }
     }
 }
-// nextBtn.onclick = () => {
-//     ++page;
-//     // loadMenuListRequest(searchValue);
-//     // nextBtn.classList.add('clicked');
-// }
 
-// pageButton.forEach(pageNum => {
-//     pageNum.onclick = () => {
-//         // let pageNum = pageButton.textContent;
-//         if (pageNum == "<") {
-//             --page;
-//         } else if (pageNum == ">") {
-//             ++page;
-//         } else {
-//             page = pageNum;
-//         }
-//         // loadMenuListRequest();
-//     }
-// })
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 logout.onclick = () => {
     let msg = null;
     msg = confirm("로그아웃 하시겠습니까?");
