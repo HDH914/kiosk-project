@@ -141,9 +141,8 @@
 
 
     </select>
-<!--    LIMIT #{pageSize} OFFSET #{startIndex}-->
+
 <!--    수정 페이지 메뉴 정보-->
-<!--    resultType="com.HDH.kiosk.domain.MenuList"-->
     <select id="loadMenuInfo"  resultMap="menuList">
         SELECT
             mm.id,
@@ -159,6 +158,36 @@
             mm.id = #{id}
     </select>
 
+    <delete id="deleteImgFiles" parameterType="hashmap">
+        delete
+        from
+            menu_img_mst
+        where
+            menu_id = #{menuId}
+        and temp_name in
+        <foreach collection="list" item="temp_name" open="(" separator="," close=")">
+            #{temp_name}
+        </foreach>
+    </delete>
+    
+    <select id="getMenuImgList" parameterType="Integer" resultMap="menu_img">
+        select
+            id,
+            menu_id,
+            origin_name,
+            temp_name
+        from
+            menu_img_mst
+        where
+            menu_id = #{menuId}
+    </select>
 
+    <delete id="deleteMenu" parameterType="Integer">
+        delete
+        from
+            menu_mst
+        where
+            id = #{id}
+    </delete>
 
 </mapper>
