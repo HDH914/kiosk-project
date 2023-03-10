@@ -20,6 +20,7 @@ public interface MenuRepository {
 
     public int updateMenu(Menu menu) throws Exception;
 
+    public List<MenuImage> getMenuImgList(int id) throws Exception;
 
-//    Map<Object, Object> loadMenuList(int offset, int limit, String category, String searchValue);
+    public int deleteMenu (int id) throws Exception;
 }
