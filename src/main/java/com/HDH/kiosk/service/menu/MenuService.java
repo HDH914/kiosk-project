@@ -19,6 +19,6 @@ public interface MenuService {
 
     public boolean updateMenu(AddMenuReqDto addMenuReqDto) throws Exception;
 
-
+    public boolean deleteMenu(int id) throws Exception;
 
 }

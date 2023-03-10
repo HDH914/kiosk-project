@@ -75,7 +75,7 @@ public class MenuServiceImpl implements MenuService {
         return list;
     }
 
-
+    // 메뉴 이미지
     private MenuImage getMenuImg(MultipartFile file, int menuId) throws Exception {
 
         String originName = file.getOriginalFilename();
@@ -123,5 +123,23 @@ public class MenuServiceImpl implements MenuService {
         return true;
     }
 
+    // 제품 삭제
+    @Override
+    public boolean deleteMenu(int id) throws Exception {
+        List<MenuImage> menuImgFiles = menuRepository.getMenuImgList(id);
+
+        if(menuRepository.deleteMenu(id) > 0) {
+            menuImgFiles.forEach(menuImgFile -> {
+                Path uploadPath = Paths.get(filePath + "/menu/" + menuImgFile.getTemp_name());
+
+                File f = uploadPath.toFile();
+                if(f.exists()) {
+                    f.delete();
+                }
+            });
+            return true;
+        }
+        return false;
+    }
 }
 
