@@ -345,6 +345,7 @@ td {
     height: 40%;
     text-decoration: none;
     color: white;
+    background-color: red;
 }
 
 /* 검색 결과 없음 화면 */

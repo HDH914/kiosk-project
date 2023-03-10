@@ -3,12 +3,14 @@ const searchInput = document.querySelector(".search-input");
 const searchButton = document.querySelector(".search-button");
 const logout = document.querySelector(".logout-icon");
 const categorySelectInput = document.querySelector(".search-category .category-input");
+
 let page = 1;
 let category = "6";
 let searchValue = "";
 
 
 loadMenuListRequest(searchValue);
+
 
 searchInput.onkeyup = () => {
     if (window.event.keyCode === 13) {
@@ -27,26 +29,36 @@ categorySelectInput.onchange = () => {
     loadMenuListRequest(searchValue);
 }
 
+// 로그아웃
+logout.onclick = () => {
+    let msg = null;
+    msg = confirm("로그아웃 하시겠습니까?");
+    if (msg) {
+        alert("로그아웃 되었습니다.");
+        location.href = "/main";
+    }
+}
+
+// 메뉴 정보 요청
 function loadMenuListRequest(searchValue) {
-    let responseData = null;
+
 
     $.ajax({
-        // async: false, 추가
         type: "get",
         url: "/api/menu/admin/menulist",
         data: {
             "page": page,
             "category": category,
             "searchValue": searchValue
-
         },
         dataType: "json",
         success: (response) => {
-            responseData = response.data;
-
+            const responseData = response.data;
             if (responseData.length != 0) {
                 loadMenuList(responseData);
                 loadPageNumberButtons(responseData[0].menuTotalCount);
+                modificationMenu(responseData);
+                deleteMenu(responseData);
             }
             else {
                 noSearchMenu();
@@ -58,6 +70,7 @@ function loadMenuListRequest(searchValue) {
     })
 }
 
+// 메뉴 리스트 띄우기
 function loadMenuList(responseData) {
     const menuList = document.querySelector(".menu");
     menuList.innerHTML = "";
@@ -74,8 +87,8 @@ function loadMenuList(responseData) {
                 <td class="menu-price">${data.price}<span>원</span></td>
                 <td class="memo">${data.memo}</td>
                 <td class="menu-button buttons">
-                    <a class="modification-button" href="/admin/modification/${data.id}">수정</a>
-                    <a class="delete-button" href="">삭제</a>
+                    <button class="modification-button">수정</button>
+                    <button class="delete-button">삭제</button>
                 </td>
             </tr>
             `;
@@ -163,11 +176,41 @@ function loadPageNumberButtons(menuTotalCount) {
     }
 }
 
-logout.onclick = () => {
-    let msg = null;
-    msg = confirm("로그아웃 하시겠습니까?");
-    if (msg) {
-        alert("로그아웃 되었습니다.");
-        location.href = "/main";
-    }
+function modificationMenu(responseData) {
+    const modificationButtons = document.querySelectorAll(".modification-button");
+    modificationButtons.forEach((modificationButton, index) => {
+        modificationButton.onclick = () => {
+            const data = responseData[index];
+            const id = parseInt(data.id);
+            location.href = `/admin/modification/${id}`;
+        };
+    });
+}
+
+function deleteMenu(responseData) {
+    const deleteButtons = document.querySelectorAll(".delete-button");
+    deleteButtons.forEach((deleteButton, index) => {
+        deleteButton.onclick = () => {
+            const data = responseData[index];
+            const id = parseInt(data.id);
+            if (confirm("정말 메뉴를 삭제하시겠습니까?")) {
+                $.ajax({
+                    async: false,
+                    type: "delete",
+                    url: "/api/menu/admin/delete/" + id,
+                    dataType: "json",
+                    success: (response) => {
+                        alert("메뉴를 삭제하였습니다.");
+                        location.reload();
+                    },
+                    error: (error) => {
+                        alert("상품 삭제 실패.");
+                        console.log(error);
+                    }
+                });
+            }
+        }
+
+    })
+
 }
