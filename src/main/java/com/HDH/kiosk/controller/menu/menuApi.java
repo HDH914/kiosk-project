@@ -60,10 +60,17 @@ public class menuApi {
         return ResponseEntity.ok().body(new CMRespDto<>(1,"메뉴 정보", menuService.loadMenuInfo(id)));
     }
 
-    // 메뉴 수정하기
+    // 메뉴 수정
     @PutMapping("/admin/modification/update/{id}")
     public ResponseEntity<?> updateMenu(@PathVariable int id, AddMenuReqDto addMenuReqDto) throws Exception {
         menuService.updateMenu(addMenuReqDto);
         return ResponseEntity.ok().body(new CMRespDto<>(1,"업데이트 완료", true));
+    }
+
+
+    // 메뉴 삭제하기
+    @DeleteMapping("/admin/delete/{id}")
+    public ResponseEntity<?> deleteMenu(@PathVariable int id) throws Exception {
+        return ResponseEntity.ok().body(new CMRespDto<>(1,"메뉴 삭제 완료", menuService.deleteMenu(id)));
     }
 }
