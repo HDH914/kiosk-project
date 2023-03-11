@@ -12,8 +12,6 @@ const paymentButton = document.querySelector(".payment-button");
 const deleteButton = document.querySelector(".delete-button");
 let menuList = {};
 
-
-
 loadMenuList();
 menuClick();
 
@@ -146,8 +144,9 @@ function clickDesert(responseData) {
     }
 }
 
+// 메뉴 선택
 function menuClick() {
-    let menu = menus.querySelectorAll(".menu");
+    const menu = menus.querySelectorAll(".menu");
 
     menuListArea.innerHTML = "";
 
@@ -215,37 +214,29 @@ function menuClick() {
         }
         // 총합 가격 계산
         function totalPrice() {
-            console.log("totalPrice() 실행")
             let totalPrice = Object.values(menuList).reduce(
                 (acc, item) => acc + item.count * item.price,
                 0
             );
 
             totalPriceAmount.innerHTML = `${totalPrice}<span>원</span>`;
+            return totalPrice;
         }
 
         // 해당 메뉴 삭제
         function deleteMenu() {
-            console.log("deleteMenu() 실행")
             let deleteIcon = document.querySelectorAll(".delete-icon");
 
             deleteIcon.forEach((icon) => {
                 icon.addEventListener('click', () => {
-                    alert("삭제 아이콘 클릭");
-                    let menuName = menuListArea.querySelector(".selected-menu-name").innerText;
-                    let menuCount = menuListArea.querySelector(".menu-count").innerText;
-                    let menuPrice = menuListArea.querySelector(".price").innerText;
+                    let menuName = icon.closest(".menu-info").querySelector(".selected-menu-name span").innerText;
+                    let count = menuList[menuName].count;
+                    let price = menuList[menuName].price;
+                    let total = count * price;
 
-                    if (menuList.hasOwnProperty(menuName)) {
-                        let count = menuList[menuName].count;
-                        let price = menuList[menuName].price;
-                        let total = count * price;
-
-                        delete menuList[menuName];
-                        menuListArea.removeChild(menuList[menuName].menu);
-                        totalPriceAmount.innerText = parseInt(totalPriceAmount.innerText) - total;
-
-                    }
+                    delete menuList[menuName];
+                    icon.closest(".menu-info").remove();
+                    totalPrice();
                 });
             });
         }
@@ -262,15 +253,36 @@ function menuClick() {
         }
     }
     )
+    payment();
+}
+
+function payment() {
+    let orderData = {
+        "menuList": menuList,
+        "totalPrice": totalPrice()
+    }
+    console.log(orderData);
+    // paymentButton.onclick = () => {
+    //     $.ajax({
+    //         async: false,
+    //         type: "post",
+    //         url: "/api/payment/card",
+    //         data: orderData,
+    //         success: (response) => {
+    //             location.href = "/payment/option";
+    //         },
+    //         error: (error) => {
+    //             alert("오류가 발생하였습니다.")
+    //             console.log(error);
+    //         }
+    //     })
+    // };
+
+
+
 }
 
 // 홈버튼
 home.onclick = () => {
     location.href = "/";
-}
-
-paymentButton.onclick = () => {
-    // 토탈 금액도 같이 보냄
-    // 주문 내역 DB도 필요한가?
-    location.href = "/payment/option";
 }
