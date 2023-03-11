@@ -73,4 +73,16 @@ public class PageController {
         return "payment/paymentOption";
     }
 
+    // 카드 결제 페이지
+    @GetMapping("/payment/option/card")
+    public String cardPayment(){
+        return "payment/cardPayment";
+    }
+
+    // 현금 결제 페이지
+    @GetMapping("/payment/option/cash")
+    public String cashPayment(){
+        return "payment/cashPayment";
+    }
+
 }
