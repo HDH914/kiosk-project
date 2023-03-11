@@ -1,3 +1,17 @@
+function a() {
+  function a1() {
+    const price = 10000;
+    return price;
+  }
+}
+
+function b() {
+  let data = {
+    "data1": 1,
+    "data2": a1()
+  }
+}
+
 
 const home = document.querySelector(".home");
 const season = document.querySelector(".season");
@@ -10,42 +24,42 @@ const menuListArea = document.querySelector(".menu-list");
 const totalPriceAmount = document.querySelector(".total-price-amount");
 const paymentButton = document.querySelector(".payment-button");
 const deleteButton = document.querySelector(".delete-button");
-
-
+let menuList = {};
 
 loadMenuList();
 menuClick();
+payment();
 
 function loadMenuList() {
-    let responseData = null;
-    $.ajax({
-        async: false,
-        type: "get",
-        url: "/api/menu/menulist",
-        // dataType: "json",
-        success: (response) => {
-            responseData = response.data;
-            console.log(responseData);
-            clickSeason(responseData);
-            clickoffee(responseData);
-            clickBeverage(responseData);
-            clickTea(responseData);
-            clickDesert(responseData);
-            season.click();
-        },
-        error: (error) => {
-            console.log("불러오기 실패");
-            console.log(error)
-        }
-    })
+  let responseData = null;
+  $.ajax({
+    async: false,
+    type: "get",
+    url: "/api/menu/menulist",
+    // dataType: "json",
+    success: (response) => {
+      responseData = response.data;
+      console.log(responseData);
+      clickSeason(responseData);
+      clickoffee(responseData);
+      clickBeverage(responseData);
+      clickTea(responseData);
+      clickDesert(responseData);
+      season.click();
+    },
+    error: (error) => {
+      console.log("불러오기 실패");
+      console.log(error)
+    }
+  })
 }
 
 function clickSeason(responseData) {
-    season.onclick = () => {
-        menus.innerHTML = "";
-        responseData.forEach((data) => {
-            if (data.categoryId == 1) {
-                menus.innerHTML += `
+  season.onclick = () => {
+    menus.innerHTML = "";
+    responseData.forEach((data) => {
+      if (data.categoryId == 1) {
+        menus.innerHTML += `
                 <li class="menu">
                     <input class="menu-id" type="text" value="${data.id}">
                     <input class="menu-category" type="text" value="${data.categoryId}">
@@ -56,17 +70,17 @@ function clickSeason(responseData) {
                     <div class="menu-price">${data.price}<span>원</span></div>
                 </li>
                 `
-            }
-        });
-    }
+      }
+    });
+  }
 }
 
 function clickoffee(responseData) {
-    coffee.onclick = () => {
-        menus.innerHTML = "";
-        responseData.forEach((data) => {
-            if (data.categoryId == 2) {
-                menus.innerHTML += `
+  coffee.onclick = () => {
+    menus.innerHTML = "";
+    responseData.forEach((data) => {
+      if (data.categoryId == 2) {
+        menus.innerHTML += `
                 <li class="menu">
                     <input class="menu-id" type="text" value="${data.id}">
                     <input class="menu-category" type="text" value="${data.categoryId}">
@@ -77,17 +91,17 @@ function clickoffee(responseData) {
                     <div class="menu-price">${data.price}<span>원</span></div>
                 </li>
                 `
-            }
-        });
-    }
+      }
+    });
+  }
 }
 
 function clickBeverage(responseData) {
-    beverage.onclick = () => {
-        menus.innerHTML = "";
-        responseData.forEach((data) => {
-            if (data.categoryId == 3) {
-                menus.innerHTML += `
+  beverage.onclick = () => {
+    menus.innerHTML = "";
+    responseData.forEach((data) => {
+      if (data.categoryId == 3) {
+        menus.innerHTML += `
                 <li class="menu">
                     <input class="menu-id" type="text" value="${data.id}">
                     <input class="menu-category" type="text" value="${data.categoryId}">
@@ -98,17 +112,17 @@ function clickBeverage(responseData) {
                     <div class="menu-price">${data.price}<span>원</span></div>
                 </li>
                 `
-            }
-        });
-    }
+      }
+    });
+  }
 }
 
 function clickTea(responseData) {
-    tea.onclick = () => {
-        menus.innerHTML = "";
-        responseData.forEach((data) => {
-            if (data.categoryId == 4) {
-                menus.innerHTML += `
+  tea.onclick = () => {
+    menus.innerHTML = "";
+    responseData.forEach((data) => {
+      if (data.categoryId == 4) {
+        menus.innerHTML += `
                 <li class="menu">
                     <input class="menu-id" type="text" value="${data.id}">
                     <input class="menu-category" type="text" value="${data.categoryId}">
@@ -119,17 +133,17 @@ function clickTea(responseData) {
                     <div class="menu-price">${data.price}<span>원</span></div>
                 </li>
                 `
-            }
-        });
-    }
+      }
+    });
+  }
 }
 
 function clickDesert(responseData) {
-    desert.onclick = () => {
-        menus.innerHTML = "";
-        responseData.forEach((data) => {
-            if (data.categoryId == 5) {
-                menus.innerHTML += `
+  desert.onclick = () => {
+    menus.innerHTML = "";
+    responseData.forEach((data) => {
+      if (data.categoryId == 5) {
+        menus.innerHTML += `
                 <li class="menu" name="menu">
                     <input class="menu-id" type="text" value="${data.id}">
                     <input class="menu-category" type="text" value="${data.categoryId}">
@@ -140,36 +154,36 @@ function clickDesert(responseData) {
                     <div class="menu-price">${data.price}<span>원</span></div>
                 </li>
                 `
-            }
-        });
-    }
+      }
+    });
+  }
 }
 
+// 메뉴 선택
 function menuClick() {
-    let menu = menus.querySelectorAll(".menu");
-    let menuList = {};
+  const menu = menus.querySelectorAll(".menu");
 
-    menuListArea.innerHTML = "";
+  menuListArea.innerHTML = "";
 
-    menu.forEach((selectedMenu) => {
-        selectedMenu.onclick = () => {
-            let name = selectedMenu.querySelector(".menu-name").innerText;
-            let price = selectedMenu.querySelector(".menu-price").innerText;
-            let id = selectedMenu.querySelector(".menu-id").value;
+  menu.forEach((selectedMenu) => {
+    selectedMenu.onclick = () => {
+      let name = selectedMenu.querySelector(".menu-name").innerText;
+      let price = selectedMenu.querySelector(".menu-price").innerText;
+      let id = selectedMenu.querySelector(".menu-id").value;
 
-            if (menuList.hasOwnProperty(name)) {
-                menuList[name].count++;
-                menuList[name].menu = selectedMenu;
-                addMenu();
-            }
-            else {
-                menuList[name] = {
-                    id: id,
-                    count: 1,
-                    price: parseInt(price),
-                    menu: selectedMenu,
-                };
-                menuListArea.innerHTML += `
+      if (menuList.hasOwnProperty(name)) {
+        menuList[name].count++;
+        menuList[name].menu = selectedMenu;
+        addMenu();
+      }
+      else {
+        menuList[name] = {
+          id: id,
+          count: 1,
+          price: parseInt(price),
+          menu: selectedMenu,
+        };
+        menuListArea.innerHTML += `
                 <div class="menu-info">
                     <div class="selected-menu-name">
                     <span>${name}</span>
@@ -185,15 +199,14 @@ function menuClick() {
                     </div>
                 </div>
                 `;
+        totalPrice();
+        deleteMenu();
+      }
 
-            }
-            console.log("menuList")
-            console.log(menuList)
-
-            function addMenu() {
-                menuListArea.innerHTML = "";
-                for (let name in menuList) {
-                    menuListArea.innerHTML += `
+      function addMenu() {
+        menuListArea.innerHTML = "";
+        for (let name in menuList) {
+          menuListArea.innerHTML += `
                         <div class="menu-info">
                             <div class="selected-menu-name">
                             <span>${name}</span>
@@ -209,62 +222,87 @@ function menuClick() {
                             </div>
                         </div>
                         `;
-                }
-            }
         }
-
-        let totalPrice = Object.values(menuList).reduce(
-            (acc, item) => acc + item.count * item.price,
-            0
-        );
-        console.log("totalPrice => ")
-        console.log(totalPrice)
-        totalPriceAmount.innerHTML = `${totalPrice}<span>원</span>`;
-
-        // 해당 메뉴 삭제
-        const deleteIcon = menuListArea.querySelectorAll(".delete-menu");
-
-        deleteIcon.forEach((icon) => {
-            icon.onclick = () => {
-                console.log("삭제 아이콘 클릭")
-                let menuName = icon.previousElementSibling.innerText;
-                let menuCount = icon.previousElementSibling.previousElementSibling.innerText;
-                let menuPrice = icon.previousElementSibling.previousElementSibling.previousElementSibling.innerText;
-
-                if (menuList.hasOwnProperty(menuName)) {
-                    let count = menuList[menuName].count;
-                    let price = menuList[menuName].price;
-                    let total = count * price;
-
-                    delete menuList[menuName];
-                    menuListArea.removeChild(menuList[menuName].menu);
-                    totalPriceAmount.innerText = parseInt(totalPriceAmount.innerText) - total;
-
-                }
-            }
-        });
-
-        // 전체 메뉴 삭제
-        deleteButton.onclick = () => {
-            let msg = null;
-            msg = confirm("메뉴를 취소하시겠습니까?");
-            if (msg) {
-                menuListArea.innerHTML = "";
-                menuList = {};
-                totalPriceAmount.innerText = "0원";
-            }
-        }
+        totalPrice();
+        deleteMenu();
+      }
     }
-    )
+
+
+    // 해당 메뉴 삭제
+    function deleteMenu() {
+      let deleteIcon = document.querySelectorAll(".delete-icon");
+
+      deleteIcon.forEach((icon) => {
+        icon.addEventListener('click', () => {
+          let menuName = icon.closest(".menu-info").querySelector(".selected-menu-name span").innerText;
+          let count = menuList[menuName].count;
+          let price = menuList[menuName].price;
+          let total = count * price;
+
+          delete menuList[menuName];
+          icon.closest(".menu-info").remove();
+          totalPrice();
+        });
+      });
+    }
+
+    // 전체 메뉴 삭제
+    deleteButton.onclick = () => {
+      let msg = null;
+      msg = confirm("메뉴를 취소하시겠습니까?");
+      if (msg) {
+        menuListArea.innerHTML = "";
+        menuList = {};
+        totalPriceAmount.innerText = "0원";
+      }
+    }
+  }
+  )
+
+}
+// 총합 가격 계산
+function totalPrice() {
+  let totalPrice = Object.values(menuList).reduce(
+    (acc, item) => acc + item.count * item.price,
+    0
+  );
+
+  totalPriceAmount.innerHTML = `${totalPrice}<span>원</span>`;
+  console.log(totalPrice)
+  return totalPrice;
+}
+
+function payment() {
+  let orderData = {
+    menuList: menuList,
+    totalPrice: totalPrice()
+  }
+  console.log(orderData)
+  paymentButton.onclick = () => {
+    $.ajax({
+      async: false,
+      type: "post",
+      url: "/api/payment/order",
+      data: JSON.stringify(orderData),
+      dataType: "json",
+      success: (response) => {
+        console.log("정보 전송 성공!")
+        location.href = "/payment/option";
+      },
+      error: (error) => {
+        alert("오류가 발생하였습니다.")
+        console.log(error);
+      }
+    })
+  };
+
+
+
 }
 
 // 홈버튼
 home.onclick = () => {
-    location.href = "/";
+  location.href = "/";
 }
 
-paymentButton.onclick = () => {
-    // 토탈 금액도 같이 보냄
-    // 주문 내역 DB도 필요한가?
-    location.href = "/payment/option";
-}
