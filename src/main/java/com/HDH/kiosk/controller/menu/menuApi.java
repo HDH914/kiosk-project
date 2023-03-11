@@ -26,7 +26,6 @@ public class menuApi {
     @PostMapping("/add")
     public ResponseEntity<?> addMenu(AddMenuReqDto addMenuReqDto) throws Exception {
         menuService.addMenu(addMenuReqDto);
-        log.info("메뉴 이미지 컨트롤라: " + addMenuReqDto.getMenuImg());
 
         return ResponseEntity.ok().body(new CMRespDto<>(1,"메뉴 등록", true));
     }
