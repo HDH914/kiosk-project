@@ -212,16 +212,7 @@ function menuClick() {
                 deleteMenu();
             }
         }
-        // 총합 가격 계산
-        function totalPrice() {
-            let totalPrice = Object.values(menuList).reduce(
-                (acc, item) => acc + item.count * item.price,
-                0
-            );
 
-            totalPriceAmount.innerHTML = `${totalPrice}<span>원</span>`;
-            return totalPrice;
-        }
 
         // 해당 메뉴 삭제
         function deleteMenu() {
@@ -253,34 +244,32 @@ function menuClick() {
         }
     }
     )
-    payment();
+
 }
 
-function payment() {
+// 총합 가격 계산
+function totalPrice() {
+    let totalPrice = Object.values(menuList).reduce(
+        (acc, item) => acc + item.count * item.price,
+        0
+    );
     let orderData = {
         "menuList": menuList,
-        "totalPrice": totalPrice()
-    }
-    console.log(orderData);
-    // paymentButton.onclick = () => {
-    //     $.ajax({
-    //         async: false,
-    //         type: "post",
-    //         url: "/api/payment/card",
-    //         data: orderData,
-    //         success: (response) => {
-    //             location.href = "/payment/option";
-    //         },
-    //         error: (error) => {
-    //             alert("오류가 발생하였습니다.")
-    //             console.log(error);
-    //         }
-    //     })
-    // };
+        "totalPrice": totalPrice
+    };
 
+    totalPriceAmount.innerHTML = `${totalPrice}<span>원</span>`;
 
+    localStorage.setItem('orderData', JSON.stringify(orderData));
 
+    return totalPrice;
 }
+
+
+paymentButton.onclick = () => {
+    location.href = "/payment/option";
+};
+
 
 // 홈버튼
 home.onclick = () => {
