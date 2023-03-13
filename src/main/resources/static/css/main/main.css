@@ -19,6 +19,7 @@
     justify-content: space-between;
     width: 100%;
     height: 5%;
+    background-color: #27534c;
 
 }
 
@@ -30,7 +31,23 @@
     width: 33%;
 }
 
-.logo,
+.logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 3%;
+    border: 1px solid white;
+    border-radius: 3px;
+    width: 70%;
+    height: 80%;
+    background-color: white;
+}
+
+.logo-image {
+    width: 80%;
+    height: 90%;
+}
+
 .home {
     display: flex;
     justify-content: center;
@@ -39,29 +56,25 @@
     height: 100%;
 }
 
+
+
+
 .icon {
     font-size: 34px;
     cursor: pointer;
-    color: black;
+    color: white;
 }
 
 .home a {
     padding-left: 10px;
     font-size: 28px;
     text-decoration: none;
-    color: black;
+    color: white;
 }
 
-/* .home {
-    width: 100%;
-    height: 100%;
-} */
 
 
-.logo-image {
-    width: 90%;
-    height: 90%;
-}
+
 
 /* 관리자 로그인 영역 */
 .header-right {
@@ -80,7 +93,8 @@
 
 .login-icon {
     font-size: 32px;
-    color: rgb(70, 69, 69);
+    /* color: rgb(70, 69, 69); */
+    color: white;
 }
 
 /* 메인 영역 */
@@ -97,12 +111,12 @@
 
 /* 카테고리 선택 영역 */
 .category-area {
-    border-top: 2px solid black;
+    /* border-top: 2px solid black; */
     border-bottom: 1px solid black;
     width: 100%;
     height: 10%;
 
-    /* background-color: khaki; */
+    /* background-color: #ac6730; */
 }
 
 .category {
@@ -129,7 +143,15 @@
     font-family: 'IBM Plex Sans KR', sans-serif;
     font-size: 30px;
     font-weight: 600;
+    color: black;
+    /* background-color: #545454; */
 }
+
+.category li.active {
+    color: white;
+    background-color: #27534c;
+}
+
 
 .category-input {
     display: none;
@@ -151,7 +173,7 @@
 .select-area {
     width: 100%;
     height: 90%;
-    /* background-color: cornflowerblue; */
+    background-color: #fefefe;
 }
 
 .menus {
@@ -160,7 +182,6 @@
     justify-content: flex-start;
     width: 100%;
     max-height: 100%;
-    /* background-color: aqua; */
 }
 
 .menu {
@@ -173,6 +194,7 @@
     width: 20%;
     padding: 0px 5px;
     cursor: pointer;
+    background-color: #fefefe;
 }
 
 
@@ -214,10 +236,11 @@
     display: flex;
     justify-content: space-around;
     align-items: center;
+    border-top: 2px solid black;
     width: 100%;
     height: 25%;
 
-    /* background-color: cadetblue; */
+    /* background-color: #27534c; */
 }
 
 
@@ -229,6 +252,7 @@
     border-radius: 5px;
     width: 60%;
     height: 80%;
+    background-color: #fefefe;
 }
 
 .menu-info {
@@ -291,6 +315,7 @@
     border-radius: 5px;
     width: 30%;
     height: 80%;
+    /* background-color: #fefefe; */
 }
 
 .total-price-title {
@@ -347,5 +372,7 @@
     height: 70%;
     font-size: 24px;
     font-weight: 600;
-    background-color: gray;
+    color: white;
+    /* background-color: #2c2c2c; */
+    background-color: #27534c;
 }

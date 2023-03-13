@@ -13,7 +13,7 @@ const deleteButton = document.querySelector(".delete-button");
 let menuList = {};
 
 loadMenuList();
-menuClick();
+
 
 function loadMenuList() {
     let responseData = null;
@@ -57,6 +57,7 @@ function clickSeason(responseData) {
                 `
             }
         });
+        menuClick();
     }
 }
 
@@ -78,6 +79,7 @@ function clickoffee(responseData) {
                 `
             }
         });
+        menuClick();
     }
 }
 
@@ -99,6 +101,7 @@ function clickBeverage(responseData) {
                 `
             }
         });
+        menuClick();
     }
 }
 
@@ -120,6 +123,7 @@ function clickTea(responseData) {
                 `
             }
         });
+        menuClick();
     }
 }
 
@@ -141,6 +145,7 @@ function clickDesert(responseData) {
                 `
             }
         });
+        menuClick();
     }
 }
 
@@ -148,10 +153,11 @@ function clickDesert(responseData) {
 function menuClick() {
     const menu = menus.querySelectorAll(".menu");
 
-    menuListArea.innerHTML = "";
+    // menuListArea.innerHTML = "";
 
     menu.forEach((selectedMenu) => {
         selectedMenu.onclick = () => {
+            console.log("메뉴 클릭됨")
             let name = selectedMenu.querySelector(".menu-name").innerText;
             let price = selectedMenu.querySelector(".menu-price").innerText;
             let id = selectedMenu.querySelector(".menu-id").value;
@@ -275,3 +281,11 @@ paymentButton.onclick = () => {
 home.onclick = () => {
     location.href = "/";
 }
+
+$(document).ready(function () {
+    $(".category li").click(function () {
+        $(".category li").removeClass("active");
+        $(this).addClass("active");
+    });
+});
+
