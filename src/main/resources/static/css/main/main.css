@@ -144,7 +144,7 @@
     font-size: 30px;
     font-weight: 600;
     color: black;
-    /* background-color: #545454; */
+    background-color: #fefefe;
 }
 
 .category li.active {
@@ -173,7 +173,7 @@
 .select-area {
     width: 100%;
     height: 90%;
-    background-color: #fefefe;
+    background-color: #e9e9e969;
 }
 
 .menus {
