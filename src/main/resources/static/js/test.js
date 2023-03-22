@@ -1,18 +1,3 @@
-function a() {
-  function a1() {
-    const price = 10000;
-    return price;
-  }
-}
-
-function b() {
-  let data = {
-    "data1": 1,
-    "data2": a1()
-  }
-}
-
-
 const home = document.querySelector(".home");
 const season = document.querySelector(".season");
 const coffee = document.querySelector(".coffee");
@@ -26,9 +11,10 @@ const paymentButton = document.querySelector(".payment-button");
 const deleteButton = document.querySelector(".delete-button");
 let menuList = {};
 
+
 loadMenuList();
 menuClick();
-payment();
+
 
 function loadMenuList() {
   let responseData = null;
@@ -268,18 +254,24 @@ function totalPrice() {
     0
   );
 
+  let orderData = {
+    "menuList": menuList,
+    "totalPrice": totalPrice
+  }
+  // console.log(orderData)
+
   totalPriceAmount.innerHTML = `${totalPrice}<span>원</span>`;
+
   console.log(totalPrice)
-  return totalPrice;
+  payment(orderData);
+  // return totalPrice;
 }
 
-function payment() {
-  let orderData = {
-    menuList: menuList,
-    totalPrice: totalPrice()
-  }
-  console.log(orderData)
+// 결제 리스트
+function payment(orderData) {
+
   paymentButton.onclick = () => {
+    console.log(orderData);
     $.ajax({
       async: false,
       type: "post",
@@ -296,9 +288,6 @@ function payment() {
       }
     })
   };
-
-
-
 }
 
 // 홈버튼

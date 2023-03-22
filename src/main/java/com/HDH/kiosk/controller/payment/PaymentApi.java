@@ -1,8 +1,7 @@
 package com.HDH.kiosk.controller.payment;
 
-import com.HDH.kiosk.domain.OrderReadyList;
 import com.HDH.kiosk.dto.CMRespDto;
-import com.HDH.kiosk.dto.payment.OrderReadyDto;
+import com.HDH.kiosk.dto.payment.OrderListDto;
 import com.HDH.kiosk.service.payment.PaymentService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -21,9 +20,9 @@ public class PaymentApi {
 
     // 주문한 메뉴 리스트 저장
     @PostMapping("/order")
-    public ResponseEntity<?> orderReadyList(@RequestBody OrderReadyDto orderReadyDto) throws Exception {
-        paymentService.orderReadyList(orderReadyDto);
-        log.info("컨트롤러: " + orderReadyDto);
-        return ResponseEntity.ok().body(new CMRespDto<>(1, "전송 완료", orderReadyDto.getTotalPrice()));
+    public ResponseEntity<?> orderReadyList(@RequestBody OrderListDto orderListDto) throws Exception {
+        paymentService.orderList(orderListDto);
+        log.info("컨트롤러: " + orderListDto);
+        return ResponseEntity.ok().body(new CMRespDto<>(1, "전송 완료", orderListDto.getTotalPrice()));
     }
 }

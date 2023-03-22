@@ -24,7 +24,6 @@ function loadMenuList() {
         // dataType: "json",
         success: (response) => {
             responseData = response.data;
-            console.log(responseData);
             clickSeason(responseData);
             clickoffee(responseData);
             clickBeverage(responseData);
@@ -33,7 +32,6 @@ function loadMenuList() {
             season.click();
         },
         error: (error) => {
-            console.log("불러오기 실패");
             console.log(error)
         }
     })
@@ -153,11 +151,8 @@ function clickDesert(responseData) {
 function menuClick() {
     const menu = menus.querySelectorAll(".menu");
 
-    // menuListArea.innerHTML = "";
-
     menu.forEach((selectedMenu) => {
         selectedMenu.onclick = () => {
-            console.log("메뉴 클릭됨")
             let name = selectedMenu.querySelector(".menu-name").innerText;
             let price = selectedMenu.querySelector(".menu-price").innerText;
             let id = selectedMenu.querySelector(".menu-id").value;
@@ -219,7 +214,6 @@ function menuClick() {
             }
         }
 
-
         // 해당 메뉴 삭제
         function deleteMenu() {
             let deleteIcon = document.querySelectorAll(".delete-icon");
@@ -271,9 +265,37 @@ function totalPrice() {
     return totalPrice;
 }
 
+function orderList() {
+    const orderLists = Object.keys(menuList).map(menuName => {
+        return {
+            menuName: menuName,
+            count: menuList[menuName].count,
+            price: menuList[menuName].price,
+        };
+    });
+    const listData = {
+        orderLists: orderLists,
+        totalPrice: totalPrice()
+    }
+    console.log(listData);
+
+    $.ajax({
+        url: "/api/payment/order",
+        type: "POST",
+        data: JSON.stringify(listData),
+        contentType: "application/json",
+        dataType: "json",
+        success: function (response) {
+        },
+        error: function (error) {
+            console.log(error);
+        },
+    });
+}
 
 paymentButton.onclick = () => {
-    location.href = "/payment/option";
+    orderList();
+    // location.href = "/payment/option";
 };
 
 
@@ -282,6 +304,7 @@ home.onclick = () => {
     location.href = "/";
 }
 
+// css 디자인
 $(document).ready(function () {
     $(".category li").click(function () {
         $(".category li").removeClass("active");

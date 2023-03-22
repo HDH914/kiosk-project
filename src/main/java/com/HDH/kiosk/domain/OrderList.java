@@ -5,12 +5,13 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.Map;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
 @Builder
-public class OrderReadyList {
-//    private Map<String, Object> menu_list;
+public class OrderList {
+    private String menu_name;
+    private int count;
+    private int price;
     private int total_price;
 }

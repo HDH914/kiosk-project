@@ -24,14 +24,13 @@ function orderData() {
     cardPayment(price);
 }
 
-
 function cardPayment(price) {
     console.log("cardPayment 실행")
 
     const IMP = window.IMP;
 
     // 가맹점 식별코드
-    IMP.init("imp26041673");
+    IMP.init("가맹점 식별코드");
 
     IMP.request_pay({
         pg: 'nice',
@@ -67,3 +66,11 @@ function cardPayment(price) {
         // alert(msg);
     });
 }
+
+
+
+
+
+
+
+

@@ -1,9 +1,9 @@
 package com.HDH.kiosk.repository.payment;
 
-import com.HDH.kiosk.domain.OrderReadyList;
+import com.HDH.kiosk.domain.OrderList;
 import org.apache.ibatis.annotations.Mapper;
 
 @Mapper
 public interface PaymentRepository {
-    public void orderReadyList(OrderReadyList orderReadyList) throws Exception;
+    public void orderList(OrderList orderList) throws Exception;
 }
