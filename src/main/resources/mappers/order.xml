@@ -3,27 +3,19 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.HDH.kiosk.repository.payment.PaymentRepository">
-
-    <insert id="orderList"
-            parameterType="com.HDH.kiosk.domain.OrderList">
-        INSERT INTO
-            order_mst
-        VALUES(
-        IFNULL(
-            (SELECT
-                MAX(group_id)
-            FROM
-                product_mst
-            WHERE NAME = #{menu_name}), ifnull(MAX(group_id), 0) + 1),
+    <insert id="orderList" parameterType="com.HDH.kiosk.domain.OrderList">
+        INSERT INTO order_mst (group_id, menu_name, count, price, total_price, create_date) VALUES (
+        #{group_id},
         #{menu_name},
         #{count},
         #{price},
-        #{total_Price),
-        now()
+        #{total_price},
+        NOW()
         )
-
-
-
-
     </insert>
+
+    <select id="getMaxGroupId" resultType="int" parameterType="string">
+        SELECT IFNULL(MAX(group_id), 0)
+        FROM order_mst
+    </select>
 </mapper>

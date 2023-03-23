@@ -6,4 +6,6 @@ import org.apache.ibatis.annotations.Mapper;
 @Mapper
 public interface PaymentRepository {
     public void orderList(OrderList orderList) throws Exception;
+
+    public int getMaxGroupId();
 }

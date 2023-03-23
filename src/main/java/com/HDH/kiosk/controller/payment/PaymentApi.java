@@ -22,7 +22,6 @@ public class PaymentApi {
     @PostMapping("/order")
     public ResponseEntity<?> orderReadyList(@RequestBody OrderListDto orderListDto) throws Exception {
         paymentService.orderList(orderListDto);
-        log.info("컨트롤러: " + orderListDto);
         return ResponseEntity.ok().body(new CMRespDto<>(1, "전송 완료", orderListDto.getTotalPrice()));
     }
 }

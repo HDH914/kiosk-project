@@ -18,11 +18,10 @@ public class PaymentServiceImpl implements PaymentService{
     // 주문 내역 저장
     @Override
     public void orderList(OrderListDto orderListDto) throws Exception {
-        log.info("서비스 orderDto: " + orderListDto);
-        List<OrderList> orderList = orderListDto.toOrderEntity();
+        int group_id = paymentRepository.getMaxGroupId() + 1;
+        List<OrderList> orderList = orderListDto.toOrderEntity(group_id);
         for(OrderList order : orderList) {
-            log.info(("서비스 order: " + order));
-//            paymentRepository.orderList(order);
+            paymentRepository.orderList(order);
         }
     }
 }

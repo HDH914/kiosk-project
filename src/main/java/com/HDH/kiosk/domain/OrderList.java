@@ -10,6 +10,7 @@ import lombok.NoArgsConstructor;
 @Data
 @Builder
 public class OrderList {
+    private int group_id;
     private String menu_name;
     private int count;
     private int price;
