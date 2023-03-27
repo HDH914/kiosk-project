@@ -2,7 +2,6 @@ package com.HDH.kiosk.controller.admin;
 
 import com.HDH.kiosk.aop.annotation.ValidAspect;
 import com.HDH.kiosk.dto.CMRespDto;
-import com.HDH.kiosk.dto.admin.LoginReqDto;
 import com.HDH.kiosk.dto.admin.SignupReqDto;
 import com.HDH.kiosk.service.admin.AdminService;
 import lombok.RequiredArgsConstructor;
@@ -30,14 +29,6 @@ public class AdminApi {
         adminService.signup(signupReqDto);
         return ResponseEntity.ok().body(new CMRespDto<>(1, "회원가입 완료", signupReqDto));
     }
-
-    // 로그인
-    @PostMapping("/login")
-    public ResponseEntity<?> login(LoginReqDto loginReqDto){
-        return ResponseEntity.ok().body(new CMRespDto<>(1, "로그인 완료", true));
-    }
-
-
-    }
+}
 
 

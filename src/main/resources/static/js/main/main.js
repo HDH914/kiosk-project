@@ -1,4 +1,4 @@
-
+// 변수 할당
 const home = document.querySelector(".home");
 const season = document.querySelector(".season");
 const coffee = document.querySelector(".coffee");
@@ -12,29 +12,33 @@ const paymentButton = document.querySelector(".payment-button");
 const deleteButton = document.querySelector(".delete-button");
 let menuList = {};
 
+// 페이지 로드 시 메뉴 리스트 불러오기
 loadMenuList();
 
-
+// 메뉴 리스트 불러오기 함수
 function loadMenuList() {
     let responseData = null;
+
     $.ajax({
         async: false,
         type: "get",
         url: "/api/menu/menulist",
-        // dataType: "json",
         success: (response) => {
             responseData = response.data;
+            // 카테고리 별로 메뉴 클릭 이벤트 설정
             clickSeason(responseData);
-            clickoffee(responseData);
+            clickCoffee(responseData);
             clickBeverage(responseData);
             clickTea(responseData);
             clickDesert(responseData);
+
+            // 페이지 로드시 시즌 카테고리 클릭
             season.click();
         },
         error: (error) => {
-            console.log(error)
+            console.log(error);
         }
-    })
+    });
 }
 
 function clickSeason(responseData) {
@@ -58,7 +62,7 @@ function clickSeason(responseData) {
         menuClick();
     }
 }
-
+// 시즌 카테고리 클릭 이벤트 함수
 function clickoffee(responseData) {
     coffee.onclick = () => {
         menus.innerHTML = "";
@@ -81,6 +85,7 @@ function clickoffee(responseData) {
     }
 }
 
+// 음료 카테고리 클릭 이벤트 함수
 function clickBeverage(responseData) {
     beverage.onclick = () => {
         menus.innerHTML = "";
@@ -103,6 +108,7 @@ function clickBeverage(responseData) {
     }
 }
 
+// 티 카테고리 클릭 이벤트 함수
 function clickTea(responseData) {
     tea.onclick = () => {
         menus.innerHTML = "";
@@ -125,6 +131,7 @@ function clickTea(responseData) {
     }
 }
 
+// 디저트 카테고리 클릭 이벤트 함수
 function clickDesert(responseData) {
     desert.onclick = () => {
         menus.innerHTML = "";
@@ -265,6 +272,7 @@ function totalPrice() {
     return totalPrice;
 }
 
+// 주문 목록 전송
 function orderList() {
     const orderLists = Object.keys(menuList).map(menuName => {
         return {
@@ -293,13 +301,13 @@ function orderList() {
     });
 }
 
+// 클릭 이벤트
 paymentButton.onclick = () => {
     orderList();
     // location.href = "/payment/option";
 };
 
 
-// 홈버튼
 home.onclick = () => {
     location.href = "/";
 }
