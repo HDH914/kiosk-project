@@ -1,8 +1,8 @@
-// -Validation
 const signupForm = document.querySelector("form");
 const signupInput = document.querySelectorAll(".signup-input");    // 회원가입 정보
 const signupButton = document.querySelector(".signup-button");    // 회원가입 버튼
 
+// enter키로 클릭하기
 for (let i = 0; i < signupInput.length; i++) {
     signupInput[i].onkeyup = () => {
         if (window.event.keyCode === 13) {
@@ -22,7 +22,7 @@ signupButton.onclick = () => {
         password: signupInput[1].value,
         storeNumber: signupInput[3].value
     }
-    console.log(signupInfo);
+
     if (signupInput[1].value != signupInput[2].value) {
         alert("비밀번호가 일치하지 않습니다.");
     } else if (signupInput[1].value == signupInput[2].value) {
@@ -53,6 +53,4 @@ function ValidationError(error) {
     errorMsg[0].textContent = errorMap.get("username");
     errorMsg[1].textContent = errorMap.get("password");
     errorMsg[2].textContent = errorMap.get("storeNumber");
-
-
 }

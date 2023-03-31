@@ -11,13 +11,13 @@ let searchValue = "";
 
 loadMenuListRequest(searchValue);
 
-
 searchInput.onkeyup = () => {
     if (window.event.keyCode === 13) {
         searchButton.click();
     }
 }
 
+// 검색 버튼
 searchButton.onclick = () => {
     searchValue = searchInput.value;
     loadMenuListRequest(searchValue);
@@ -41,8 +41,6 @@ logout.onclick = () => {
 
 // 메뉴 정보 요청
 function loadMenuListRequest(searchValue) {
-
-
     $.ajax({
         type: "get",
         url: "/api/menu/admin/menulist",
@@ -95,6 +93,7 @@ function loadMenuList(responseData) {
     });
 }
 
+// 검색 결과 없음
 function noSearchMenu() {
     const noMenuList = document.querySelector(".menu");
 
@@ -124,13 +123,13 @@ function loadPageNumberButtons(menuTotalCount) {
 
     pageButtons.innerHTML = "";
 
-    console.log(`
-    page = ${page}
-    totalCount = ${menuTotalCount}
-    maxPage = ${maxPage}
-    startIndex = ${startIndex}
-    endIndex = ${endIndex}
-    `);
+    // console.log(`
+    // page = ${page}
+    // totalCount = ${menuTotalCount}
+    // maxPage = ${maxPage}
+    // startIndex = ${startIndex}
+    // endIndex = ${endIndex}
+    // `);
 
     if (page != 1) {
         pageButtons.innerHTML = `
@@ -168,9 +167,6 @@ function loadPageNumberButtons(menuTotalCount) {
             } else {
                 page = pageNum;
             }
-
-            console.log("page => ");
-            console.log(page);
             loadMenuListRequest(searchValue);
         }
     }
@@ -210,7 +206,5 @@ function deleteMenu(responseData) {
                 });
             }
         }
-
-    })
-
+    });
 }

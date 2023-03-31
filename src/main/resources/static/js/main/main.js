@@ -27,7 +27,7 @@ function loadMenuList() {
             responseData = response.data;
             // 카테고리 별로 메뉴 클릭 이벤트 설정
             clickSeason(responseData);
-            clickCoffee(responseData);
+            clickcoffee(responseData);
             clickBeverage(responseData);
             clickTea(responseData);
             clickDesert(responseData);
@@ -41,6 +41,7 @@ function loadMenuList() {
     });
 }
 
+// 시즌 카테고리 클릭 이벤트 함수
 function clickSeason(responseData) {
     season.onclick = () => {
         menus.innerHTML = "";
@@ -62,8 +63,9 @@ function clickSeason(responseData) {
         menuClick();
     }
 }
-// 시즌 카테고리 클릭 이벤트 함수
-function clickoffee(responseData) {
+
+// 커피 카테고리 클릭 이벤트 함수
+function clickcoffee(responseData) {
     coffee.onclick = () => {
         menus.innerHTML = "";
         responseData.forEach((data) => {
@@ -158,18 +160,20 @@ function clickDesert(responseData) {
 function menuClick() {
     const menu = menus.querySelectorAll(".menu");
 
+    // 메뉴를 클릭하면 메뉴 리스트에 담김
     menu.forEach((selectedMenu) => {
         selectedMenu.onclick = () => {
             let name = selectedMenu.querySelector(".menu-name").innerText;
             let price = selectedMenu.querySelector(".menu-price").innerText;
             let id = selectedMenu.querySelector(".menu-id").value;
 
+            // 2개이상 선택되는 메뉴
             if (menuList.hasOwnProperty(name)) {
                 menuList[name].count++;
                 menuList[name].menu = selectedMenu;
                 addMenu();
             }
-            else {
+            else {  // 첫번째로 선택되는 메뉴
                 menuList[name] = {
                     id: id,
                     count: 1,
@@ -196,6 +200,7 @@ function menuClick() {
                 deleteMenu();
             }
 
+            // 메뉴 추가
             function addMenu() {
                 menuListArea.innerHTML = "";
                 for (let name in menuList) {
@@ -243,6 +248,7 @@ function menuClick() {
         deleteButton.onclick = () => {
             let msg = null;
             msg = confirm("메뉴를 취소하시겠습니까?");
+
             if (msg) {
                 menuListArea.innerHTML = "";
                 menuList = {};
@@ -285,7 +291,6 @@ function orderList() {
         orderLists: orderLists,
         totalPrice: totalPrice()
     }
-    console.log(listData);
 
     $.ajax({
         url: "/api/payment/order",
@@ -301,16 +306,17 @@ function orderList() {
     });
 }
 
+
 // 클릭 이벤트
 paymentButton.onclick = () => {
     orderList();
     // location.href = "/payment/option";
 };
 
-
 home.onclick = () => {
     location.href = "/";
 }
+
 
 // css 디자인
 $(document).ready(function () {
@@ -319,4 +325,3 @@ $(document).ready(function () {
         $(this).addClass("active");
     });
 });
-

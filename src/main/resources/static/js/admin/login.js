@@ -1,7 +1,7 @@
-
 const loginInput = document.querySelectorAll(".general-login-input");
 const loginButton = document.querySelector(".login-button");
 
+// enter키로 클릭하기
 for (let i = 0; i < loginInput.length; i++) {
     loginInput[i].onkeyup = () => {
         if (window.event.keyCode === 13) {
